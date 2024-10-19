@@ -5,6 +5,7 @@ package Model;
 public class Accessory extends Product{
     private String type;
 
+    public Accessory(){}
     public Accessory(String type) {
         this.type = type;
     }

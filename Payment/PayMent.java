@@ -1,5 +1,8 @@
 package Payment;
 
 public interface PayMent {
-     double pay(double amount);
+     void pay(double amount,double priceItem);
+     void refund(double amount);
+     boolean isValid(String details);
+
 }
