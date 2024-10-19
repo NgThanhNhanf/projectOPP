@@ -1,14 +1,11 @@
 package Model;
 
-import java.time.LocalDate;
-
 //Product : sản phẩm
 public class Product {
     private int productID;
     private String productName;
     private double price;
-    private int stock;
-    private LocalDate dateProduct;
+    private static int stock;
 
     public Product() {
 
@@ -45,7 +42,7 @@ public class Product {
         this.price = price;
     }
 
-    public int getStock() {
+    public static int getStock() {
         return stock;
     }
 
@@ -59,8 +56,9 @@ public class Product {
 
     }
     //quanlity : số lượng sản phẩm đc thêm vào hoặc bán đi
-    public void updateStock(int quantily){
-        int newStock = this.stock;
+
+    public static boolean updateStock(int quantily) {
+        int newStock = getStock();
         if(quantily > 0){
             newStock += quantily;
         }else if(quantily < 0){
@@ -68,6 +66,8 @@ public class Product {
         }
         if(newStock < 0){
             System.out.println("số lượng tồn kho không hợp lệ!!");
-        }else this.stock = newStock;
+            return false;
+        }
+        else return true;
     }
 }

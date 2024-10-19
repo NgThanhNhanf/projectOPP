@@ -20,6 +20,16 @@ public class Inventory{
     System.out.println();
    }
    public void receiveStock(Product product,int quanlity){
-        
+        for(int i = 0; i < listInventory.size();i++){
+            if(listInventory.get(i).updateStock(quanlity)){
+                System.out.println("san pham " + listInventory.get(i) + "da dc them " + quanlity + "san pham");
+            }
+        }
+   }
+   public void issueStock(Product product,int quantily){
+
+   }
+   public double totalPrice(){
+       return 0;
    }
 }

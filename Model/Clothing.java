@@ -5,6 +5,11 @@ public class Clothing extends Product{
     private String size;
     private String material; // material : chất liệu
 
+    public Clothing() {}
+    public Clothing(String size,String material){
+       this.size = size;
+       this.material = material;
+    }
     public Clothing(int productID, String productName, double price, int stock, String size, String material) {
         super(productID, productName, price, stock);
         this.size = size;

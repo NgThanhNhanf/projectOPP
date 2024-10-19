@@ -6,6 +6,7 @@ public class Shoes extends Product{
     private  int size;
     private String color;
 
+    public Shoes() {}
     public Shoes(int size, String color) {
         this.size = size;
         this.color = color;
