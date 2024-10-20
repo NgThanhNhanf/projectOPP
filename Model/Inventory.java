@@ -8,28 +8,31 @@ public class Inventory{
         listInventory = new ArrayList<>();
     }
 
-   public void addInventory(){
-        Product prd =  new Product();
-        listInventory.add(prd);
+   public void addInventory(Product product){
+        listInventory.add(product);
    }
 
-   public void display(){
-    for(int i = 0; i < listInventory.size();i++){
-        System.out.println(listInventory.get(i));
-    }
-    System.out.println();
-   }
+ public void display(){
+        for(Product product : listInventory) {
+            product.displayInfor();
+            System.out.println("----------------");
+        }
+ }
    public void receiveStock(Product product,int quanlity){
-        for(int i = 0; i < listInventory.size();i++){
-            if(listInventory.get(i).updateStock(quanlity)){
-                System.out.println("san pham " + listInventory.get(i) + "da dc them " + quanlity + "san pham");
-            }
+        if(product.updateStock(quanlity)){
+            System.out.println(product.getProductName() + "đã được thêm " + quanlity + "sản phẩm");
         }
    }
    public void issueStock(Product product,int quantily){
-
+        if(product.updateStock(-quantily)){
+            System.out.println(product.getProductName() + "đã bớt đi " + quantily + "sản phẩm");
+        }
    }
    public double totalPrice(){
-       return 0;
+       double total = 0;
+       for(Product product : listInventory){
+           total += product.getPrice() * product.getStock();
+       }
+       return total;
    }
 }

@@ -7,9 +7,9 @@ public class Bill {
         System.out.println("╠════════════════════════════════════════════╣");
     }
     public static void printBillDetails(double priceItem, double amount, double change) {
-        System.out.println("║  Giá sản phẩm  : " + priceItem + "                  ║");
-        System.out.println("║  Tiền khách đưa: " + amount + "                  ║");
-        System.out.println("║  Tiền thối lại : " + change + "                   ║");
+        System.out.println("║  Giá sản phẩm  : " + priceItem);
+        System.out.println("║  Tiền khách đưa: " + amount);
+        System.out.println("║  Tiền thối lại : " + change);
     }
 
     public static void printBillFooter() {

@@ -5,11 +5,8 @@ public class Product {
     private int productID;
     private String productName;
     private double price;
-    private static int stock;
-
-    public Product() {
-
-    }
+    private int stock;
+    public Product() {}
 
     public Product(int productID,String productName,double price,int stock){
         this.productID = productID;
@@ -42,7 +39,7 @@ public class Product {
         this.price = price;
     }
 
-    public static int getStock() {
+    public int getStock() {
         return stock;
     }
 
@@ -56,18 +53,12 @@ public class Product {
 
     }
     //quanlity : số lượng sản phẩm đc thêm vào hoặc bán đi
-
-    public static boolean updateStock(int quantily) {
-        int newStock = getStock();
-        if(quantily > 0){
-            newStock += quantily;
-        }else if(quantily < 0){
-            newStock -= quantily;
-        }
-        if(newStock < 0){
-            System.out.println("số lượng tồn kho không hợp lệ!!");
+    public boolean updateStock(int quantily) {
+        if(quantily < 0 && stock + quantily < 0 ){
+            System.out.println("So luong ton kho < 0!!!!!");
             return false;
         }
-        else return true;
+        stock += quantily;
+        return true;
     }
 }
