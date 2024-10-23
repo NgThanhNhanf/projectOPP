@@ -4,12 +4,6 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class Birth {
-    int day;
-    int month;
-    int year;
-}
-
 public class Person {
     Scanner sc = new Scanner(System.in);
     private String name;
@@ -59,14 +53,10 @@ public class Person {
         boolean kt;
         do {
             try {
-                System.out.print("│ Ngày (dd)        : ");
-                dob.day = sc.nextInt();
-                System.out.print("│ Tháng (mm)       : ");
-                dob.month = sc.nextInt();
-                System.out.print("│ Năm (yyyy)       : ");
-                dob.year = sc.nextInt();
+                System.out.print("│ dd mm yy        : ");
+                dob.enter();
 
-                kt = isValidDate(dob.day, dob.month, dob.year);
+                kt = dob.isValidDate();
                 if (!kt) {
                     System.out.println("├───────────────────────────────────────────┤");
                     System.out.println("│ Ngày tháng năm sinh không hợp lệ.         │");
@@ -76,13 +66,9 @@ public class Person {
                 System.out.println("├───────────────────────────────────────────┤");
                 System.out.println("│ Lỗi: Vui lòng nhập số nguyên hợp lệ!      │");
                 System.out.println("│ Vui lòng nhập lại.                        │");
-                sc.nextLine();
                 kt = false;
             }
         } while (!kt);
-
-        sc.nextLine();
-
         System.out.println("├───────────────────────────────────────────┤");
         System.out.print("│ Nhập địa chỉ     : ");
         address = sc.nextLine();
@@ -112,18 +98,6 @@ public class Person {
         } while (!isValidEmail(email));
 
 //        System.out.println("└───────────────────────────────────────────┘");
-    }
-
-    public static boolean isLeapYear(int year) {
-        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-    }
-
-    public static boolean isValidDate(int day, int month, int year) {
-        if (month < 1 || month > 12) {
-            return false;
-        }
-        int[] daysInMonth = { 31, (isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-        return day > 0 && day <= daysInMonth[month - 1];
     }
 
     public static boolean isValidPhone(String phone) {
