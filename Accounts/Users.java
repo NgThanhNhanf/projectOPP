@@ -2,29 +2,41 @@ package Accounts;
 import java.util.*;
 
 public class Users {
-    private List<User> users = new ArrayList<>();
+    private static List<User> users = new ArrayList<>();
     public Users(){}
     public Users(List<User> users) {
-        this.users = users;
+        Users.users = users;
     }
-    public void enterUsers() {
+    public static void enterUsers() {
         
     }
-    public void displayUsers() {
+    public static void displayUsers() {
         for (User cur : users) {
             cur.displayUser();
         }
     }
-    public void addUser(User newUser) {
+    public static void addUser(User newUser) {
         users.add(newUser);
     }
-    public void removeUser(String userid) { 
+    public static int findUser(String userid) {
         for (int i = 0; i < users.size(); ++i) {
             User cur = users.get(i);
             if(cur.getUserId().equals(userid)) {
-                users.remove(i);
-                i--;
+                return i;
             }
         }
+        return -1;
+    }
+    public static void removeUser(String userid) { 
+        int userPosition = findUser(userid);
+        users.remove(userPosition);
+    }
+    public static boolean checkId(User user) {
+        for (User cur : users) {
+            if (cur.equals(user)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
