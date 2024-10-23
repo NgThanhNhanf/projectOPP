@@ -1,11 +1,8 @@
 package Person;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Employee extends Person {
-    private static List<Employee> listEmployee = new ArrayList<>();
     private String ID;
     private double salary;
     private String jobDescription;
@@ -75,7 +72,7 @@ public class Employee extends Person {
             jobDescription = sc.nextLine();
 
             Employee e = new Employee(getName(), getDob(), getAddress(), getPhone(), getEmail(), ID, salary, jobDescription);
-            addEmployee(e);
+            Employees.addEmployee(e);
 
             System.out.println("├───────────────────────────────────────────┤");
             System.out.print("│ Bạn có muốn nhập thêm nhân viên? (y/n): ");
@@ -83,10 +80,6 @@ public class Employee extends Person {
             tiepTuc = answer.equalsIgnoreCase("y");
         } while (tiepTuc);
         System.out.println("└───────────────────────────────────────────┘");
-    }
-
-    public static void addEmployee(Employee e) {
-        listEmployee.add(e);
     }
     @Override
     public void xuat() {
@@ -96,15 +89,5 @@ public class Employee extends Person {
         System.out.printf("│ Mô tả công việc  : %-22s │\n", jobDescription);
         System.out.println("└───────────────────────────────────────────┘");
 
-    }
-    public static void viewEmployee() {
-        if (listEmployee.isEmpty()) {
-            System.out.println("│ Danh sách nhân viên: Rỗng.");
-        } else {
-            System.out.println("├───────────────────────────────────────────┤");
-            for (Employee e : listEmployee) {
-                e.xuat();
-            }
-        }
     }
 }

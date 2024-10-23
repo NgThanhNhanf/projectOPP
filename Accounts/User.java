@@ -52,4 +52,62 @@ public class User {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+    public void editUserName() {
+        String newUserName; 
+        System.out.printf("│ Username      : %-24s │\n", userName);
+        System.out.println("│ New username         : ");
+        newUserName = sc.nextLine();
+        setUserName(newUserName);
+    }
+    public void editUserId() {
+        String newUserId;
+        System.out.printf("│ ID            : %-24s │\n", userId);
+        System.out.println("│ New ID         : ");
+        newUserId = sc.nextLine();
+        setUserId(newUserId);
+    }
+    public void editPasseword() {
+        String newPassword;
+        System.out.printf("│ Password      : %-24s │\n", password);
+        System.out.println("│ New password         : ");
+        newPassword = sc.nextLine();
+        setPassword(newPassword);
+    }
+    public void editUser() {
+        System.out.println("┌───────────────────────────────────────────┐");
+        System.out.println("│           Chon thong tin can sua          │");
+        System.out.println("├───────────────────────────────────────────┤");
+        System.out.printf("│ 1.User name            : %-24s │");
+        System.out.printf("│ 2.User id            : %-24s │");
+        System.out.printf("│ 3.Password            : %-24s │");
+        int choose; 
+        boolean complete = false;
+        while (!complete) {
+            choose = sc.nextInt();
+            switch (choose) {
+                case 1:
+                    editUserName();
+                    complete = true;
+                    break;
+                case 2:
+                    editUserId();
+                    complete = true;
+                    break;
+                case 3:
+                    editPasseword();
+                    complete = true;
+                    break;
+                default:
+                System.out.println("│           Lua chon khong hop le           │");
+                    break;
+            }
+            if (complete) {
+                System.out.println("│             Sua doi thanh cong            │");
+            }
+        }
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(userName, password);
+    }
 }
