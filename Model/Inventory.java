@@ -9,7 +9,14 @@ public class Inventory{
     }
 
    public void addInventory(Product product){
-        listInventory.add(product);
+    for(Product p : listInventory){
+        if(p.getProductID() == product.getProductID()){
+            System.out.println("San pham da ton tai trong kho!");
+            return;
+        }
+    }
+    listInventory.add(product);
+    System.out.println("San pham " + product.getProductName() + " da duoc them vao kho");
    }
 
  public void display(){
@@ -18,14 +25,14 @@ public class Inventory{
             System.out.println("----------------");
         }
  }
-   public void receiveStock(Product product,int quanlity){
-        if(product.updateStock(quanlity)){
-            System.out.println(product.getProductName() + "đã được thêm " + quanlity + "sản phẩm");
+   public void receiveStock(Product product,int quantity){
+        if(product.updateStock(quantity)){
+            System.out.println(product.getProductName() + "đã được thêm " + quantity + "sản phẩm");
         }
    }
-   public void issueStock(Product product,int quantily){
-        if(product.updateStock(-quantily)){
-            System.out.println(product.getProductName() + "đã bớt đi " + quantily + "sản phẩm");
+   public void issueStock(Product product,int quantity){
+        if(product.updateStock(-quantity)){
+            System.out.println(product.getProductName() + "đã bớt đi " + quantity + "sản phẩm");
         }
    }
    public double totalPrice(){

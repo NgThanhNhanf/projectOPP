@@ -53,12 +53,15 @@ public class Product {
 
     }
     //quanlity : số lượng sản phẩm đc thêm vào hoặc bán đi
-    public boolean updateStock(int quantily) {
-        if(quantily < 0 && stock + quantily < 0 ){
+    public boolean updateStock(int quantity) {
+        if(quantity == 0){
+            System.out.println("So luong ton kho khong thay doi"); return false;
+        }
+        else if(quantity < 0 && stock + quantity < 0 ){
             System.out.println("So luong ton kho < 0!!!!!");
             return false;
         }
-        stock += quantily;
+        stock += quantity;
         return true;
     }
 }

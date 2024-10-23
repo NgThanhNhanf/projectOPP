@@ -1,15 +1,18 @@
 import java.util.*;
-
+import java.time.*;
 import Model.Product;
 import Model.Shoes;
 import Model.Accessory;
 import Model.Inventory;
 import Model.Clothing;
+import Model.Promotion;
+
 import Payment.PayMent;
 import Payment.WalletPayment;
 import Payment.CardPayment;
 import Payment.CashPayment;
 import Payment.Bill;
+
 public class Entry {
     public static void main(String[] args) {
         Product product1 = new Product(1,"Ao phong",100,50);
@@ -38,5 +41,18 @@ public class Entry {
       CashPayment cash = new CashPayment();
         cash.pay(150,100);
         System.out.println("So du sau khi thanh toan: " + cash.getBalance());
+      
+      Promotion code = new Promotion("123", 0.2, "01-10-2024 10:10:10", "25-10-2024 10:10:10");
+      
+      code.addProductPromo(product1);
+      code.addProductPromo(product2);
+      code.addProductPromo(product3);
+      //in ra thong tin san pham giam gia 
+      code.displayApplicableProducts();
+
+      code.removeProductPromo(product2);
+
+      //in ra thong tin san pham giam gia sau khi loai 1 san pham bat ki ra
+      code.displayApplicableProducts();
     }
 }
