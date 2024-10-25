@@ -11,25 +11,30 @@ public class User {
     public User() {
         role = false;
     }
-    public User(String userName, String password, String id, String name) {
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+    public User(String userName, String password, String id) {
         this.userName = userName;
         this.password = password;
         this.userId = id;
         role = false;
     }
+    // hàm nhập 
+    // Problem: cần kiểm tra rỗng
     public void enterUser() {
-        System.out.println("│ Id         : ");
+        System.out.print("│ Id         : ");
         userId = sc.nextLine();
-        System.out.println("│ Username         : ");
+        System.out.print("│ Username         : ");
         userName = sc.nextLine();
-        System.out.println("│ Password         : ");
+        System.out.print("│ Password         : ");
         password = sc.nextLine();
     }
     public void displayUser() {
         System.out.printf("│ ID            : %-24s │\n", userId);
         System.out.printf("│ Username      : %-24s │\n", userName);
         System.out.printf("│ Password      : %-24s │\n", password);
-        System.out.println("");
     }
     public String getUserName() {
         return userName;
@@ -51,6 +56,9 @@ public class User {
     }
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+    public void setRole(boolean role) {
+        this.role = role;
     }
     public void editUserName() {
         String newUserName; 
@@ -105,9 +113,5 @@ public class User {
                 System.out.println("│             Sua doi thanh cong            │");
             }
         }
-    }
-    @Override
-    public int hashCode() {
-        return Objects.hash(userName, password);
     }
 }
