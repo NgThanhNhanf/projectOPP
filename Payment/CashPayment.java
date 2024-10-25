@@ -7,7 +7,7 @@ public class CashPayment implements PayMent{
         System.out.println("so tien can thanh toan: " + priceItem);
         if(amount >= priceItem){
             balance = amount - priceItem;
-            System.out.println("Thanh toán thành công! số dư: " + getBalance());
+            System.out.println("Thanh toan thanh cong! so du: " + getBalance());
             bill(amount,priceItem);
         } else {
             System.out.println("thanh toan khong thanh cong");
@@ -21,9 +21,9 @@ public class CashPayment implements PayMent{
     @Override
     public void refund(double amount) {
         if (balance > 0) {
-            System.out.println("Số tiền thối lại :  " + balance);
+            System.out.println("So tien thoi lai :  " + balance);
         } else {
-            System.out.println("Không có số dư");
+            System.out.println("Khong co so du");
         }
     }
 
@@ -34,7 +34,7 @@ public class CashPayment implements PayMent{
 
 
     public void bill(double amount,double priceItem) {
-        Bill.printBill("Tiền Mặt");
+        Bill.printBill("Tien mat");
         Bill.printBillDetails(priceItem, amount, getBalance());
         Bill.printBillFooter();
     }

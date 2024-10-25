@@ -26,9 +26,9 @@ public class WalletPayment implements PayMent{
     @Override
     public void refund(double amount) {
         if (balance > 0) {
-            System.out.println("Hoàn trả: " + balance);
+            System.out.println("Hoan tra: " + balance);
         } else {
-            System.out.println("Không có số dư để hoàn trả.");
+            System.out.println("Khong co so du de hoan tra .");
         }
     }
 
@@ -42,7 +42,7 @@ public class WalletPayment implements PayMent{
     }
 
     public void bill(double amount,double priceItem) {
-        Bill.printBill("Ví điện tử");
+        Bill.printBill("Vi dien tu");
         Bill.printBillDetails(priceItem, amount, getBalance());
         Bill.printBillFooter();
     }
