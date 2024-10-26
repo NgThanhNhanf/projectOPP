@@ -1,5 +1,7 @@
 package Payment;
 
+import Model.Product;
+
 public class WalletPayment implements PayMent{
     private String soDienThoai;
     private double balance;
@@ -13,7 +15,7 @@ public class WalletPayment implements PayMent{
             if(amount > priceItem){
                 balance = amount - priceItem;
                 System.out.println("Thanh toan thanh cong!");
-                bill(amount,priceItem);
+                bill(amount,priceItem,product);
             }else System.out.println("Thanh toan khong thanh cong");
         }else{
             System.out.println("So dien thoai khong hop le!");
@@ -41,9 +43,9 @@ public class WalletPayment implements PayMent{
         return true;
     }
 
-    public void bill(double amount,double priceItem) {
+    public void bill(double amount,double priceItem,Product product) {
         Bill.printBill("Vi dien tu");
-        Bill.printBillDetails(priceItem, amount, getBalance());
+        Bill.printBillDetails(priceItem, amount, getBalance(),product);
         Bill.printBillFooter();
     }
 }

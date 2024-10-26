@@ -10,13 +10,16 @@ public class Bill {
         System.out.println("╠════════════════════════════════════════════╣");
     }
     
-    public static void printBillDetails(double priceItem, double amount, double change) {
-        // System.out.printf("║  Ma san pham : %15.2f VND       ║%n",);
-        System.out.printf("║  Gia san pham : %15.2f VND       ║%n", priceItem);
-        System.out.printf("║  Tien khach dua: %15.2f VND       ║%n", amount);
-        System.out.printf("║  Tiền tra lai : %15.2f VND       ║%n", change);
-        System.out.println("╠════════════════════════════════════════════╣");
+    public static void printBillDetails(double priceItem, double amount, double change, Product product) {
+        System.out.println("╔════════════════════════════════════════════╗");
+        System.out.printf("║  Ma san pham  : %15s            ║%n", product.getProductID());  // ID sản phẩm
+        System.out.printf("║  Ten san pham : %15s            ║%n", product.getProductName()); // Tên sản phẩm
+        System.out.printf("║  Gia san pham : %15.2f VND        ║%n", priceItem);  // Giá sản phẩm
+        System.out.printf("║  Tien khach dua: %15.2f VND       ║%n", amount);  // Tiền khách đưa
+        System.out.printf("║  Tiền tra lai : %15.2f VND        ║%n", change);  // Tiền trả lại
+        System.out.println("╚════════════════════════════════════════════╝");
     }
+    
     
     public static void printBillFooter() {
         System.out.printf("║      CAM ON QUY KHACH, HEN GAP LAI!        ║%n");

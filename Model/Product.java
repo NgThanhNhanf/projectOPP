@@ -1,18 +1,25 @@
 package Model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 //Product : sản phẩm
 public class Product {
     private int productID;
     private String productName;
     private double price;
     private int stock;
+    // private LocalDateTime dateProduct;
    
+    public Product() {
+        this.productID = 123;
+        this.productName = "levent";
+    }
     public Product(int productID,String productName,double price,int stock){
         this.productID = productID;
         this.productName = productName;
         this.price = price;
         this.stock = stock; //stock: số lượng tồn kho của sản phẩm
-    }
+     }
     //getter & setter cho cac attribute
     public int getProductID() {
         return productID;

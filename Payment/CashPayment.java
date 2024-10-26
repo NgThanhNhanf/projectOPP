@@ -1,5 +1,7 @@
 package Payment;
 
+import Model.Product;
+
 public class CashPayment implements PayMent{
     private double balance;
     @Override
@@ -8,7 +10,7 @@ public class CashPayment implements PayMent{
         if(amount >= priceItem){
             balance = amount - priceItem;
             System.out.println("Thanh toan thanh cong! so du: " + getBalance());
-            bill(amount,priceItem);
+            bill(amount,priceItem,product);
         } else {
             System.out.println("thanh toan khong thanh cong");
             return;
@@ -33,9 +35,9 @@ public class CashPayment implements PayMent{
     }
 
 
-    public void bill(double amount,double priceItem) {
+    public void bill(double amount,double priceItem,Product product) {
         Bill.printBill("Tien mat");
-        Bill.printBillDetails(priceItem, amount, getBalance());
+        Bill.printBillDetails(priceItem, amount, getBalance(),product);
         Bill.printBillFooter();
     }
 }

@@ -24,6 +24,7 @@ public class Promotion {
         this.applicableProducts = new ArrayList<>();
         //tạo 1 list các sản phẩm khuyến mãi
     }
+    
     //lấy ra phần % giảm giá(thêm vào đây nếu lúc nào cần thôi)
     public double getDiscountCode(){
         return discountCode;

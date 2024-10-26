@@ -1,6 +1,7 @@
 package Payment;
 
 import java.util.Date;
+import Model.Product;
 
 public class CardPayment implements PayMent{
     private String cardNumber; //số thẻ
@@ -19,7 +20,7 @@ public class CardPayment implements PayMent{
             if(amount > priceItem){
                 balance = amount - priceItem;
                 System.out.println("Thanh toan thanh cong!");
-                bill(amount,priceItem);
+                bill(amount,priceItem,product);
             }else System.out.println("Thanh toan khong thanh cong");
         }else{
             System.out.println("so the khong hop le!");
@@ -50,9 +51,9 @@ public class CardPayment implements PayMent{
     }
 
 
-    public void bill(double amount,double priceItem) {
+    public void bill(double amount,double priceItem,Product product) {
         Bill.printBill("The ngan hang");
-        Bill.printBillDetails(priceItem, amount, getBalance());
+        Bill.printBillDetails(priceItem, amount, getBalance(),product);
         Bill.printBillFooter();
     }
 }

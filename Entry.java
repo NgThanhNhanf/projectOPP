@@ -26,17 +26,17 @@ public class Entry {
         inventory.addInventory(product3);
         inventory.addInventory(product4);
 
-        System.out.println("Thong tin san pham trong kho hang: ");
-        inventory.display();
+        // System.out.println("Thong tin san pham trong kho hang: ");
+        // inventory.display();
 
-        inventory.receiveStock(product1,50);
-        inventory.issueStock(product2,10);
+        // inventory.receiveStock(product1,50);
+        // inventory.issueStock(product2,10);
 
-        System.out.println("thong tin san pham trong kho hang sau khi them/bot: ");
-        inventory.display();
+        // System.out.println("thong tin san pham trong kho hang sau khi them/bot: ");
+        // inventory.display();
 
-        double sum = inventory.totalPrice();
-        System.out.println("Tong gia tri cua kho hang: " + sum);
+        // double sum = inventory.totalPrice();
+        // System.out.println("Tong gia tri cua kho hang: " + sum);
 
       CashPayment cash = new CashPayment();
         cash.pay(150,100);
