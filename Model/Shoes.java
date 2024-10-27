@@ -1,12 +1,11 @@
 package Model;
 
-//Shoes: giày
-//class này bonus thêm
-public class Shoes extends Product{
-    private  int size;
+public class Shoes extends Product {
+    private int size;
     private String color;
 
     public Shoes() {}
+
     public Shoes(int size, String color) {
         this.size = size;
         this.color = color;
@@ -37,6 +36,11 @@ public class Shoes extends Product{
     @Override
     public void displayInfor() {
         super.displayInfor();
-        System.out.println("size giày: " + getSize() + "\nMàu giày: " + getColor());
+        System.out.println("size giay: " + getSize() + "\nMau giay: " + getColor());
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", size giay: " + getSize() + ", Mau giay: " + getColor();
     }
 }

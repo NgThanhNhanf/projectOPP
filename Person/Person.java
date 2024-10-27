@@ -37,6 +37,13 @@ public class Person {
     public Person() {
         dob = new Birth();
     }
+
+    // 26/10/2024 Hiền viết thêm hàm khởi tạo 2 tham số 
+    public Person(String name, String phone) {
+        this.name = name;
+        this.phone = phone;
+    }
+
     public Person(String name, Birth dob, String address, String phone, String email){
         this.name = name;
         this.dob = dob;

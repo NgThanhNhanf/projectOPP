@@ -1,15 +1,16 @@
 package Model;
 
-//Clothing: quần áo,...
-public class Clothing extends Product{
+public class Clothing extends Product {
     private String size;
-    private String material; // material : chất liệu
+    private String material;
 
     public Clothing() {}
-    public Clothing(String size,String material){
-       this.size = size;
-       this.material = material;
+
+    public Clothing(String size, String material) {
+        this.size = size;
+        this.material = material;
     }
+
     public Clothing(int productID, String productName, double price, int stock, String size, String material) {
         super(productID, productName, price, stock);
         this.size = size;
@@ -35,6 +36,11 @@ public class Clothing extends Product{
     @Override
     public void displayInfor() {
         super.displayInfor();
-        System.out.println("size: " + getSize() + "\nchất liệu: " + getMaterial());
+        System.out.println("size: " + getSize() + "\nchat lieu: " + getMaterial());
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", size: " + getSize() + ", chat lieu: " + getMaterial();
     }
 }

@@ -1,11 +1,10 @@
 package Model;
 
-//Accessory: phụ kiện
-//class này bonus thêm
-public class Accessory extends Product{
+public class Accessory extends Product {
     private String type;
 
-    public Accessory(){}
+    public Accessory() {}
+
     public Accessory(String type) {
         this.type = type;
     }
@@ -26,6 +25,11 @@ public class Accessory extends Product{
     @Override
     public void displayInfor() {
         super.displayInfor();
-        System.out.println("loại phụ kiện: " + getType());
+        System.out.println("loai phu kien: " + getType());
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", looi phu kien: " + getType();
     }
 }
