@@ -44,10 +44,10 @@ public class Employee extends Person {
         this.jobDescription = jobDescription;
     }
     @Override
-    public void nhap() {
+    public void enterPerson() {
         boolean tiepTuc;
         do {
-            super.nhap();
+            super.enterPerson();
 
             System.out.println("├───────────────────────────────────────────┤");
             System.out.print("│ Nhập ID nhân viên: ");
@@ -82,8 +82,8 @@ public class Employee extends Person {
         System.out.println("└───────────────────────────────────────────┘");
     }
     @Override
-    public void xuat() {
-        super.xuat();
+    public void displayPerson() {
+        super.displayPerson();
         System.out.printf("│ ID nhân viên   : %-24s │\n", ID);
         System.out.printf("│ Lương nhân viên  : $%-22.2f│\n", salary);
         System.out.printf("│ Mô tả công việc  : %-22s │\n", jobDescription);
