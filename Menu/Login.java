@@ -61,9 +61,12 @@ public class Login {
             System.out.println("└───────────────────────────────────────────┘");
             int choose = sc.nextInt();
             sc.nextLine();
+            
             if (choose == 2) {
+                System.out.println("-Chon thoat");
                 return false;
             }
+            System.out.println("-Chon nhap thong tin");
             user.enterUser();
             if (Employees.checkId(user.getUserId())) {
                 userContainer.addUser(user);
