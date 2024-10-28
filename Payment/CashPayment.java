@@ -4,13 +4,15 @@ import Model.Product;
 
 public class CashPayment implements PayMent{
     private double balance;
+
     @Override
-    public void pay(double amount,double priceItem) {
-        System.out.println("so tien can thanh toan: " + priceItem);
-        if(amount >= priceItem){
-            balance = amount - priceItem;
+    public void pay(Bill bill,double amount) {
+        double allPriceItem = bill.sumAllBill();
+        System.out.println("so tien can thanh toan: " + allPriceItem);
+        if(amount >= allPriceItem){
+            balance = amount - allPriceItem;
             System.out.println("Thanh toan thanh cong! so du: " + getBalance());
-            bill(amount,priceItem,product);
+            bill.inBill("Tien mat");
         } else {
             System.out.println("thanh toan khong thanh cong");
             return;
@@ -32,12 +34,5 @@ public class CashPayment implements PayMent{
     @Override
     public boolean isValid(String details) {
         return true;
-    }
-
-
-    public void bill(double amount,double priceItem,Product product) {
-        Bill.printBill("Tien mat");
-        Bill.printBillDetails(priceItem, amount, getBalance(),product);
-        Bill.printBillFooter();
     }
 }
