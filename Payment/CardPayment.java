@@ -14,13 +14,14 @@ public class CardPayment implements PayMent{
     }
 
     @Override
-    public void pay(double amount, double priceItem) {
+    public void pay(Bill bill,double amount) {
+        double allPriceItem = bill.sumAllBill();
         if(isValid(cardNumber)){
-            System.out.println("So tien can thanh toan:" + priceItem);
-            if(amount > priceItem){
-                balance = amount - priceItem;
+            System.out.println("So tien can thanh toan:" + allPriceItem);
+            if(amount > allPriceItem){
+                balance = amount - allPriceItem;
                 System.out.println("Thanh toan thanh cong!");
-                bill(amount,priceItem,product);
+                bill.inBill("The ngan hang");
             }else System.out.println("Thanh toan khong thanh cong");
         }else{
             System.out.println("so the khong hop le!");
@@ -48,12 +49,5 @@ public class CardPayment implements PayMent{
        }
        if(details.length() != 16) return false;
        return true;
-    }
-
-
-    public void bill(double amount,double priceItem,Product product) {
-        Bill.printBill("The ngan hang");
-        Bill.printBillDetails(priceItem, amount, getBalance(),product);
-        Bill.printBillFooter();
     }
 }

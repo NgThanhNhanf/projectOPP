@@ -35,6 +35,25 @@ public class Shoes extends Product{
     }
 
     @Override
+    public void inp(){
+        System.out.println("nhap thong tin san pham:");
+        System.out.print("ma san pham: ");
+        setProductID(sc.nextInt());
+        sc.nextLine(); // loại bỏ dấu /n sau khi nhập int
+        System.out.print("ten san pham: ");
+        setProductName(sc.nextLine());
+        System.out.print("size: ");
+        setSize(sc.nextInt());
+        System.out.print("mau giay: ");
+        setColor(sc.nextLine());
+        System.out.print("gia tien: ");
+        setPrice(sc.nextDouble());
+        System.out.print("ton kho: ");
+        setStock(sc.nextInt());
+    }
+
+
+    @Override
     public void displayInfor() {
         super.displayInfor();
         System.out.println("size giày: " + getSize() + "\nMàu giày: " + getColor());
