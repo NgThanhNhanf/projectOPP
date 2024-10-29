@@ -14,7 +14,7 @@ public class Employees {
         } else {
             System.out.println("├───────────────────────────────────────────┤");
             for (Employee e : listEmployee) {
-                e.xuat();
+                e.displayPerson();
             }
         }
     }
