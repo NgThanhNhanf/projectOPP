@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Person {
     private String name;
-    private Birth dob;
+    private Birth dob = new Birth();
     private String address;
     private String phone;
     private String email;
