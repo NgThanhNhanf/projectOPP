@@ -15,11 +15,11 @@ public class CardPayment implements PayMent{
 
     @Override
     public void pay(Bill bill,double amount) {
-        double allPriceItem = bill.sumAllBill();
+        double priceItem = bill.sumAllBill();
         if(isValid(cardNumber)){
-            System.out.println("So tien can thanh toan:" + allPriceItem);
-            if(amount > allPriceItem){
-                balance = amount - allPriceItem;
+            System.out.println("So tien can thanh toan:" + priceItem);
+            if(amount > priceItem){
+                balance = amount - priceItem;
                 System.out.println("Thanh toan thanh cong!");
                 bill.inBill("The ngan hang");
             }else System.out.println("Thanh toan khong thanh cong");

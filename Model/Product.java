@@ -56,11 +56,11 @@ public abstract class Product {
     public int getQuantilyPurchased(){
         return quantilyPurchased;
     }
-    //phương thức trừu tượng in thông tin sản phẩm
+    //phương thức trừu tượng nhap thông tin sản phẩm
     public abstract void inp();
-
-    //xuất thông tin sản phẩm
-    public  boolean addProductInCart(Scanner sc){
+    
+    //kiem tra so luong san pham minh mua co hop le hay khong
+    public  boolean addProductInCart(Product product){
         System.out.print("nhap so luong mua san pham " + productName + ": ");
         //nhập số lượng sản phẩm cần mua 
         int quantity = sc.nextInt();

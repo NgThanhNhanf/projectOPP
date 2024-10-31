@@ -39,7 +39,6 @@ public class Accessory extends Product{
         System.out.print("ton kho: ");
         setStock(sc.nextInt());
     }
-
     @Override
     public void displayInfor() {
         super.displayInfor();
