@@ -1,6 +1,5 @@
 package Menu;
 
-import java.io.FileNotFoundException;
 import java.util.*;
 import Accounts.User;
 import Accounts.Users;
@@ -8,11 +7,8 @@ import Person.Employees;
 
 public class Login {
     private User user = new User();
-    public Users userContainer = new Users();
     Scanner sc = new Scanner(System.in);
-    Login() throws FileNotFoundException{
-        userContainer.readFile();
-    }
+    Login(){}
     public boolean login() {
         boolean complete = false;
         while (!complete) {
@@ -25,8 +21,10 @@ public class Login {
             int choose = sc.nextInt();
             sc.nextLine();
             if (choose == 2) {
+                System.out.println("-Chon thoat.");
                 return false;
             }
+            System.out.println("-Chon nhap thong tin.");
             System.out.println("┌───────────────────────────────────────────┐");
             System.out.println("│                 Dang nhap                 │");
             System.out.println("├───────────────────────────────────────────┤");
@@ -38,7 +36,7 @@ public class Login {
             System.out.print("│ Password         : ");
             password = sc.nextLine();
             user = new User(userName, password);
-            if (userContainer.checkUser(user)) {
+            if (Users.checkUser(user)) {
                 System.out.println("└───────────────────────────────────────────┘");
                 System.out.println("-Dang nhap thanh cong!");
                 return true;
@@ -69,7 +67,7 @@ public class Login {
             System.out.println("-Chon nhap thong tin");
             user.enterUser();
             if (Employees.checkId(user.getUserId())) {
-                userContainer.addUser(user);
+                Users.addUser(user);
                 System.out.println("-Dang ky thanh cong!");
                 complete = true;
                 return true;

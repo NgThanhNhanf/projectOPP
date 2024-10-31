@@ -50,32 +50,32 @@ public class Employee extends Person {
             super.enterPerson();
 
             System.out.println("├───────────────────────────────────────────┤");
-            System.out.print("│ Nhập ID nhân viên: ");
+            System.out.print("│ Nhap ID nhan vien: ");
             ID = sc.nextLine();
 
             double salaryInput = 0;
             boolean isValidSalary = false;
             do {
                 try {
-                    System.out.print("│ Nhập lương nhân viên: ");
+                    System.out.print("│ Nhap luong nhan vien: ");
                     salaryInput = Double.parseDouble(sc.nextLine());
                     isValidSalary = true;
                 } catch (NumberFormatException e) {
                     System.out.println("├───────────────────────────────────────────┤");
-                    System.out.println("│ Lỗi: Vui lòng nhập số hợp lệ cho lương!   │");
+                    System.out.println("│ Loi: Vui long nhap so hop le cho luong!   │");
                     System.out.println("├───────────────────────────────────────────┤");
                 }
             } while (!isValidSalary);
             salary = salaryInput;
 
-            System.out.print("│ Nhập mô tả công việc của nhân viên: ");
+            System.out.print("│ Nhap mo ta cong viec cua nhan vien: ");
             jobDescription = sc.nextLine();
 
             Employee e = new Employee(getName(), getDob(), getAddress(), getPhone(), getEmail(), ID, salary, jobDescription);
             Employees.addEmployee(e);
 
             System.out.println("├───────────────────────────────────────────┤");
-            System.out.print("│ Bạn có muốn nhập thêm nhân viên? (y/n): ");
+            System.out.print("│ Ban co muon nhap them nhan vien? (y/n): ");
             String answer = sc.nextLine();
             tiepTuc = answer.equalsIgnoreCase("y");
         } while (tiepTuc);
@@ -84,9 +84,9 @@ public class Employee extends Person {
     @Override
     public void displayPerson() {
         super.displayPerson();
-        System.out.printf("│ ID nhân viên   : %-24s │\n", ID);
-        System.out.printf("│ Lương nhân viên  : $%-22.2f│\n", salary);
-        System.out.printf("│ Mô tả công việc  : %-22s │\n", jobDescription);
+        System.out.printf("│ ID nhan vien   : %-24s │\n", ID);
+        System.out.printf("│ Luong nhan vien  : $%-22.2f│\n", salary);
+        System.out.printf("│ Mo ta cong viec  : %-22s │\n", jobDescription);
         System.out.println("└───────────────────────────────────────────┘");
 
     }
