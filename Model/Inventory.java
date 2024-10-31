@@ -1,14 +1,20 @@
 package Model;
 
+import java.util.List;
 import java.util.ArrayList;
 
 public class Inventory{
     //mang luu 1 cai list cac san pham trong kho 
-    private ArrayList<Product> listInventory;
+    private List<Product> listInventory;
     public Inventory(){
         listInventory = new ArrayList<>();
         //ham constructor tao 1 cai list kho hang
     }
+
+    public List<Product> getListInventory(){
+        return listInventory;
+    }
+    
     // them san pham vao kho hang
    public void addInventory(Product product){
     for(Product p : listInventory){
@@ -19,7 +25,7 @@ public class Inventory{
         }
     }
     listInventory.add(product);
-    System.out.println("San pham " + product.getProductName() + " da duoc them vao kho");
+    System.out.println("them san pham vao kho thanh cong!!!");
    }
 
  public void display(){
