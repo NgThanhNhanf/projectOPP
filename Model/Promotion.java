@@ -11,6 +11,10 @@ public class Promotion {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private List<Product> applicableProducts; // sản phẩm đc áp dụng mã giảm giá
+
+    public Promotion(){
+        
+    }
     
     //lớp này để định dạng ngày và giờ(W3school)
     DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
