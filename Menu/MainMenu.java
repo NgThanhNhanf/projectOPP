@@ -1,10 +1,23 @@
 package Menu;
 import java.util.*;
-import java.io.*;
 
+import Accounts.Users;
+import Person.Employees;
+
+import java.io.*;
 public class MainMenu {
-    public static void main(String[] args) throws FileNotFoundException {
-        Scanner sc = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        Users.fileInit();
+        Employees.fileInit();
+        loginUI();
+        Users.fileClose();
+        Employees.fileClose();
+    }
+    public static void Menu() {
+        System.out.println("Vao Menu rooif nef hehe");
+    }
+    public static void loginUI() throws FileNotFoundException {
         Login login = new Login();
         boolean complete = false;
         while (!complete) {
@@ -17,21 +30,26 @@ public class MainMenu {
             System.out.println("└───────────────────────────────────────────┘");
             int choose = sc.nextInt();
             sc.nextLine();
-            if (choose == 1) {
-                System.out.println("-Chon dang nhap.");
-                if (login.login()) {
-                    System.out.println("vao Menu");
-                }
-            } else if (choose == 2) {
-                System.out.println("-Chon dang ky.");
-                if (login.register()) {
-                    System.out.println("Vao Menu");
-                }
-            } else {
-                System.out.println("-Chon thoat.");
-                complete = true;
+            switch (choose) {
+                case 1: 
+                    System.out.println("-Chon dang nhap.");
+                    if (login.login()) {
+                        Menu();
+                    }
+                    break;
+                case 2:
+                    System.out.println("-Chon dang ky.");
+                    if (login.register()) {
+                        Menu();
+                    }
+                    break;
+                case 3:
+                    System.out.println("-Chon thoat.");
+                    complete = true;
+                    break;
+                default: 
+                    System.out.println("-Lua chon khong hop le, hay thu lai!");
             }
         }
-        sc.close();
     }
 }
