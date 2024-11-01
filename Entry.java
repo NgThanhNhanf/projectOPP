@@ -16,53 +16,9 @@ import Payment.Bill;
 public class Entry {
     public static void main(String[] args) {
        Scanner sc = new Scanner(System.in);
-      //   Product product2 = new Shoes(2,"Giay nike ",200,30,43,"Trang");
-      //   Product product3 = new Clothing(3,"Quan tay den",200,20,"XL","Cao cap");
-      //   Product product4 = new Accessory(4,"Vong tay",16,10,"Vai");
-
-      //   Inventory inventory = new Inventory();
-      //   inventory.addInventory(product2);
-      //   inventory.addInventory(product3);
-      //   inventory.addInventory(product4);
-        
-
-      //   System.out.println("Thong tin san pham trong kho hang: ");
-      //   inventory.display();
-
-      //   inventory.receiveStock(product3,50);
-      //   inventory.issueStock(product2,10);
-
-      //   System.out.println("thong tin san pham trong kho hang sau khi them/bot: ");
-      //   inventory.display();
-
-      //   double sum = inventory.totalPrice();
-      //   System.out.println("Tong gia tri cua kho hang: " + sum);
-
-      //   Promotion code = new Promotion("123", 0.2, "01-10-2024 10:10:10", "25-10-2024 10:10:10");
-      
-      //   code.addProductPromo(product4);
-      //   code.addProductPromo(product2);
-      //   code.addProductPromo(product3);
-      //   //in ra thong tin san pham giam gia 
-      //   code.displayApplicableProducts();
-  
-      //   code.removeProductPromo(product2);
-  
-      //   //in ra thong tin san pham giam gia sau khi loai 1 san pham bat ki ra
-      //   code.displayApplicableProducts();
-      
-      // product2.addProductInCart(sc);
-      // product3.addProductInCart(sc);
-
-      // Bill bill = new Bill();
-      // bill.addProductInBill(product2);
-      // bill.addProductInBill(product3);
-      // CashPayment cash = new CashPayment();
-      // System.out.print("nhap so tien khach hang can thanh toan: ");
-      // double money = sc.nextDouble();
-      //   cash.pay(bill,money);
       Inventory inventory = new Inventory();
       Promotion promotion = new Promotion();
+      Bill bill = new Bill();
       List<Product> listCart = new ArrayList<>();
       while(true){
         System.out.println("1.Them san pham trong kho hang");
@@ -73,8 +29,7 @@ public class Entry {
         System.out.println("6.In thong tin cac san pham duoc khuyen mai");
         System.out.println("7.Them san pham vao gio hang");
         System.out.println("8.Chon phuong thuc thanh toan");
-        System.out.println("9.In ra thong tin thanh toan");
-        System.out.println("10.Thoat");
+        System.out.println("9.Thoat");
         int lc;
         System.out.print("nhap luc chon:");
         lc = sc.nextInt();
@@ -115,46 +70,35 @@ public class Entry {
             int inp;
             System.out.println("Ban muon them hay bot ? Nhap lua chon: ");
             inp = sc.nextInt();
-            if(inp == 1){
-              boolean findProduct = false;
-              String nameProduct;
-              System.out.print("nha ten san pham: ");
-              nameProduct = sc.nextLine();
-              System.out.print("nhap so luong muon them: ");
-              int quantily = sc.nextInt();
-              for(Product p : inventory.getListInventory()){
-                if(p.getProductName().equals(nameProduct)){
-                    inventory.receiveStock(p, quantily);
-                    findProduct = true;
-                    System.out.println("Them thanh cong");
-                }else  {
-                  findProduct = false;
-                  System.out.println("khong tim thay san pham");
+            sc.nextLine();
+            String name;
+            System.out.println("nhap ten san pham: ");
+            name = sc.nextLine();
+            int quantily;
+            System.out.println("nhap so luong: ");
+            quantily = sc.nextInt();
+            boolean findproduct = false;
+            for(Product product : inventory.getListInventory()){
+                if(product.getProductName().equals(name)){
+                  if(inp == 1){
+                    inventory.receiveStock(product, quantily);
+                  }else if(inp == 2){
+                    inventory.issueStock(product, quantily);
+                  }
+                  findproduct = true;
                   break;
                 }
-              }
-            }else if(inp == 2){
-              boolean findProduct = false;
-              String nameProduct;
-              System.out.print("nha ten san pham: ");
-              nameProduct = sc.nextLine();
-              System.out.print("nhap so luong muon Bot: ");
-              int quantily = sc.nextInt();
-              for(Product p : inventory.getListInventory()){
-                if(p.getProductName().equals(nameProduct)){
-                    inventory.issueStock(p, quantily);
-                    findProduct = true;
-                    System.out.println("Bot thanh cong");
-                }else{
-                  findProduct = false;
-                  System.out.println("khong tim thay san pham");
-                  break;
-                }
-              }
-            }else {
-              break;
             }
-          }
+
+            if(!findproduct){
+              System.out.println("khong tim thay san pham trong kho");
+            }
+
+            System.out.println("ban co muon tiep tuc cap nhap  (y/n) ? :");
+            String continueSelect = sc.next();
+
+            if(!continueSelect.equalsIgnoreCase("y") || !continueSelect.equalsIgnoreCase("Y")) break;
+         }
           break;
 
           case 4:
@@ -168,28 +112,32 @@ public class Entry {
               int chosse;
               System.out.print("nhap lua chon: ");
               chosse = sc.nextInt();
+              boolean findID = true;
               if(chosse == 1){
                 int IDproduct;
                 System.out.print("nhap ma san pham muon them: ");
                 IDproduct = sc.nextInt();
                 for(Product product : inventory.getListInventory()){
-                  if(inventory.getListInventory().contains(IDproduct)){
+                  if(product.getProductID() == IDproduct){
+                    findID = true;
+                    promotion.inpPromocodeandDiscount();
+                    promotion.applyDiscount(product);
                     promotion.addProductPromo(product);
-                  }else{
-                    System.out.println("khong tim thay san pham!"); break;
+                    promotion.inpDate();
                   }
-                }
+                  }
+                  if(!findID) System.out.println("khong tin thay san pham");
               }else if(chosse == 2){
                 int IDproduct;
                 System.out.print("nhap ma san pham muon xoa: ");
                 IDproduct = sc.nextInt();
                 for(Product product : inventory.getListInventory()){
-                  if(inventory.getListInventory().contains(IDproduct)){
-                    promotion.removeProductPromo(product);
-                  }else{
-                    System.out.println("khong tim thay san pham!"); break;
-                  }
+                if(product.getProductID() == IDproduct){
+                  findID = true;
+                  promotion.removeProductPromo(product);
                 }
+                }
+                if(!findID) System.out.println("khong tin thay san pham");
               }else break;
             }
           break;
@@ -236,7 +184,45 @@ public class Entry {
             break;
 
             case 8:
-            
+            if(listCart.isEmpty()){
+              System.out.println("ban chua mua bat ki san pham nao!");
+              break;
+            }
+            for(Product product : listCart){
+              bill.addProductInBill(product);
+            }
+            System.out.print("_________chon 1 phuong thuc thanh toan_____");
+            while(true){
+              System.out.println("1.Thanh toan bang tien mat");
+              System.out.println("2.Thanh toan bang the ngan hang");
+              System.out.println("3.Thanh toan bang vi dien tu");
+              int choice;
+              System.out.println("nhap lua chon cua ban: ");
+              choice = sc.nextInt();
+              double money;
+              System.out.println("so tien khach hang dua: ");
+              money = sc.nextDouble();
+              if(choice == 1){
+                CashPayment cash = new CashPayment();
+                cash.pay(bill, money);
+              }else if(choice == 2){
+                System.out.println("nhap so the: ");
+                String number = sc.next();
+                LocalDate expiry = LocalDate.of(2028,11,26);
+                CardPayment card = new CardPayment(number, expiry);
+                card.pay(bill, money);
+              }else if(choice == 3){
+                System.out.println("nhap so dien thoai: ");
+                String numberPhone = sc.next();
+                WalletPayment wallet = new WalletPayment(numberPhone);
+                wallet.pay(bill, money);
+              }else break;
+            }
+            break;
+
+            case 9:
+            System.out.println("ket thuc chuong trinh!");
+            break;
         }
       }
     }

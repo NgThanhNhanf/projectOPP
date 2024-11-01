@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import java.util.Scanner;
+
 public class Promotion {
     private String promoCode; // mã giảm giá
     private double discountCode; // % giảm 
@@ -12,21 +14,64 @@ public class Promotion {
     private LocalDateTime endDate;
     private List<Product> applicableProducts; // sản phẩm đc áp dụng mã giảm giá
 
-    public Promotion(){
-        
-    }
-    
     //lớp này để định dạng ngày và giờ(W3school)
-    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    static DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     //ofPattern: dùng để phân tách ngày và giờ và loại bỏ chữ T ở giữa 
-    public Promotion(String promoCode,double discountCode,String beginDate,String lastDate){
+    Scanner sc = new Scanner(System.in);
+    public Promotion(){
+        this.applicableProducts = new ArrayList<>();
+    }
+    public Promotion(String promoCode,double discountCode){
         this.promoCode = promoCode;
         this.discountCode = discountCode;
-        //hàm parse: dùng để chuyển đổi kiểu format(ngày giờ) ở trên sang dạng 1 chuỗi  
-        this.startDate = LocalDateTime.parse(beginDate, format);
-        this.endDate = LocalDateTime.parse(lastDate, format);
         this.applicableProducts = new ArrayList<>();
         //tạo 1 list các sản phẩm khuyến mãi
+    }
+
+    public boolean isValidformat(String str){
+        try {
+            LocalDateTime.parse(str, format);
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
+    }
+    public void inpPromocodeandDiscount(){
+        System.out.println("nhap ma giam gia: ");
+        setPromoCode(sc.nextLine());
+        System.out.println("nhap phan tram giam gia: ");
+        setDiscountCode(sc.nextDouble());
+        sc.nextLine();
+    }
+    public void inpDate(){
+        String beginDate;
+        do {
+            System.out.println("han bat dau: ");
+            beginDate = sc.nextLine();
+            if(!isValidformat(beginDate)){
+                System.out.println("dinh dang ngay khong hop le!Vui long nhap lai: ");
+            }
+        } while (!isValidformat(beginDate));
+        this.startDate = LocalDateTime.parse(beginDate, format);
+
+        String lastDate;
+        do {
+            System.out.println("han ket thuc: ");
+            lastDate = sc.nextLine();
+            if(!isValidformat(lastDate)){
+                System.out.println("dinh dang ngay khong hop le!Vui long nhap lai: ");
+            }
+        } while (!isValidformat(lastDate));
+        this.endDate = LocalDateTime.parse(lastDate, format);
+    }
+
+    public LocalDateTime getStartDate(){
+        return startDate;
+    }
+
+    public LocalDateTime getEndDate(){
+        return endDate;
     }
     
     //lấy ra phần % giảm giá(thêm vào đây nếu lúc nào cần thôi)
@@ -36,7 +81,7 @@ public class Promotion {
 
     public void setDiscountCode(double discountCode){
         //kiểm tra cái % giảm giá có hợp lệ trong khoảng từ 0 -> 1
-        if(discountCode < 0 && discountCode > 1) this.discountCode = 0;
+        if(discountCode < 0 && discountCode > 100) this.discountCode = 0;
         else this.discountCode = discountCode;
     }
 
@@ -56,6 +101,9 @@ public class Promotion {
    public  boolean isvalidDay(){
     //hàm now() để lấy ra cái ngày giờ hiện tại 
     LocalDateTime day = LocalDateTime.now();
+    if(startDate == null || endDate == null || (startDate == null && endDate == null)){
+        System.out.println("ngay bat dau va ket thuc chua duoc khoi tao"); return false;
+    }
     //day là cái ngày hiện tại thì kiểm tra nó có nằm trong khoảng ngày khuyến mãi hay không 
     return !day.isBefore(startDate) && !day.isAfter(endDate); 
     }
@@ -96,9 +144,10 @@ public class Promotion {
         
         for (Product product : applicableProducts) {
             System.out.println("╠────────────────────────────────────────────╣");
-            System.out.printf("║ %-35s %5.0f‰ ║\n",product.getProductName(), discountCode * 100);
+            System.out.printf("║ %-35s %5.0f‰ ║\n",product.getProductName(), discountCode);
         }
         System.out.println("╚════════════════════════════════════════════╝");
     }
+
     
 }

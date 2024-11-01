@@ -12,7 +12,7 @@ public abstract class Product {
    Scanner sc = new Scanner(System.in);
 
    public Product() {
-
+        
    }
 
     public Product(int productID,String productName,double price,int stock){
@@ -75,7 +75,7 @@ public abstract class Product {
     }
     //in thong tin full cua san pham trong kho hang
     public void displayInfor(){
-        System.out.println("Ma san pham " + getProductID() + "\nTen san pham: " + getProductName() + "\nso luong mua: " + getQuantilyPurchased());
+        System.out.println("Ma san pham " + getProductID() + "\nTen san pham: " + getProductName() + "\nSo luong ton: " + getStock());
 
     }
     //in thong tin can thiet cua san pham trong hoa don thanh toan
