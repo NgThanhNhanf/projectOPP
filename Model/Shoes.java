@@ -44,12 +44,14 @@ public class Shoes extends Product{
         setProductName(sc.nextLine());
         System.out.print("size: ");
         setSize(sc.nextInt());
+        sc.nextLine();
         System.out.print("mau giay: ");
         setColor(sc.nextLine());
         System.out.print("gia tien: ");
         setPrice(sc.nextDouble());
         System.out.print("ton kho: ");
         setStock(sc.nextInt());
+        sc.nextLine();
     }
 
 

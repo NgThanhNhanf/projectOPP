@@ -1,14 +1,14 @@
 package Payment;
 
-import java.util.Date;
+import java.time.LocalDate;;
 import Model.Product;
 
 public class CardPayment implements PayMent{
     private String cardNumber; //số thẻ
-    private Date expiryDate; //ngày hết hạn
+    private LocalDate expiryDate; //ngày hết hạn
     private double balance; // số dư
 
-    public CardPayment(String cardNumber,Date expiryDate){
+    public CardPayment(String cardNumber,LocalDate expiryDate){
         this.cardNumber = cardNumber;
         this.expiryDate = expiryDate;
     }
