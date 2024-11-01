@@ -6,12 +6,13 @@ import Accounts.Users;
 import Person.Employees;
 
 public class Login {
-    private User user = new User();
+    private User user;
     Scanner sc = new Scanner(System.in);
     Login(){}
     public boolean login() {
         boolean complete = false;
         while (!complete) {
+            user = new User();
             System.out.println("┌───────────────────────────────────────────┐");
             System.out.println("│                 Dang nhap                 │");
             System.out.println("├───────────────────────────────────────────┤");
@@ -28,7 +29,6 @@ public class Login {
             System.out.println("┌───────────────────────────────────────────┐");
             System.out.println("│                 Dang nhap                 │");
             System.out.println("├───────────────────────────────────────────┤");
-            // problem: đăng nhập thì chỉ cần có user name và pass thì phần id để làm gì ?
             // Cách nào đẻ lấy role đưa vào main menu
             String userName, password;
             System.out.print("│ Username         : ");
@@ -51,6 +51,7 @@ public class Login {
     public boolean register() {
         boolean complete = false;
         while (!complete) {
+            user = new User();
             System.out.println("┌───────────────────────────────────────────┐");
             System.out.println("│                  Dang ky                  │");
             System.out.println("├───────────────────────────────────────────┤");

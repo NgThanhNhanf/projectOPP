@@ -1,1 +1,1 @@
-Nhan|16/10/2005|LA|Nhan@gmail.com|0847979732|123|100000.0|manager
+Nhan|16/10/2005|LA|0847979732|Nhan@gmail.com|123|100000.0|manager

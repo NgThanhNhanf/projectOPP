@@ -11,6 +11,7 @@ public class MainMenu {
         Users.fileInit();
         Employees.fileInit();
         loginUI();
+        Users.displayUsers();
         Users.fileClose();
         Employees.fileClose();
     }

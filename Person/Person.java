@@ -3,7 +3,7 @@ package Person;
 import java.util.Scanner;
 import java.util.regex.*;
 
-public class Person {
+public abstract class Person {
     private String name;
     private Birth dob = new Birth();
     private String address;
