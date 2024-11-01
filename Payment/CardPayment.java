@@ -1,6 +1,6 @@
 package Payment;
 
-import java.time.LocalDate;;
+import java.time.LocalDate;
 import Model.Product;
 
 public class CardPayment implements PayMent{
