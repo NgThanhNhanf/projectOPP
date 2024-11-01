@@ -1,23 +1,29 @@
 package Statistic;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import Order.*;
+    // ----------lấy doanh thu theo ngày tháng năm-------------------
     // cho order đọc file trước sau đó thống kê sẽ lấy từ order
     // dùng tree map để lưu từng date (LocalDate) rồi dùng submap để có thể truy suất từng tháng năm
-    // dung mảng 3 chiều và 1 mảng động để chứa
-    // dùng 3 lớp: 
-    // + lớp năm chứa 12 tháng, và năm 
-    // + lớp tháng thì chứa 31 ngày
-    // + lớp ngày chứa ngày
+    // -----------lấy số lượng bán sp trong 1 thời gian nào đó-------------
+    // dùng HashMap <String tên sp, SortedMap> SortedMap lưu theo ngày. SortedMap<LocalDate, int>
+    // 
 public class Revenue {
     static SortedMap <LocalDate, Integer> revenueMap = new TreeMap<>();
-    static SortedMap <LocalDate, OrderDetail> quantityProductMap = new TreeMap<>();
+    static HashMap<String, SortedMap<LocalDate, Integer>> quantityProductMap = new HashMap<>();
     // lấy các đơn hàng từ order để thống kê cho từng ngày
     public static void init() {
         for (Order cur : Orders.getOrders()) {
             revenueMap.put(cur.getOrderDate(), revenueMap.getOrDefault(cur.getOrderDate(), 0 ) + cur.getValue());
+            for(OrderDetail detail : cur.getOrderDetails()) {
+                SortedMap<LocalDate, Integer> defaultMap = new TreeMap<>();
+                SortedMap<LocalDate, Integer> quantity = quantityProductMap.getOrDefault(detail.getProduct().getProductName(), defaultMap);
+                quantity.put(cur.getOrderDate(), quantity.getOrDefault(cur.getOrderDate(), 0) + detail.getQuantity());
+                quantityProductMap.put(detail.getProduct().getProductName(), quantity);
+            }
         }
     }
     // lấy doanh thu hóa đơn trong khoảng từ start đến end
