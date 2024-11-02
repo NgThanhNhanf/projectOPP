@@ -45,7 +45,6 @@ public class Orders {
                                         product = cur;
                                     }
                                 }
-                                
                                 if (product != null) {
                                     order.addProduct(product, quantity);
                                     System.out.println("San pham da duoc them vao đon hang.");
