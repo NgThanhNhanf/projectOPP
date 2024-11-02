@@ -7,7 +7,6 @@ public abstract class Product {
     private int productID;
     private String productName;
     private double price;
-    private int quantilyPurchased; //số lượng mua
    Scanner sc = new Scanner(System.in);
 
    public Product() {
@@ -43,22 +42,10 @@ public abstract class Product {
     public void setPrice(double price) {
         this.price = price;
     }
-    public int getQuantilyPurchased(){
-        return quantilyPurchased;
-    }
     //phương thức trừu tượng nhap thông tin sản phẩm
     public abstract void inp();
     //in thong tin full cua san pham trong kho hang
     public void displayInfor(){
-        System.out.println("Ma san pham " + getProductID() + "\nTen san pham: " + getProductName());
-    }
-    //in thong tin can thiet cua san pham trong hoa don thanh toan
-    public void inforBill(){
-        System.out.println("\nMa san pham: " + getProductID() + "\nten san pham: " + getProductName() + "\nso luong mua: " + getQuantilyPurchased());
-    }
-
-    //hàm này để tính tổng  sản phẩm mình mua (in trong bill)
-    public double totalProduct(){
-        return this.getQuantilyPurchased() * this.getPrice();
+        System.out.println("Ma san pham " + getProductID() + "\nTen san pham: " + getProductName() + "\nDon gia: " + getPrice());
     }
 }

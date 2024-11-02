@@ -43,4 +43,14 @@ public class Inventory{
         //trả về tổng của tất cả sản phẩm
         return total;
     }
+
+    // Phương thức tìm sản phẩm theo ID
+    public Product getProductByID(int productID) {
+        for(Product product : listInventory.keySet()){
+            if(product.getProductID() == productID){
+                return product;
+            }
+        }
+        return null;
+    }
 }

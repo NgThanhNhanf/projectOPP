@@ -29,13 +29,14 @@ public class Orders {
                     int choice = scanner.nextInt();
                     scanner.nextLine();
                     switch (choice) {
-                        case 1: 
+                        case 1:
                             inventory.display();
                             boolean loop;
                             do {
                                 System.out.print("Nhap ma san pham:");
                                 int productID = scanner.nextInt();
                                 scanner.nextLine();
+<<<<<<< HEAD
                                 System.out.print("Nhap so luong:");
                                 int quantity = scanner.nextInt();
                                 scanner.nextLine();
@@ -45,45 +46,77 @@ public class Orders {
                                         product = cur;
                                     }
                                 }
+=======
+
+                                Product product = inventory.getProductByID(productID);
+
+>>>>>>> main
                                 if (product != null) {
-                                    order.addProduct(product, quantity);
-                                    System.out.println("San pham da duoc them vao đon hang.");
+                                    int stock = inventory.getListInventory().getOrDefault(product, 0);
+                                    if (stock > 0) {
+                                        System.out.print("Nhap so luong:");
+                                        int quantity = scanner.nextInt();
+                                        scanner.nextLine();
+
+                                        if (stock >= quantity) {
+                                            order.addProduct(product, quantity);
+                                            inventory.deleteInventory(product, quantity);
+                                            System.out.println("San pham da duoc them vao don hang.");
+                                        } else {
+                                            System.out.println("So luong san pham trong kho khong du.");
+                                        }
+                                    } else {
+                                        System.out.println("San pham da het hang.");
+                                    }
                                 } else {
                                     System.out.println("Khong tim thay san pham.");
                                 }
+
                                 System.out.print("Ban co muon nhap them san pham? (y/n): ");
                                 String answer = scanner.nextLine();
                                 loop = answer.equalsIgnoreCase("y");
                             } while (loop);
                             break;
                         case 2:
-                            order.displayOrder();
                             boolean loop1;
                             do {
                                 order.displayOrder();
                                 System.out.print("Nhap ma san pham:");
                                 int trashID = scanner.nextInt();
-                                Product trashItem = inventory.getProductByID(trashID);
-                                if (trashItem != null) {
-                                    order.removeProduct(trashItem);
+                                scanner.nextLine();
+
+                                OrderDetail detailToRemove = null;
+                                for (OrderDetail detail : order.getOrderDetails()) {
+                                    if (detail.getProduct().getProductID() == trashID) {
+                                        detailToRemove = detail;
+                                        break;
+                                    }
+                                }
+
+                                if (detailToRemove != null) {
+                                    order.removeProduct(detailToRemove.getProduct());
+                                    inventory.addInventory(detailToRemove.getProduct(), detailToRemove.getQuantity());
                                     System.out.println("San pham da duoc xoa khoi don hang.");
                                 } else {
-                                    System.out.println("Khong tim thay san pham.");
+                                    System.out.println("Khong tim thay san pham trong don hang.");
                                 }
+
                                 System.out.print("Ban co muon xoa them san pham? (y/n): ");
                                 String answer = scanner.nextLine();
                                 loop1 = answer.equalsIgnoreCase("y");
                             } while (loop1);
                             break;
-                        case 3: 
-                            ordersUI.viewOrders(inventory);
+                        case 3:
+                            if (order.getOrderDetails().isEmpty()) {
+                                System.out.println("Don hang khong co san pham nao. Xoa don hang.");
+                                orders.remove(order);
+                            }
                             return;
                         default:
                             System.out.println("Lua chon khong hop le.");
                             break;
                     }
                     System.out.println("Cap nhat don hang thanh cong.");
-                    break;
                 }
             }
         }
@@ -95,9 +128,9 @@ public class Orders {
         System.out.println("┌───────────────────────────────────────────┐");
         System.out.println("│                 ORDER LIST                │");
         System.out.println("├───────────────────────────────────────────┤");
-        System.out.println("|#ID                                   Total|");
+        System.out.println("│  #ID                              Total   │");
         for (Order order : orders) {
-            System.out.println("|#" + order.getOrderID() + "                             $" + order.calculateTotal() + "|");
+            System.out.println("│#" + displayFormat.formatID(order.getOrderID()) + "                        $" + displayFormat.formatPrice(order.calculateTotal()) + "│");
         }
     }
 
@@ -120,14 +153,22 @@ public class Orders {
 
     // Thêm đơn hàng
     public static void addOrder(Order order) {
-        orders.add(order); 
-        System.out.println("Don hang da duoc them vao.");
+        if (!order.getOrderDetails().isEmpty()) {
+            orders.add(order);
+            System.out.println("Don hang da duoc them vao.");
+        } else {
+            System.out.println("Don hang rong. Khong them don hang.");
+        }
     }
 
     // Xóa đơn hàng theo mã đơn hàng
     public static void deleteOrder(int orderID) {
-        orders.removeIf(order -> order.getOrderID() == orderID);
-        System.out.println("Da xoa don hang.");
+        boolean removed = orders.removeIf(order -> order.getOrderID() == orderID);
+        if (removed) {
+            System.out.println("Da xoa don hang.");
+        } else {
+            System.out.println("Khong tim thay don hang.");
+        }
     }
 
     // Lấy danh sách đơn hàng
