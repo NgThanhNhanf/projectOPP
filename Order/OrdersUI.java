@@ -21,7 +21,8 @@ public class OrdersUI {
         String name = scanner.nextLine();
         System.out.print("Nhap so dien thoai: ");
         String phone = scanner.nextLine();
-        Order newOrder = new Order(Orders.generateId(), name, phone); // Truy cập phương thức tĩnh
+        Order newOrder = new Order(Orders.generateId(), displayFormat.formatName(name), phone); // Truy cập phương thức
+                                                                                                // tĩnh
 
         boolean tiepTuc;
         do {
@@ -55,16 +56,20 @@ public class OrdersUI {
             tiepTuc = answer.equalsIgnoreCase("y");
         } while (tiepTuc);
 
-        Orders.addOrder(newOrder); // Truy cập phương thức tĩnh
+        if (!newOrder.getOrderDetails().isEmpty())
+            Orders.addOrder(newOrder); // Truy cập phương thức tĩnh
+        else
+            System.out.println("Don hang rong. Khong them don hang.");
     }
 
     // Xem danh sách đơn hàng
     public void viewOrders(Inventory inventory) {
         while (true) {
             Orders.displayOrders(); // Truy cập phương thức tĩnh
-            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("├───────────────────────────────────────────┤");
             System.out.println("│ 1. Chinh sua don hang                     │");
-            System.out.println("│ 2. Quay lai                               │");
+            System.out.println("│ 2. Xoa don hang                           │");
+            System.out.println("│ 3. Quay lai                               │");
             System.out.println("└───────────────────────────────────────────┘");
             System.out.print("Chon mot tuy chon: ");
             int choice = scanner.nextInt();
@@ -75,6 +80,12 @@ public class OrdersUI {
                     editOrder(inventory);
                     break;
                 case 2:
+                    System.out.print("Nhap ma don hang can xoa: ");
+                    int orderID = scanner.nextInt();
+                    scanner.nextLine();
+                    Orders.deleteOrder(orderID);
+                    break;
+                case 3:
                     return;
                 default:
                     System.out.println("Lua chon khong hop le. Vui long chon lai.");
@@ -117,7 +128,8 @@ public class OrdersUI {
                 default:
                     System.out.println("Lua chon khong hop le. Vui long chon lai.");
             }
-            if (choice == 3) break;
+            if (choice == 3)
+                break;
         }
     }
 }
