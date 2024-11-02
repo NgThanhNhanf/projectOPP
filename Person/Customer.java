@@ -2,9 +2,7 @@ package Person;
 
 import java.util.List;
 import java.util.Scanner;
-
 import Order.Order;
-
 import java.util.ArrayList;
 
 public class Customer extends Person {
@@ -16,8 +14,9 @@ public class Customer extends Person {
     public Customer(String name, Birth dob, String address, String phone, String email) {
         super(name, dob, address, phone, email);
     }
-    //  problem: order have customer and customer have order too
     public void displayHistoryOrder() {
-        
+        for (Order cur : orderHistory) {
+            cur.displayOrder();
+        }
     }
 }
