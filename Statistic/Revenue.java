@@ -17,7 +17,7 @@ public class Revenue {
     // lấy các đơn hàng từ order để thống kê cho từng ngày
     public static void init() {
         for (Order cur : Orders.getOrders()) {
-            revenueMap.put(cur.getOrderDate(), revenueMap.getOrDefault(cur.getOrderDate(), 0 ) + cur.getValue());
+            revenueMap.put(cur.getOrderDate(), revenueMap.getOrDefault(cur.getOrderDate(), 0 ) + cur.calculateTotal());
             for(OrderDetail detail : cur.getOrderDetails()) {
                 SortedMap<LocalDate, Integer> defaultMap = new TreeMap<>();
                 SortedMap<LocalDate, Integer> quantity = quantityProductMap.getOrDefault(detail.getProduct().getProductName(), defaultMap);

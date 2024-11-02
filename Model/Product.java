@@ -7,7 +7,6 @@ public abstract class Product {
     private int productID;
     private String productName;
     private double price;
-    private int stock;
     private int quantilyPurchased; //số lượng mua
    Scanner sc = new Scanner(System.in);
 
@@ -19,7 +18,6 @@ public abstract class Product {
         this.productID = productID;
         this.productName = productName;
         this.price = price;
-        this.stock = stock; //stock: số lượng tồn kho của sản phẩm
      }
     //getter & setter cho cac attribute
     public int getProductID() {
@@ -45,34 +43,11 @@ public abstract class Product {
     public void setPrice(double price) {
         this.price = price;
     }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
     public int getQuantilyPurchased(){
         return quantilyPurchased;
     }
     //phương thức trừu tượng nhap thông tin sản phẩm
     public abstract void inp();
-    
-    //kiem tra so luong san pham minh mua co hop le hay khong
-    public  boolean addProductInCart(Product product){
-        System.out.print("nhap so luong mua san pham " + productName + ": ");
-        //nhập số lượng sản phẩm cần mua 
-        int quantity = sc.nextInt();
-        //kiểm tra kiểu vdu mình nhập số lượng  là 10 thì suy ra tồn kho sẽ giảm 10 nhưng nếu số lượng mua > tồn kho -> lỗi
-        if(!updateStock(-quantity)){
-            System.out.print("so luong mua khong hop le! ton kho: " + stock);
-            return false;
-        }
-        //gán số lượng cho cái số lượng mua để lúc in ra bill có thể tính tổng đc 
-        quantilyPurchased = quantity;
-        return true;
-    }
     //in thong tin full cua san pham trong kho hang
     public void displayInfor(){
         System.out.println("Ma san pham " + getProductID() + "\nTen san pham: " + getProductName() + "\nSo luong ton: " + getStock());
@@ -86,20 +61,5 @@ public abstract class Product {
     //hàm này để tính tổng  sản phẩm mình mua (in trong bill)
     public double totalProduct(){
         return this.getQuantilyPurchased() * this.getPrice();
-    }
-
-    //quanlity : số lượng sản phẩm đc thêm vào hoặc bán đi
-    public boolean updateStock(int quantity) {
-        if(quantity == 0){
-            System.out.println("So luong ton kho khong thay doi"); return false;    
-        }
-        //kiem tra so luong nhap vao co hop le hay khong
-        else if(quantity < 0 && stock + quantity < 0 ){
-            System.out.println("So luong ton kho < 0!!!!!");
-            return false;
-        }
-        //neu hop le => tang so luong ton kho len
-        stock += quantity;
-        return true;
     }
 }

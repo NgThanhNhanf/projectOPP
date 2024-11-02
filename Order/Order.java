@@ -10,21 +10,21 @@ import Person.Customer;
 public class Order {
     private int orderID;
     private LocalDate orderDate;
-    private Customer customer;
+    private String customerPhone;
     private List<OrderDetail> orderDetails;
 
     public Order () {}
 
-    public Order(int orderID, Customer customer) {
+    public Order(int orderID, String customerPhone) {
         this.orderID = orderID;
         this.orderDate = LocalDate.now(); 
-        this.customer = customer;
+        this.customerPhone = customerPhone;
         this.orderDetails = new ArrayList<>();
     }
 
     // Tính tổng toàn bộ đơn
-    public double calculateTotal() {
-        double total = 0;
+    public int calculateTotal() {
+        int total = 0;
         for (OrderDetail detail : orderDetails) total += detail.calculateSubTotal();
         return total;
     }
@@ -44,7 +44,7 @@ public class Order {
     public void displayOrder () {
         System.out.println("┌───────────────────────────────────────────┐");
         System.out.println("│                 #"+getOrderID()+"                │");
-        System.out.println("|Ten khach hang:  "+ getCustomer().getName()+"        |");
+        // System.out.println("|Ten khach hang:  "+ getCustomer().getName()+"        |");
         System.out.println("|Ngay in don:  "+ getOrderDate()+"                 |");
         System.out.println("├───────────────────────────────────────────┤");
         for (OrderDetail detail : orderDetails) {
@@ -72,12 +72,12 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public String getCustomerPhone() {
+        return customerPhone;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomer(String customerPhone) {
+        this.customerPhone = customerPhone;
     }
 
     public List<OrderDetail> getOrderDetails() {
@@ -86,12 +86,5 @@ public class Order {
 
     public void setOrderDetails(List<OrderDetail> orderDetails) {
         this.orderDetails = orderDetails;
-    }
-    public int getValue() {
-        int ans = 0;
-        for (OrderDetail i : orderDetails) {
-            ans += i.getQuantity()*i.getProduct().getPrice();
-        }
-        return ans;
     }
 }
