@@ -16,7 +16,16 @@ public class MainMenu {
         Employees.fileClose();
     }
     public static void Menu() {
-        System.out.println("Vao Menu rooif nef hehe");
+        System.out.println("┌───────────────────────────────────────────┐");
+        System.out.println("│                 Menu Chinh                │");
+        System.out.println("├───────────────────────────────────────────┤");
+        System.out.println("│ 1. Tao don hang                           │");
+        System.out.println("│ 2. Khach hang                             │");
+        System.out.println("│ 3. Nhan vien                              │");
+        System.out.println("│ 4. San pham                               │");
+        System.out.println("│ 5. Kho hang                               │");
+        System.out.println("│ 6. Thoát                                  │");
+        System.out.println("└───────────────────────────────────────────┘");
     }
     public static void loginUI() throws FileNotFoundException {
         Login login = new Login();
