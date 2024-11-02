@@ -8,6 +8,7 @@ public class Inventory{
     //mang luu 1 cai list cac san pham trong kho 
     private static HashMap<Product, Integer> listInventory = new HashMap<>();
     public Inventory(){}
+    
     public HashMap<Product, Integer> getListInventory(){
         return listInventory;
     }
@@ -17,26 +18,21 @@ public class Inventory{
         System.out.println("Them san pham vao kho thanh cong!!!");
     }
 
+    public void deleteInventory(Product product, int quanlity){
+        if(quanlity > 0){
+            listInventory.put(product, listInventory.getOrDefault(product, 0) + (-quanlity));
+            System.out.println("Them san pham vao kho thanh cong!!!");
+        }
+    }
+
     public void display(){
         for(Product product : listInventory.keySet()) {
             product.displayInfor();
+            System.out.println("so luong ton:" + listInventory.get(product));
             System.out.println("----------------");
         }
     }
-    //cap nhap so luong san pham ve kho hang 
-    public void receiveStock(Product product,int quantity){
-        if(product.updateStock(quantity)){
-            //neu nhu so luong them hop le thi in ra da them vao kho .. san pham
-            System.out.println(product.getProductName() + "đã được thêm " + quantity + "sản phẩm");
-        }
-    }
-    //cap nhap so luong san pham trong kho hang(bot di)
-    public void issueStock(Product product,int quantity){
-        if(product.updateStock(-quantity)){
-            //so luong san pham hop le(quantily) => bớt đi thì là - quantily
-            System.out.println(product.getProductName() + "đã bớt đi " + quantity + "sản phẩm");
-        }
-    }
+
     //tính tổng giá trị các sản phẩm trong kho hàng
     public double totalPrice(){
         double total = 0;

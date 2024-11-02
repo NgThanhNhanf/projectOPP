@@ -46,8 +46,6 @@ public class Clothing extends Product{
         setMaterial(sc.nextLine());
         System.out.print("gia tien: ");
         setPrice(sc.nextDouble());
-        System.out.print("ton kho: ");
-        setStock(sc.nextInt());
         sc.nextLine();
     }
 
