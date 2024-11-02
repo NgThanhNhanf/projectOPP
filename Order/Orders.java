@@ -39,7 +39,13 @@ public class Orders {
                                 System.out.print("Nhap so luong:");
                                 int quantity = scanner.nextInt();
                                 scanner.nextLine();
-                                Product product = inventory.getProductByID(productID);
+                                Product product;
+                                for(Product cur : inventory.getListInventory().keySet()) {
+                                    if (cur.getProductID() == productID) {
+                                        product = cur;
+                                    }
+                                }
+                                
                                 if (product != null) {
                                     order.addProduct(product, quantity);
                                     System.out.println("San pham da duoc them vao đon hang.");

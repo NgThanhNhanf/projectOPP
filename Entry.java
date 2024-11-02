@@ -6,7 +6,6 @@ import Model.Accessory;
 import Model.Inventory;
 import Model.Clothing;
 import Model.Promotion;
-
 import Payment.PayMent;
 import Payment.WalletPayment;
 import Payment.CardPayment;
@@ -15,7 +14,7 @@ import Payment.Bill;
 
 public class Entry {
     public static void main(String[] args) {
-       Scanner sc = new Scanner(System.in);
+      Scanner sc = new Scanner(System.in);
       Inventory inventory = new Inventory();
       Promotion promotion = new Promotion();
       Bill bill = new Bill();
@@ -27,9 +26,8 @@ public class Entry {
         System.out.println("4.tinh tong gia tri cua kho hang");
         System.out.println("5.Cap nhap danh muc khuyen mai");
         System.out.println("6.In thong tin cac san pham duoc khuyen mai");
-        System.out.println("7.Them san pham vao gio hang");
-        System.out.println("8.Chon phuong thuc thanh toan");
-        System.out.println("9.Thoat");
+        System.out.println("7.Chon phuong thuc thanh toan");
+        System.out.println("8.Thoat");
         int lc;
         System.out.print("nhap luc chon:");
         lc = sc.nextInt();
@@ -42,25 +40,28 @@ public class Entry {
             int inp;
             System.out.println("Chon san pham can them: ");
             inp = sc.nextInt();
+            Product product;
             if(inp == 1){
-              Product product = new Clothing();
-              product.inp();
-              inventory.addInventory(product);
-            }else if(inp == 2) {
-              Product product  = new Accessory();
-              product.inp();
-              inventory.addInventory(product);
+              product = new Clothing();
+            }else if(inp == 2){
+              product = new Accessory();
             }else if(inp == 3){
-              Product product = new Shoes();
-              product.inp();
-              inventory.addInventory(product);
-            }else break;
+              product = new Shoes();
+            }else {
+              System.out.println("Nhap nut bat ki de thoat!"); break;
+            }
+            product.inp();
+            int quantily;
+            System.out.print("nhap so luong san pham can them: ");
+            quantily = sc.nextInt();
+            inventory.addInventory(product,quantily);
           }
           break;
 
           case 2:
-          System.out.println("thong tin san pham trong kho hang");
+          System.out.println("--------------thong tin san pham trong kho hang-----------");
           inventory.display();  
+          System.out.println("-----------------------------------------------------------");
           break;
           
           case 3:
@@ -78,12 +79,12 @@ public class Entry {
             System.out.println("nhap so luong: ");
             quantily = sc.nextInt();
             boolean findproduct = false;
-            for(Product product : inventory.getListInventory()){
+            for(Product product : inventory.getListInventory().keySet()){
                 if(product.getProductName().equals(name)){
                   if(inp == 1){
-                    inventory.receiveStock(product, quantily);
+                    inventory.addInventory(product, quantily);
                   }else if(inp == 2){
-                    inventory.issueStock(product, quantily);
+                    inventory.deleteInventory(product, quantily);
                   }
                   findproduct = true;
                   break;
@@ -117,7 +118,7 @@ public class Entry {
                 int IDproduct;
                 System.out.print("nhap ma san pham muon them: ");
                 IDproduct = sc.nextInt();
-                for(Product product : inventory.getListInventory()){
+                for(Product product : inventory.getListInventory().keySet()){
                   if(product.getProductID() == IDproduct){
                     findID = true;
                     promotion.inpPromocodeandDiscount();
@@ -131,7 +132,7 @@ public class Entry {
                 int IDproduct;
                 System.out.print("nhap ma san pham muon xoa: ");
                 IDproduct = sc.nextInt();
-                for(Product product : inventory.getListInventory()){
+                for(Product product : inventory.getListInventory().keySet()){
                 if(product.getProductID() == IDproduct){
                   findID = true;
                   promotion.removeProductPromo(product);
@@ -146,44 +147,7 @@ public class Entry {
             promotion.displayApplicableProducts();
             break;
 
-          case 7:
-            while(true){
-              System.out.println("1.Clothing");
-              System.out.println("2.Accessory");
-              System.out.println("3.Shoes");
-              
-              int cart;
-              System.out.print("chon san pham ban muon mua: ");
-              cart = sc.nextInt();
-
-              if(cart == 1){
-                Product product = new Clothing();
-                product.inp();
-                if(product.addProductInCart(product)){
-                  listCart.add(product);
-                  System.out.println("da them " + product.getProductName() + "vao gio hang");
-                }
-              }else if(cart == 2){
-                Product product = new Accessory();
-                product.inp();
-                if(product.addProductInCart(product)){
-                  listCart.add(product);
-                  System.out.println("da them " + product.getProductName() + "vao gio hang");
-                }
-              }else if(cart == 3){
-                Product product = new Shoes();
-                product.inp();
-                if(product.addProductInCart(product)){
-                  listCart.add(product);
-                  System.out.println("da them " + product.getProductName() + "vao gio hang");
-                }
-              }else {
-                System.out.println("ket thuc mua hang");break;
-              }
-            }
-            break;
-
-            case 8:
+            case 7:
             if(listCart.isEmpty()){
               System.out.println("ban chua mua bat ki san pham nao!");
               break;
@@ -220,7 +184,7 @@ public class Entry {
             }
             break;
 
-            case 9:
+            case 8:
             System.out.println("ket thuc chuong trinh!");
             break;
         }
