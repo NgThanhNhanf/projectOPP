@@ -39,7 +39,7 @@ public class Orders {
                                 System.out.print("Nhap so luong:");
                                 int quantity = scanner.nextInt();
                                 scanner.nextLine();
-                                Product product;
+                                Product product = null;
                                 for(Product cur : inventory.getListInventory().keySet()) {
                                     if (cur.getProductID() == productID) {
                                         product = cur;
