@@ -34,6 +34,12 @@ public class Order {
 
     // Thêm đơn hàng vào order details
     public void addProduct(Product product, int quantity) {
+        for (OrderDetail detail : orderDetails) {
+            if (detail.getProduct().getProductID() == product.getProductID()) {
+                detail.setQuantity(detail.getQuantity() + quantity);
+                return;
+            }
+        }
         OrderDetail detail = new OrderDetail(product, quantity);
         orderDetails.add(detail);
     }
@@ -46,17 +52,17 @@ public class Order {
     // Chi tiết đơn hàng
     public void displayOrder () {
         System.out.println("┌───────────────────────────────────────────┐");
-        System.out.println("│                 #"+getOrderID()+"                │");
-        System.out.println("|Ten khach hang:  "+ customerName +"           |");
-        System.out.println("|So dien thoai:   "+ customerPhone +"           |");
-        System.out.println("|Ngay in don:  "+ getOrderDate()+"                 |");
+        System.out.println("│                 #"+displayFormat.formatID(getOrderID())+"                   │");
+        System.out.println("│Ten khach hang:  "+ customerName +" │");
+        System.out.println("│So dien thoai:   "+ customerPhone +"                │");
+        System.out.println("│Ngay in don:  "+ getOrderDate()+"                   │");
         System.out.println("├───────────────────────────────────────────┤");
         for (OrderDetail detail : orderDetails) {
-            System.out.println("|#" + detail.getProduct().getProductID() + " - " + detail.getProduct().getProductName() + " [x" + detail.getQuantity() + "]: $" + detail.calculateSubTotal() + "                |");
+            System.out.println("│#" + detail.getProduct().getProductID() + " - " + detail.getProduct().getProductName() + " [x" + detail.getQuantity() + "]:          $" + displayFormat.formatPrice(detail.calculateSubTotal()) + "│");
         }
         System.out.println("├───────────────────────────────────────────┤");
-        System.out.println("|Total:                            $"+ calculateTotal() +"|");
-        System.out.println("└───────────────────────────────────────────┘");
+        System.out.println("│Total:                         $"+ displayFormat.formatPrice(calculateTotal()) +"│");
+        System.out.println("├───────────────────────────────────────────┤");
     }
 
     // Getter và Setter
