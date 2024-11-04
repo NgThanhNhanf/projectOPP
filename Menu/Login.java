@@ -67,6 +67,7 @@ public class Login {
             }
             System.out.println("-Chon nhap thong tin");
             user.enterUser();
+            boolean idExist = false;
             if (Employees.checkId(user.getUserId())) {
                 Users.addUser(user);
                 System.out.println("-Dang ky thanh cong!");

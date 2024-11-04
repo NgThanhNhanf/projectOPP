@@ -10,12 +10,13 @@ import Model.*;
 public class Orders {
     private static List<Order> orders = new ArrayList<>();
     static Random random = new Random();
+    static Scanner scanner = new Scanner(System.in);
 
     // Khởi tạo danh sách đơn hàng
     public Orders() {}
 
     // Chỉnh sửa đơn hàng theo mã đơn hàng trong iventory của orderUI
-    public static void edit(int orderID, Inventory inventory, OrdersUI ordersUI) {
+    public static void edit(int orderID) {
         for (Order order : orders) {
             if (order.getOrderID() == orderID) {
                 while (true) {
@@ -25,34 +26,21 @@ public class Orders {
                     System.out.println("│3. Quay lai                                │");
                     System.out.println("└───────────────────────────────────────────┘");
                     System.out.print("Chon mot tuy chon: ");
-                    Scanner scanner = new Scanner(System.in);
                     int choice = scanner.nextInt();
                     scanner.nextLine();
                     switch (choice) {
                         case 1:
-                            inventory.display();
+                            Inventory.display();
                             boolean loop;
                             do {
                                 System.out.print("Nhap ma san pham:");
                                 int productID = scanner.nextInt();
                                 scanner.nextLine();
-<<<<<<< HEAD
-                                System.out.print("Nhap so luong:");
-                                int quantity = scanner.nextInt();
-                                scanner.nextLine();
-                                Product product;
-                                for(Product cur : inventory.getListInventory().keySet()) {
-                                    if (cur.getProductID() == productID) {
-                                        product = cur;
-                                    }
-                                }
-=======
 
-                                Product product = inventory.getProductByID(productID);
+                                Product product = Inventory.getProductByID(productID);
 
->>>>>>> main
                                 if (product != null) {
-                                    int stock = inventory.getListInventory().getOrDefault(product, 0);
+                                    int stock = Inventory.getListInventory().getOrDefault(product, 0);
                                     if (stock > 0) {
                                         System.out.print("Nhap so luong:");
                                         int quantity = scanner.nextInt();
@@ -60,7 +48,7 @@ public class Orders {
 
                                         if (stock >= quantity) {
                                             order.addProduct(product, quantity);
-                                            inventory.deleteInventory(product, quantity);
+                                            Inventory.deleteInventory(product, quantity);
                                             System.out.println("San pham da duoc them vao don hang.");
                                         } else {
                                             System.out.println("So luong san pham trong kho khong du.");
@@ -95,7 +83,7 @@ public class Orders {
 
                                 if (detailToRemove != null) {
                                     order.removeProduct(detailToRemove.getProduct());
-                                    inventory.addInventory(detailToRemove.getProduct(), detailToRemove.getQuantity());
+                                    Inventory.addInventory(detailToRemove.getProduct(), detailToRemove.getQuantity());
                                     System.out.println("San pham da duoc xoa khoi don hang.");
                                 } else {
                                     System.out.println("Khong tim thay san pham trong don hang.");
