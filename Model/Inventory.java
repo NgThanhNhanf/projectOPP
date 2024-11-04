@@ -9,9 +9,10 @@ public class Inventory{
     private static HashMap<Product, Integer> listInventory = new HashMap<>();
     public Inventory(){}
     
-    public HashMap<Product, Integer> getListInventory(){
+    public HashMap<Product, Integer> getListInventory() {
         return listInventory;
     }
+
     // them san pham vao kho hang
     public void addInventory(Product product, int quanlity){
         listInventory.put(product, listInventory.getOrDefault(product, 0) + quanlity);

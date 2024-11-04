@@ -10,7 +10,7 @@ import Order.*;
     // dùng tree map để lưu từng date (LocalDate) rồi dùng submap để có thể truy suất từng tháng năm
     // -----------lấy số lượng bán sp trong 1 thời gian nào đó-------------
     // dùng HashMap <String tên sp, SortedMap> SortedMap lưu theo ngày. SortedMap<LocalDate, int>
-    // 
+    //
 public class Revenue {
     static SortedMap <LocalDate, Integer> revenueMap = new TreeMap<>();
     static HashMap<String, SortedMap<LocalDate, Integer>> quantityProductMap = new HashMap<>();
