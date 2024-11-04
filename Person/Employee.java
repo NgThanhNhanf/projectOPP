@@ -6,20 +6,18 @@ public class Employee extends Person {
     private String ID;
     private double salary;
     private String jobDescription;
-    private Scanner sc;
+    Scanner sc = new Scanner(System.in);
 
     public Employee() {
         super();
-        this.sc = new Scanner(System.in);
     }
 
-    public Employee(String name, Birth dob, String address, String email, String phone, String ID, double salary, String jobDescription) {
-        super(name, dob, address, email, phone);
+    public Employee(String name, Birth dob, String address, String phone, String ID, double salary, String jobDescription) {
+        super(name, dob, address, phone);
         this.ID = ID;
         this.salary = salary;
         this.jobDescription = jobDescription;
     }
-
     public String getID() {
         return ID;
     }
@@ -71,7 +69,7 @@ public class Employee extends Person {
             System.out.print("│ Nhap mo ta cong viec cua nhan vien: ");
             jobDescription = sc.nextLine();
 
-            Employee e = new Employee(getName(), getDob(), getAddress(), getPhone(), getEmail(), ID, salary, jobDescription);
+            Employee e = new Employee(getName(), getDob(), getAddress(), getPhone(), ID, salary, jobDescription);
             Employees.addEmployee(e);
 
             System.out.println("├───────────────────────────────────────────┤");
@@ -89,5 +87,90 @@ public class Employee extends Person {
         System.out.printf("│ Mo ta cong viec  : %-22s │\n", jobDescription);
         System.out.println("└───────────────────────────────────────────┘");
 
+    }
+    @Override
+    public void editAll() {
+        Employee newEmployee = new Employee();
+        newEmployee.enterPerson();
+        setName(newEmployee.getName());
+        setBirth(newEmployee.getDob());
+        setAddress(newEmployee.getAddress());
+        setPhone(newEmployee.getPhone());
+        setID(newEmployee.getID());
+        setSalary(newEmployee.getSalary());
+        setJobDescription(newEmployee.getJobDescription());
+    }
+    @Override
+    public void editPerson() {
+        boolean complete = false;
+        while(!complete) {
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│        Chon thong tin can chinh sua       │");
+            System.out.println("├───────────────────────────────────────────┤");
+            System.out.println("│ 1. Ten                                    │");
+            System.out.println("│ 2. Ngay sinh                              │");
+            System.out.println("│ 3. Dia chi                                │");
+            System.out.println("│ 4. SDT                                    │");
+            System.out.println("│ 5. ID                                     │");
+            System.out.println("│ 6. Luong                                  │");
+            System.out.println("│ 7. Cong viec                              │");
+            System.out.println("│ 8. Tat ca                                 │");
+            System.out.println("│ 9. Thoat                                  │");
+            System.out.println("└───────────────────────────────────────────┘");
+            System.out.println("Nhap lua chon:");
+            int choose = sc.nextInt();
+            sc.nextLine();
+            switch (choose) {
+                case 1: 
+                    editName();
+                    break;
+                case 2:
+                    editBirth();
+                    break;
+                case 3:
+                    editAddress();
+                    break;
+                case 4:
+                    editPhone();
+                    break;
+                case 5:
+                    editId();
+                    break;
+                case 6:
+                    editSalary();
+                    break;
+                case 7:
+                    editJob();
+                    break;
+                case 8:
+                    editAll();
+                    break;
+                case 9:
+                    System.out.println("Thoat");
+                    complete = true;
+                    break;
+                default:
+                    System.out.println("Lua chon khong hop le vui long nhap lai");
+                    break;
+            }
+        }
+    }
+    public void editId() {
+        System.out.print("Nhap id moi: ");
+        String newId = sc.nextLine();
+        setID(newId);
+        System.out.println("Cap nhat hoan tat!");
+    }
+    public void editSalary() {
+        System.out.print("Nhap luong moi: ");
+        double newSalary = sc.nextDouble();
+        setSalary(newSalary);
+        System.out.println("Cap nhat hoan tat!");        
+    }
+    public void editJob() {
+        System.out.print("Nhap cong viec moi: ");
+        String newJob = sc.nextLine();
+        setJobDescription(newJob);
+        System.out.println("Cap nhat hoan tat!");
     }
 }

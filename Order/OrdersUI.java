@@ -3,20 +3,14 @@
 package Order;
 
 import java.util.Scanner;
-import Person.Customer;
 import Model.Product;
 import Model.Inventory;
 
 public class OrdersUI {
-    private Scanner scanner;
-
-    // Hàm khởi tạo phi tham số
-    public OrdersUI() {
-        this.scanner = new Scanner(System.in);
-    }
+    private static Scanner scanner = new Scanner(System.in);
 
     // Thêm sản phẩm vào đơn hàng
-    public void addNewOrder(Inventory inventory) {
+    public static void addNewOrder() {
         System.out.print("Nhap ten khach hang: ");
         String name = scanner.nextLine();
         System.out.print("Nhap so dien thoai: ");
@@ -27,23 +21,23 @@ public class OrdersUI {
         boolean tiepTuc;
         do {
             // Hiển thị danh sách sản phẩm từ kho.
-            inventory.display();
+            Inventory.display();
 
             System.out.print("Nhap ma san pham: ");
             int productID = scanner.nextInt();
             scanner.nextLine(); // Thêm dòng này để đọc bỏ ký tự xuống dòng
 
-            Product product = inventory.getProductByID(productID); // Truy xuất trực tiếp bằng productID
+            Product product = Inventory.getProductByID(productID); // Truy xuất trực tiếp bằng productID
 
             if (product != null) {
                 System.out.print("Nhap so luong: ");
                 int quantity = scanner.nextInt();
                 scanner.nextLine();
 
-                int stock = inventory.getListInventory().getOrDefault(product, 0);
+                int stock = Inventory.getListInventory().getOrDefault(product, 0);
                 if (stock >= quantity) {
                     newOrder.addProduct(product, quantity); // Thêm sản phẩm vào đơn hàng
-                    inventory.deleteInventory(product, quantity); // Cập nhật số lượng hàng tồn kho
+                    Inventory.deleteInventory(product, quantity); // Cập nhật số lượng hàng tồn kho
                 } else {
                     System.out.println("So luong san pham trong kho khong du.");
                 }
@@ -63,8 +57,9 @@ public class OrdersUI {
     }
 
     // Xem danh sách đơn hàng
-    public void viewOrders(Inventory inventory) {
-        while (true) {
+    public static void viewOrders() {
+        boolean complete = false;
+        while (!complete) {
             Orders.displayOrders(); // Truy cập phương thức tĩnh
             System.out.println("├───────────────────────────────────────────┤");
             System.out.println("│ 1. Chinh sua don hang                     │");
@@ -77,7 +72,7 @@ public class OrdersUI {
 
             switch (choice) {
                 case 1:
-                    editOrder(inventory);
+                    editOrder();
                     break;
                 case 2:
                     System.out.print("Nhap ma don hang can xoa: ");
@@ -94,16 +89,17 @@ public class OrdersUI {
     }
 
     // Chỉnh sửa đơn hàng
-    public void editOrder(Inventory inventory) {
+    public static void editOrder() {
         System.out.print("Nhap ma don hang can sua: ");
         int orderID = scanner.nextInt();
         scanner.nextLine();
-        Orders.edit(orderID, inventory, this); // Truy cập phương thức tĩnh
+        Orders.edit(orderID); // Truy cập phương thức tĩnh
     }
 
     // Menu gốc
-    public void rootMenu(Inventory inventory) {
-        while (true) {
+    public static void rootMenu() {
+        boolean complete = false;
+        while (!complete) {
             System.out.println("┌───────────────────────────────────────────┐");
             System.out.println("│                 MENU ORDER                │");
             System.out.println("├───────────────────────────────────────────┤");
@@ -114,22 +110,20 @@ public class OrdersUI {
             System.out.print("Chon mot tuy chon: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
-
             switch (choice) {
                 case 1:
-                    addNewOrder(inventory);
+                    addNewOrder();
                     break;
                 case 2:
-                    viewOrders(inventory);
+                    viewOrders();
                     break;
                 case 3:
-                    System.out.println("Thoat chuong trinh.");
+                    System.out.println("Thoat.");
+                    complete = true;
                     break;
                 default:
                     System.out.println("Lua chon khong hop le. Vui long chon lai.");
             }
-            if (choice == 3)
-                break;
         }
     }
 }

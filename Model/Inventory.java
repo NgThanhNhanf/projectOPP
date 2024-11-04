@@ -1,7 +1,5 @@
 package Model;
 
-import java.util.List;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Inventory{
@@ -9,23 +7,23 @@ public class Inventory{
     private static HashMap<Product, Integer> listInventory = new HashMap<>();
     public Inventory(){}
     
-    public HashMap<Product, Integer> getListInventory(){
+    public static HashMap<Product, Integer> getListInventory(){
         return listInventory;
     }
     // them san pham vao kho hang
-    public void addInventory(Product product, int quanlity){
+    public static void addInventory(Product product, int quanlity){
         listInventory.put(product, listInventory.getOrDefault(product, 0) + quanlity);
         System.out.println("Them san pham vao kho thanh cong!!!");
     }
 
-    public void deleteInventory(Product product, int quanlity){
+    public static void deleteInventory(Product product, int quanlity){
         if(quanlity > 0){
             listInventory.put(product, listInventory.getOrDefault(product, 0) + (-quanlity));
             System.out.println("Them san pham vao kho thanh cong!!!");
         }
     }
 
-    public void display(){
+    public static void display(){
         for(Product product : listInventory.keySet()) {
             product.displayInfor();
             System.out.println("so luong ton:" + listInventory.get(product));
@@ -34,7 +32,7 @@ public class Inventory{
     }
 
     //tính tổng giá trị các sản phẩm trong kho hàng
-    public double totalPrice(){
+    public static double totalPrice(){
         double total = 0;
         for(Product product : listInventory.keySet()){
             // tổng = giá tiền của 1 sản phẩm(bất kì) * số lượng sản phẩm đó trong kho
@@ -45,7 +43,7 @@ public class Inventory{
     }
 
     // Phương thức tìm sản phẩm theo ID
-    public Product getProductByID(int productID) {
+    public static Product getProductByID(int productID) {
         for(Product product : listInventory.keySet()){
             if(product.getProductID() == productID){
                 return product;

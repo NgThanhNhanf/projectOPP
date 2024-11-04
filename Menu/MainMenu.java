@@ -2,6 +2,8 @@ package Menu;
 import java.util.*;
 
 import Accounts.Users;
+import Order.OrdersUI;
+import Person.EmployeeUI;
 import Person.Employees;
 
 import java.io.*;
@@ -16,16 +18,48 @@ public class MainMenu {
         Employees.fileClose();
     }
     public static void Menu() {
-        System.out.println("┌───────────────────────────────────────────┐");
-        System.out.println("│                 Menu Chinh                │");
-        System.out.println("├───────────────────────────────────────────┤");
-        System.out.println("│ 1. Tao don hang                           │");
-        System.out.println("│ 2. Khach hang                             │");
-        System.out.println("│ 3. Nhan vien                              │");
-        System.out.println("│ 4. San pham                               │");
-        System.out.println("│ 5. Kho hang                               │");
-        System.out.println("│ 6. Thoát                                  │");
-        System.out.println("└───────────────────────────────────────────┘");
+        boolean complete = false;
+        while(!complete) {
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│                 Menu Chinh                │");
+            System.out.println("├───────────────────────────────────────────┤");
+            System.out.println("│ 1. Don hang                               │");
+            System.out.println("│ 2. Khach hang                             │");
+            System.out.println("│ 3. Nhan vien                              │");
+            System.out.println("│ 4. San pham                               │");
+            System.out.println("│ 5. Kho hang                               │");
+            System.out.println("│ 6. Thong ke                               │");
+            System.out.println("│ 7. Dang xuat                              │");
+            System.out.println("│ 8. Thoat                                  │");
+            System.out.println("└───────────────────────────────────────────┘");
+            System.out.println("Nhap lua chon:");
+            int choose = sc.nextInt(); sc.nextLine();
+            switch (choose) {
+                case 1: 
+                    OrdersUI.rootMenu();
+                    break;
+                case 2:
+                    
+                    break;
+                case 3:
+                    EmployeeUI.mainMenu();
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    complete = true;
+                    break;
+                default: 
+                    System.out.println("Lua chon khong hop le vui long nhap lai");
+                    break;
+            }
+        }
     }
     public static void loginUI() throws FileNotFoundException {
         Login login = new Login();

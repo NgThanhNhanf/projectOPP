@@ -19,7 +19,7 @@ public class Employees implements fileWork {
             String [] arrstr = line.split("\\|");
             String [] arrdob = arrstr[1].split("\\/");
             Birth birth = new Birth(Integer.parseInt(arrdob[0]), Integer.parseInt(arrdob[1]), Integer.parseInt(arrdob[2]));
-            Employee newEmployee = new Employee(arrstr[0], birth, arrstr[2], arrstr[3], arrstr[4], arrstr[5], Double.parseDouble(arrstr[6]), arrstr[7]);
+            Employee newEmployee = new Employee(arrstr[0], birth, arrstr[2], arrstr[3], arrstr[4], Double.parseDouble(arrstr[5]), arrstr[6]);
             Employees.addEmployee(newEmployee);
         }
         scf.close();
@@ -28,7 +28,7 @@ public class Employees implements fileWork {
     public void writeFile() throws IOException {
         FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Person\\employeesData.txt");
         for (Employee cur : listEmployee) {
-            myFile.write(cur.getName() + '|' + cur.getDob().getDay() + '/' + cur.getDob().getMonth() + '/' + cur.getDob().getYear() + '|' + cur.getAddress() + '|' + cur.getEmail() + '|' + cur.getPhone() + '|' + cur.getID() + '|' + cur.getSalary() + '|' + cur.getJobDescription() + '\n');
+            myFile.write(cur.getName() + '|' + cur.getDob().getDay() + '/' + cur.getDob().getMonth() + '/' + cur.getDob().getYear() + '|' + cur.getAddress() + '|' + cur.getPhone() + '|' + cur.getID() + '|' + cur.getSalary() + '|' + cur.getJobDescription() + '\n');
         }
         myFile.close();
     }
@@ -45,7 +45,10 @@ public class Employees implements fileWork {
             System.out.println("│ Danh sach nhan vien rong.");
         } else {
             System.out.println("├───────────────────────────────────────────┤");
+            int index = 1;
             for (Employee e : listEmployee) {
+                System.out.printf("│ STT            : %02d │\n", index++);
+                EmployeeUI.phoneInList.add(e.getPhone());
                 e.displayPerson();
             }
         }
@@ -55,5 +58,21 @@ public class Employees implements fileWork {
             if (cur.getID().equals(userid)) return true;
         }
         return false;
+    }
+    public static Employee findEmployee(String phone) { 
+        for (Employee cur : listEmployee) {
+            if (cur.getPhone().equals(phone)) {
+                return cur;
+            }
+        }
+        return null;
+    }
+    public static void deleteEmployee(String Id) {
+        for (int i = 0; i < listEmployee.size(); ++i) {
+            if (listEmployee.get(i).getID().equals(Id)) {
+                listEmployee.remove(i);
+                return;
+            }
+        }
     }
 }
