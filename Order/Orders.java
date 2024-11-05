@@ -36,9 +36,15 @@ public class Orders {
                                 System.out.print("Nhap ma san pham:");
                                 int productID = scanner.nextInt();
                                 scanner.nextLine();
-
-                                Product product = Inventory.getProductByID(productID);
-
+                                System.out.print("Nhap so luong:");
+                                int quantity = scanner.nextInt();
+                                scanner.nextLine();
+                                Product product;
+                                for(Product cur : inventory.getListInventory().keySet()) {
+                                    if (cur.getProductID() == productID) {
+                                        product = cur;
+                                    }
+                                }
                                 if (product != null) {
                                     int stock = Inventory.getListInventory().getOrDefault(product, 0);
                                     if (stock > 0) {
