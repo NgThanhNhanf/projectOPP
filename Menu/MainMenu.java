@@ -1,7 +1,10 @@
 package Menu;
 import java.util.*;
 
+import Accounts.User;
+import Accounts.UserUI;
 import Accounts.Users;
+import Model.ProductUI;
 import Order.OrdersUI;
 import Person.Customers;
 import Person.EmployeeUI;
@@ -15,7 +18,6 @@ public class MainMenu {
         Employees.fileInit();
         Customers.fileInit();
         loginUI();
-        Users.displayUsers();
         Users.fileClose();
         Employees.fileClose();
         Customers.fileClose();
@@ -49,15 +51,18 @@ public class MainMenu {
                     EmployeeUI.mainMenu();
                     break;
                 case 4:
-
+                    ProductUI.rootMenu();
                     break;
                 case 5:
                     break;
                 case 6:
                     break;
                 case 7:
+                    UserUI.rootMenu();
                     break;
                 case 8:
+                    break;
+                case 9:
                     complete = true;
                     break;
                 default: 
@@ -68,6 +73,7 @@ public class MainMenu {
     }
     public static void loginUI() throws FileNotFoundException {
         Login login = new Login();
+        User user;
         boolean complete = false;
         while (!complete) {
             System.out.println("┌───────────────────────────────────────────┐");
@@ -82,14 +88,21 @@ public class MainMenu {
             switch (choose) {
                 case 1: 
                     System.out.println("-Chon dang nhap.");
-                    if (login.login() != null) {
-                        MenuM();
+                    user = login.login();
+                    if (user != null) {
+                        if (user.getRole().equals("M")) {
+                            System.out.println("Here2");
+                            MenuM();
+                        }
                     }
                     break;
                 case 2:
                     System.out.println("-Chon dang ky.");
-                    if (login.register() != null) {
-                        MenuM();
+                    user = login.register();
+                    if (user != null) {
+                        if (user.getRole().equals("M")) {
+                            MenuM();
+                        }
                     }
                     break;
                 case 3:

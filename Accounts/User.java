@@ -6,7 +6,7 @@ public class User {
     private String userName;
     private String password;
     private String userId;
-    private String role;
+    private String role = "";
     Scanner sc = new Scanner(System.in);
     public User() {
         role = "E";
@@ -38,9 +38,9 @@ public class User {
         password = sc.nextLine();
     }
     public void displayUser() {
-        System.out.printf("│ ID            : %-24s │\n", userId);
-        System.out.printf("│ Username      : %-24s │\n", userName);
-        System.out.printf("│ Password      : %-24s │\n", password);
+        System.out.printf("│ ID            : %-25s │\n", userId);
+        System.out.printf("│ Username      : %-25s │\n", userName);
+        System.out.printf("│ Password      : %-25s │\n", password);
     }
     public String getUserName() {
         return userName;

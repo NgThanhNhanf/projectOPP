@@ -36,7 +36,8 @@ public class Login {
             System.out.print("│ Password         : ");
             password = sc.nextLine();
             user = new User(userName, password);
-            if (Users.checkUser(user)) {
+            user = Users.checkUser(user);
+            if (user != null) {
                 System.out.println("└───────────────────────────────────────────┘");
                 System.out.println("-Dang nhap thanh cong!");
                 return user;
