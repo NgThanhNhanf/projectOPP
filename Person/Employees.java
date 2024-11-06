@@ -11,7 +11,8 @@ public class Employees implements fileWork {
     }
     @Override
     public void readFile() throws FileNotFoundException {
-        File myFile = new File("D:\\Study\\OOP\\projectOPP\\Person\\employeesData.txt");
+        // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Person\\employeesData.txt");
+        File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Person\\employeesData.txt");
         Scanner scf = new Scanner(myFile);
         while(scf.hasNextLine()) {
             String line = scf.nextLine();

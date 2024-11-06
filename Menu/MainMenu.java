@@ -4,6 +4,7 @@ import java.util.*;
 import Accounts.User;
 import Accounts.UserUI;
 import Accounts.Users;
+import Model.ProductUI;
 import Order.OrdersUI;
 import Person.Customers;
 import Person.EmployeeUI;
@@ -50,7 +51,7 @@ public class MainMenu {
                     EmployeeUI.mainMenu();
                     break;
                 case 4:
-
+                    ProductUI.rootMenu();
                     break;
                 case 5:
                     break;
