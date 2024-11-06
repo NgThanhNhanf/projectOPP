@@ -20,7 +20,7 @@ public class Inventory{
     public static void deleteInventory(Product product, int quanlity){
         if(quanlity > 0){
             listInventory.put(product, listInventory.getOrDefault(product, 0) + (-quanlity));
-            System.out.println("Them san pham vao kho thanh cong!!!");
+            System.out.println("da bot di"  + listInventory.values() + "san pham");
         }
     }
 
@@ -53,4 +53,12 @@ public class Inventory{
         return null;
     }
     
+    public static boolean findProduct(String productName){
+        for(Product product : listInventory.keySet()){
+            if(product.getProductName() ==  productName){
+                return true;
+            }
+        }
+        return false;
+    }
 }
