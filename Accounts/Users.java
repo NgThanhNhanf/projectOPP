@@ -2,6 +2,7 @@ package Accounts;
 import java.util.*;
 import File.fileWork;
 import Person.Employee;
+import Person.EmployeeUI;
 
 import java.io.*;
 
@@ -43,8 +44,18 @@ public class Users implements fileWork {
         users.writeFile();
     }
     public static void displayUsers() {
-        for (User cur : users) {
-            cur.displayUser();
+        if (users.isEmpty()) {
+            System.out.println("Danh sach tai khoan rong.");
+        } else {
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│                 Tai khoan                 │");
+            int index = 1;
+            for (User cur : users) {
+                System.out.println("├───────────────────────────────────────────┤");
+                System.out.printf("│ STT            : %02d                       │\n", index++);
+                UserUI.idUser.add(cur.getUserId());
+                cur.displayUser();
+            }
         }
     }
     //Thêm User
@@ -79,12 +90,12 @@ public class Users implements fileWork {
         }
     }
     //Kiểm tra xem user có tồn tại hay chưa (dùng để đăng nhập)
-    public static boolean checkUser(User user) {
+    public static User checkUser(User user) {
         for (User cur : users) {
             if (cur.getUserName().equals(user.getUserName()) && cur.getPassword().equals(user.getPassword())) {
-                return true;
+                return cur;
             }
         }
-        return false;
+        return null;
     }
 }
