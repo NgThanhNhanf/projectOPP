@@ -12,7 +12,8 @@ public class Customers implements fileWork {
     private static List<Customer> listCustomer = new ArrayList<>();
     @Override
     public void readFile() throws FileNotFoundException {
-        File myFile = new File("D:\\Study\\OOP\\projectOPP\\Person\\customersData.txt");
+        // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Person\\customersData.txt");
+        File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Person\\customersData.txt");
         Scanner scf = new Scanner(myFile);
         while(scf.hasNextLine()) {
             String line = scf.nextLine();
