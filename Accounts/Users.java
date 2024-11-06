@@ -20,7 +20,7 @@ public class Users implements fileWork {
         while (scf.hasNextLine()) {
             String line = scf.nextLine();
             String [] arrstr = line.split("\\|");
-            User newUser = new User(arrstr[0], arrstr[1], arrstr[2]);
+            User newUser = new User(arrstr[0], arrstr[1], arrstr[2], arrstr[3]);
             users.add(newUser);
         }
         scf.close();
@@ -29,7 +29,7 @@ public class Users implements fileWork {
     public void writeFile() throws IOException {
         FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Accounts\\accountsData.txt");
         for (User cur : users) {
-            myFile.write(cur.getUserName() + '|' + cur.getPassword() + '|' + cur.getUserId() + '\n');
+            myFile.write(cur.getUserName() + '|' + cur.getPassword() + '|' + cur.getUserId() + '|' + cur.getRole() + '\n');
         }
         myFile.close();
     }

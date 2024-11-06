@@ -6,10 +6,10 @@ import Accounts.Users;
 import Person.Employees;
 
 public class Login {
-    private User user;
     Scanner sc = new Scanner(System.in);
     Login(){}
-    public boolean login() {
+    public User login() {
+        User user;
         boolean complete = false;
         while (!complete) {
             user = new User();
@@ -23,7 +23,7 @@ public class Login {
             sc.nextLine();
             if (choose == 2) {
                 System.out.println("-Chon thoat.");
-                return false;
+                return null;
             }
             System.out.println("-Chon nhap thong tin.");
             System.out.println("┌───────────────────────────────────────────┐");
@@ -39,16 +39,17 @@ public class Login {
             if (Users.checkUser(user)) {
                 System.out.println("└───────────────────────────────────────────┘");
                 System.out.println("-Dang nhap thanh cong!");
-                return true;
+                return user;
             } else {
                 System.out.println("-Tai khoan hoac mat khau khong dung. Hay thu lai!");
             }
         }
-        return complete;
+        return null;
     }
-    // problem: có cần xác minh lại lần 2
-    // Kiểm tra userName và password nhập vào
-    public boolean register() {
+    // TODO: kiểm tra xem id đã được đăng ký hay chưa nếu chưa thì thì cho đăng ký, 
+    // nếu đã đăng ký thì cho chọn đăng nhập hoặc nhập lại hoặc thoát ra
+    public User register() {
+        User user;
         boolean complete = false;
         while (!complete) {
             user = new User();
@@ -63,7 +64,7 @@ public class Login {
             
             if (choose == 2) {
                 System.out.println("-Chon thoat");
-                return false;
+                return null;
             }
             System.out.println("-Chon nhap thong tin");
             user.enterUser();
@@ -72,11 +73,11 @@ public class Login {
                 Users.addUser(user);
                 System.out.println("-Dang ky thanh cong!");
                 complete = true;
-                return true;
+                return user;
             } else {
                 System.out.println("-Dang ky khong thanh cong. Do id khong ton tai. Hay thu lai!");
             }
         }
-        return complete;
+        return null;
     }
 }

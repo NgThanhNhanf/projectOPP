@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class ProductUI {
     Scanner sc = new Scanner(System.in);
+    // TODO: làm theo menu ở dưới là được
     public void rootMenu() {
         System.out.println("┌───────────────────────────────────────────┐");
         System.out.println("│                 San Pham                  │");

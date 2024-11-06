@@ -6,10 +6,10 @@ public class User {
     private String userName;
     private String password;
     private String userId;
-    private boolean role;
+    private String role;
     Scanner sc = new Scanner(System.in);
     public User() {
-        role = false;
+        role = "E";
     }
     public User(String userName, String password) {
         this.userName = userName;
@@ -19,7 +19,13 @@ public class User {
         this.userName = userName;
         this.password = password;
         this.userId = id;
-        role = false;
+        role = "E";
+    }
+    public User(String userName, String password, String id, String role) {
+        this.userName = userName;
+        this.password = password;
+        this.userId = id;
+        this.role = role;
     }
     // hàm nhập 
     // Problem: cần kiểm tra rỗng
@@ -45,7 +51,7 @@ public class User {
     public String getUserId() {
         return userId;
     }
-    public boolean getRole() {
+    public String getRole() {
         return role;
     }
     public void setUserName(String userName) {
@@ -57,7 +63,7 @@ public class User {
     public void setUserId(String userId) {
         this.userId = userId;
     }
-    public void setRole(boolean role) {
+    public void setRole(String role) {
         this.role = role;
     }
     public void editUserName() {
