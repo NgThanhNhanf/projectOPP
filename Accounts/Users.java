@@ -16,8 +16,7 @@ public class Users implements fileWork {
     // đọc file từ file text lên vào Users
     @Override
     public void readFile() throws FileNotFoundException {
-        //File myFile = new File("D:\\Study\\OOP\\projectOPP\\Accounts\\accountsData.txt");
-        File myFile = new File("C:\\OOP\\projectOPP\\Accounts\\accountsData.txt");
+        File myFile = new File("D:\\Study\\OOP\\projectOPP\\Accounts\\accountsData.txt");
         Scanner scf = new Scanner(myFile);
         while (scf.hasNextLine()) {
             String line = scf.nextLine();
@@ -29,8 +28,7 @@ public class Users implements fileWork {
     }
     @Override
     public void writeFile() throws IOException {
-        // FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Accounts\\accountsData.txt");
-        FileWriter myFile = new FileWriter("C:\\OOP\\projectOPP\\Accounts\\accountsData.txt");
+        FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Accounts\\accountsData.txt");
         for (User cur : users) {
             myFile.write(cur.getUserName() + '|' + cur.getPassword() + '|' + cur.getUserId() + '|' + cur.getRole() + '\n');
         }
