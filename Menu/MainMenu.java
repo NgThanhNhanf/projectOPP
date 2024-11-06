@@ -3,6 +3,7 @@ import java.util.*;
 
 import Accounts.Users;
 import Order.OrdersUI;
+import Person.Customers;
 import Person.EmployeeUI;
 import Person.Employees;
 
@@ -12,10 +13,12 @@ public class MainMenu {
     public static void main(String[] args) throws IOException {
         Users.fileInit();
         Employees.fileInit();
+        Customers.fileInit();
         loginUI();
         Users.displayUsers();
         Users.fileClose();
         Employees.fileClose();
+        Customers.fileClose();
     }
     public static void Menu() {
         boolean complete = false;
@@ -45,6 +48,7 @@ public class MainMenu {
                     EmployeeUI.mainMenu();
                     break;
                 case 4:
+
                     break;
                 case 5:
                     break;
