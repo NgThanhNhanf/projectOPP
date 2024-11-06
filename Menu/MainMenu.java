@@ -20,7 +20,7 @@ public class MainMenu {
         Employees.fileClose();
         Customers.fileClose();
     }
-    public static void Menu() {
+    public static void MenuM() {
         boolean complete = false;
         while(!complete) {
             System.out.println("┌───────────────────────────────────────────┐");
@@ -32,8 +32,9 @@ public class MainMenu {
             System.out.println("│ 4. San pham                               │");
             System.out.println("│ 5. Kho hang                               │");
             System.out.println("│ 6. Thong ke                               │");
-            System.out.println("│ 7. Dang xuat                              │");
-            System.out.println("│ 8. Thoat                                  │");
+            System.out.println("│ 7. Tai khoan                              │");
+            System.out.println("│ 8. Dang xuat                              │");
+            System.out.println("│ 9. Thoat                                  │");
             System.out.println("└───────────────────────────────────────────┘");
             System.out.println("Nhap lua chon:");
             int choose = sc.nextInt(); sc.nextLine();
@@ -81,14 +82,14 @@ public class MainMenu {
             switch (choose) {
                 case 1: 
                     System.out.println("-Chon dang nhap.");
-                    if (login.login()) {
-                        Menu();
+                    if (login.login() != null) {
+                        MenuM();
                     }
                     break;
                 case 2:
                     System.out.println("-Chon dang ky.");
-                    if (login.register()) {
-                        Menu();
+                    if (login.register() != null) {
+                        MenuM();
                     }
                     break;
                 case 3:
