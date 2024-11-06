@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
-
 import Model.*;
 
 public class Orders {
@@ -40,11 +39,11 @@ public class Orders {
                                 int quantity = scanner.nextInt();
                                 scanner.nextLine();
                                 Product product;
-                                for(Product cur : inventory.getListInventory().keySet()) {
+                                for(Product cur : listInventory.getListInventory().keySet()) {
                                     if (cur.getProductID() == productID) {
                                         product = cur;
                                     }
-                                }
+                                }   
                                 if (product != null) {
                                     int stock = Inventory.getListInventory().getOrDefault(product, 0);
                                     if (stock > 0) {
