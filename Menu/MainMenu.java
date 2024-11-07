@@ -6,6 +6,7 @@ import Accounts.UserUI;
 import Accounts.Users;
 import Model.ProductUI;
 import Order.OrdersUI;
+import Person.CustomerUI;
 import Person.Customers;
 import Person.EmployeeUI;
 import Person.Employees;
@@ -45,7 +46,7 @@ public class MainMenu {
                     OrdersUI.rootMenu();
                     break;
                 case 2:
-                    
+                    CustomerUI.mainMenu();
                     break;
                 case 3:
                     EmployeeUI.mainMenu();

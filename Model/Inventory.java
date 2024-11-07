@@ -7,7 +7,8 @@ public class Inventory{
     private static HashMap<Product, Integer> listInventory = new HashMap<>();
     public Inventory(){}
     
-    public HashMap<Product, Integer> getListInventory() {
+    // Chỉnh phương thức thành static
+    public static HashMap<Product, Integer> getListInventory() {
         return listInventory;
     }
 

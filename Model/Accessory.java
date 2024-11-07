@@ -5,7 +5,6 @@ package Model;
 public class Accessory extends Product{
     private String type;
 
-
     public Accessory(){
 
     }
@@ -41,14 +40,15 @@ public class Accessory extends Product{
     @Override
     public void displayInfor() {
         super.displayInfor();
-        System.out.println("loại phụ kiện: " + getType());
+        System.out.printf("│ Chat lieu  : %-26s │\n", getType());
+        System.out.println("──────────────────────────────────────────");
     }
 
     public void editType(){
         System.out.print("new type: ");
         String newType = sc.nextLine();
         setType(newType);
-        System.out.print("thay doi thanh cong");
+        System.out.println("thay doi thanh cong");
     }
 
     @Override
@@ -66,14 +66,17 @@ public class Accessory extends Product{
     public void editProduct(){
         boolean isAccessory = false;
         while(!isAccessory){
-            System.out.println("Chon thong tin can sua");
-            System.out.println("1.Ma san pham");
-            System.out.println("2.Ten san pham");
-            System.out.println("3.Gia tien");
-            System.out.println("4.Loai san pham");
-            System.out.println("5.Tat ca");
-            System.out.println("6.Thoat");
-            System.out.println("nhap lua chon: ");
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│       Chon thong tin can sua              │");
+            System.out.println("├───────────────────────────────────────────┤");
+            System.out.println("│ 1.Ma san pham                             │");
+            System.out.println("│ 2.Ten san pham                            │");
+            System.out.println("│ 3.Gia tien                                │");
+            System.out.println("│ 4.Loai san pham                           │");
+            System.out.println("│ 5.Tat ca                                  │");
+            System.out.println("│ 6.Thoat                                   │");
+            System.out.println("├───────────────────────────────────────────┤");
+            System.out.print("Nhap lua chon: ");
             int choose = sc.nextInt();
             switch (choose) {
                 case 1:
