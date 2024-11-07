@@ -72,10 +72,14 @@ public class ProductUI {
                 case 2:
                 boolean inpProduct = false;
                     while(true){
-                        System.out.println("--------chon loai san pham can them--------------");
-                        System.out.println("1.Clothing");
-                        System.out.println("2.Accessory");
-                        System.out.println("3.Shoes");
+                        System.out.println("┌───────────────────────────────────────────┐");
+                        System.out.println("│        Chon loai san pham can them        │");
+                        System.out.println("├───────────────────────────────────────────┤");
+                        System.out.println("│ 1. Clothing                               │");
+                        System.out.println("│ 2. Accessory                              │");
+                        System.out.println("│ 3. Shoes                                  │");
+                        System.out.println("│ 4. Thoat                                  │");
+                        System.out.println("└───────────────────────────────────────────┘");
                         int lc;
                         Product product;
                         System.out.print("nhap lua chon: ");
@@ -110,20 +114,7 @@ public class ProductUI {
                     }
                     break;
                 case 3:
-                    System.out.print("Nhap ten san pham: ");
-                    String productName =  sc.nextLine();
-                    if(Inventory.findProduct(productName)){
-                        while(true){
-                            System.out.println("--------------------");
-                            System.out.println("1.Them so luong san pham vao kho");
-                            System.out.println("2.xoa so luong san pham trong kho");
-                            System.out.print("nhap so luong can them /bot: ");
-                            int quanlity = sc.nextInt();
-                            int choice;
-                            System.out.print("nhap lua chon: ");
-                            choice = sc.nextInt();
-                        }
-                    }
+                    
                     break;
                 case 4:
                     complete = true;

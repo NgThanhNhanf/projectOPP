@@ -46,7 +46,12 @@ public abstract class Product {
     public abstract void inp();
     //in thong tin full cua san pham trong kho hang
     public void displayInfor(){
-        System.out.println("Ma san pham " + getProductID() + "\nTen san pham: " + getProductName() + "\nDon gia: " + getPrice());
+        System.out.println("┌───────────────────────────────────────────┐");
+        System.out.println("│              Thong Tin San Pham           │");
+        System.out.println("├───────────────────────────────────────────┤");
+        System.out.printf("│ Ma san pham   : %-26s │\n", getProductID());
+        System.out.printf("│ Ten san pham  : %-26s │\n", getProductName());
+        System.out.printf("│ Don gia       : %-26d │\n", getPrice());
     }
 
     public void editProductID(){
