@@ -26,10 +26,12 @@ public class ProductUI {
                     Inventory.display();
                     boolean isInventory = false;
                     while(!isInventory){
-                        // System.out.println("1.Chon san pham!");
-                        System.out.println("2.Sua san pham!");
-                        System.out.println("3.Xoa san pham!");
-                        System.out.println("4.Thoat");
+                        System.out.println("├───────────────────────────────────────────┤");
+                        System.out.println("│ 1. Chon san pham                          │");
+                        System.out.println("│ 2. Sua san pham                           │");
+                        System.out.println("│ 3. Xoa san pham                           │");
+                        System.out.println("│ 4. Thoat                                  │");
+                        System.out.println("└───────────────────────────────────────────┘");
                         System.out.print("nhap lua chon:");
                         int choice = sc.nextInt();
                         switch (choice) {
