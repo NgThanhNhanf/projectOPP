@@ -11,12 +11,12 @@ public class Inventory{
         return listInventory;
     }
 
-    // them san pham vao kho hang
+    // them so luong ton kho cua san pham vao kho hang
     public static void addInventory(Product product, int quanlity){
         listInventory.put(product, listInventory.getOrDefault(product, 0) + quanlity);
-        System.out.println("Them san pham vao kho thanh cong!!!");
+        System.out.println("da them " + listInventory.values() + " san pham");
     }
-
+    //xoa bot di so luong ton kho cua san pham vao kho hang
     public static void deleteInventory(Product product, int quanlity){
         if(quanlity > 0){
             listInventory.put(product, listInventory.getOrDefault(product, 0) + (-quanlity));

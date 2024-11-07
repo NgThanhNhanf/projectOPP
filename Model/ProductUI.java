@@ -23,6 +23,7 @@ public class ProductUI {
             int choose = sc.nextInt();
             switch (choose) {
                 case 1:
+                //NOTE : cap nhap san pham trong kho hang
                     Inventory.display();
                     boolean isInventory = false;
                     while(!isInventory){
@@ -116,7 +117,45 @@ public class ProductUI {
                     }
                     break;
                 case 3:
-                    
+                    boolean isSearch = false;
+                    while(!isSearch){
+                        System.out.println("┌───────────────────────────────────────────┐");
+                        System.out.println("│       Lua chon tim kiem                   │");
+                        System.out.println("├───────────────────────────────────────────┤");
+                        System.out.println("│ 1.Tim kiem theo ma                        │");
+                        System.out.println("│ 2.Tim kiem theo ten                       │");
+                        System.out.println("│ 3.Tim kiem theo ngay                      │");
+                        System.out.println("│ 4.Tim kiem theo size                      │");
+                        System.out.println("│ 5.Tim kiem theo vat lieu                  │");
+                        System.out.println("│ 6.Tim kiem theo gia tien                  │");
+                        System.out.println("│ 7.Thoat                                   │");
+                        System.out.println("├───────────────────────────────────────────┤");
+
+                        System.out.print("Nhap lua chon: ");
+                        int lc = sc.nextInt();
+
+                        switch (lc) {
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                            case 4:
+                                break;
+                            case 5:
+                                break;
+                            case 6:
+                                break;
+                            case 7:
+                                System.out.println("thoat");
+                                isSearch = true;
+                                break;
+                            default:
+                                break;
+                        }
+
+                    }
                     break;
                 case 4:
                     complete = true;
