@@ -38,6 +38,10 @@ public class UserUI {
         }
     }
     public static void controlUser() {
-            
+        System.out.println("┌───────────────────────────────────────────┐");
+        System.out.println("│1. Chon tai khoan                          │");
+        System.out.println("│2.                            │");
+        System.out.println("│3. Thoat                                   │");
+        System.out.println("└───────────────────────────────────────────┘");
     }
 }
