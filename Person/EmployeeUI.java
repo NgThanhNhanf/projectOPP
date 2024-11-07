@@ -63,8 +63,8 @@ public class EmployeeUI {
     }
     public static void mainMenu() {
         boolean complete = false;
-        phoneInList = new ArrayList<>();
         while(!complete) {
+            EmployeeUI.phoneInList = new ArrayList<>();
             System.out.println("┌───────────────────────────────────────────┐");
             System.out.println("│                 Nhan Vien                 │");
             Employees.viewEmployee();

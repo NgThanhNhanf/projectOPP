@@ -1,12 +1,18 @@
 package Order;
 
 import java.util.List;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import File.fileWork;
 import java.util.Random;
 import Model.*;
+import Person.Customers;
 
-public class Orders {
+public class Orders implements fileWork {
     private static List<Order> orders = new ArrayList<>();
     static Random random = new Random();
     static Scanner scanner = new Scanner(System.in);
@@ -46,20 +52,13 @@ public class Orders {
                                     }
                                 }   
                                 if (product != null) {
-                                    int stock = Inventory.getListInventory().getOrDefault(product,   0);
-                                    if (stock > 0) {
-                                        System.out.print("Nhap so luong:");
-                                        int quantity = scanner.nextInt();
-                                        scanner.nextLine();
-                                        if (stock >= quantity) {
-                                            order.addProduct(product, quantity);
-                                            Inventory.deleteInventory(product, quantity);
-                                            System.out.println("San pham da duoc them vao don hang.");
-                                        } else {
-                                            System.out.println("So luong san pham trong kho khong du.");
-                                        }
+                                    int stock = Inventory.getListInventory().getOrDefault(product, 0);
+                                    if (stock >= quantity) {
+                                        order.addProduct(product, quantity);
+                                        Inventory.deleteInventory(product, quantity);
+                                        System.out.println("San pham da duoc them vao don hang.");
                                     } else {
-                                        System.out.println("San pham da het hang.");
+                                        System.out.println("So luong san pham trong kho khong du.");
                                     }
                                 } else {
                                     System.out.println("Khong tim thay san pham.");
@@ -172,5 +171,41 @@ public class Orders {
     // Thiết lập danh sách đơn hàng
     public static void setOrders(List<Order> orders) {
         Orders.orders = orders;
+    }
+    @Override 
+    public void readFile() throws FileNotFoundException {
+        File myFile = new File("D:\\Study\\OOP\\projectOPP\\Order\\orderData.txt");
+        Scanner scf = new Scanner(myFile);
+        while (scf.hasNextLine()) {
+            String line = scf.nextLine();
+            String [] arrstr = line.split("\\|");
+            Order newOrder = new Order(Integer.parseInt(arrstr[0]), arrstr[1], arrstr[2]);
+            for (int i = 3; i < arrstr.length; i += 2) {
+                newOrder.addProduct(Inventory.getProductByID(Integer.parseInt(arrstr[i])), Integer.parseInt(arrstr[i + 1]));
+            }
+            Orders.addOrder(newOrder);
+        }
+        scf.close();
+    } 
+    @Override 
+    public  void writeFile() throws IOException {
+        FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Order\\orderData.txt");
+        for (Order cur : Orders.getOrders()) {
+            myFile.write(cur.getOrderID() + "|" + cur.getCustomerName() + "|" + cur.getCustomerPhone());
+            for (OrderDetail d : cur.getOrderDetails()) {
+                myFile.write("|" + d.getProduct().getProductID() + "|" + d.getQuantity());
+            }
+            myFile.write('\n');
+        }
+        myFile.close();
+    }
+    public static void fileInit() throws FileNotFoundException {
+        Orders orders = new Orders();
+        orders.readFile();
+    }
+
+    public static void fileClose() throws IOException {
+        Orders orders = new Orders();
+        orders.writeFile();
     }
 }

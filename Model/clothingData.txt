@@ -1,0 +1,11 @@
+101|Ao thun Cotton|101|M|Cotton|30
+104|Ao hoodie Unisex|104|XL|Polyester|25
+109|Ao blazer Basic|109|L|Polyester|12
+106|Quan tay Classic|106|34|Cotton|22
+108|Vay Maxi Floral|108|S|Voan|10
+100|Quan short Casual|100|M|Cotton|25
+105|Ao khoac Bomber|105|L|Nylon|18
+110|Ao khoac levents|110|M|Vai|20
+102|Ao so mi Linen|102|L|Linen|20
+107|Ao len Cardigan|107|M|Len|17
+103|Quan jeans Skinny|103|32|Denim|15
