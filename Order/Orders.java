@@ -46,13 +46,20 @@ public class Orders {
                                     }
                                 }   
                                 if (product != null) {
-                                    int stock = Inventory.getListInventory().getOrDefault(product, 0);
-                                    if (stock >= quantity) {
-                                        order.addProduct(product, quantity);
-                                        Inventory.deleteInventory(product, quantity);
-                                        System.out.println("San pham da duoc them vao don hang.");
+                                    int stock = Inventory.getListInventory().getOrDefault(product,   0);
+                                    if (stock > 0) {
+                                        System.out.print("Nhap so luong:");
+                                        int quantity = scanner.nextInt();
+                                        scanner.nextLine();
+                                        if (stock >= quantity) {
+                                            order.addProduct(product, quantity);
+                                            Inventory.deleteInventory(product, quantity);
+                                            System.out.println("San pham da duoc them vao don hang.");
+                                        } else {
+                                            System.out.println("So luong san pham trong kho khong du.");
+                                        }
                                     } else {
-                                        System.out.println("So luong san pham trong kho khong du.");
+                                        System.out.println("San pham da het hang.");
                                     }
                                 } else {
                                     System.out.println("Khong tim thay san pham.");

@@ -53,20 +53,21 @@ public class Clothing extends Product{
     @Override
     public void displayInfor() {
         super.displayInfor();
-        System.out.println("size: " + getSize() + "\nchat lieu: " + getMaterial());
+        System.out.printf("│ Size   : %-26s │\n", getSize());
+        System.out.printf("│ Chat lieu  : %-26s │\n", getMaterial());
     }
     public void editSize(){
         System.out.print("new size: ");
         String newSize = sc.next();
         setSize(newSize);
-        System.out.print("thay doi thanh cong");
+        System.out.println("thay doi thanh cong");
     }
 
     public void editMaterial(){
         System.out.print("new material: ");
         String newMaterial = sc.nextLine();
         setMaterial(newMaterial);
-        System.out.print("thay doi thanh cong");
+        System.out.println("thay doi thanh cong");
     }
 
     @Override
@@ -82,14 +83,17 @@ public class Clothing extends Product{
     public void editProduct(){
         boolean isClothing = false;
         while(!isClothing){
-            System.out.println("Chon thong tin can sua");
-            System.out.println("1.Ma san pham");
-            System.out.println("2.Ten san pham");
-            System.out.println("3.Gia tien");
-            System.out.println("4.Size");
-            System.out.println("5.Chat lieu");
-            System.out.println("6.Tat ca");
-            System.out.println("7.Thoat");
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│       Chon thong tin can sua              │");
+            System.out.println("├───────────────────────────────────────────┤");
+            System.out.println("│ 1.Ma san pham                             │");
+            System.out.println("│ 2.Ten san pham                            │");
+            System.out.println("│ 3.Gia tien                                │");
+            System.out.println("│ 4.Size                                    │");
+            System.out.println("│ 5.Chat lieu                               │");
+            System.out.println("│ 6.Tat ca                                  │");
+            System.out.println("│ 7.Thoat                                   │");
+            System.out.println("├───────────────────────────────────────────┤");
             System.out.println("nhap lua chon: ");
             int choose = sc.nextInt();
             switch (choose) {

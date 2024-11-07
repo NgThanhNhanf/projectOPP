@@ -1,24 +1,47 @@
 package Person;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 import Order.Order;
-import java.util.ArrayList;
 
 public class Customer extends Person {
-    private List<Order> orderHistory; 
+    private List<Order> orderHistory;
     Scanner sc = new Scanner(System.in);
+
     public Customer(){
+        super();
         orderHistory = new ArrayList<>();
     }
-    public Customer(String name, Birth dob, String phone, String email) {
-        super(name, dob, phone, email);
+
+    public Customer(String name, Birth dob, String address, String phone) {
+        super(name, dob, address, phone);
+        orderHistory = new ArrayList<>();
     }
-    public void displayHistoryOrder() {
-        for (Order cur : orderHistory) {
-            cur.displayOrder();
-        }
+
+    public List<Order> getOrderHistory() {
+        return orderHistory;
     }
+
+    public void addOrder(Order order) {
+        orderHistory.add(order);
+    }
+
+    @Override
+    public void enterPerson() {
+        super.enterPerson();
+    }
+
+    @Override
+    public void displayPerson() {
+        super.displayPerson();
+    }
+
+    @Override
+    public void editAll() {
+        enterPerson();
+    }
+
     @Override
     public void editPerson() {
         boolean complete = false;
@@ -33,7 +56,7 @@ public class Customer extends Person {
             System.out.println("│ 5. Tat ca                                 │");
             System.out.println("│ 6. Thoat                                  │");
             System.out.println("└───────────────────────────────────────────┘");
-            System.out.println("Nhap lua chon:");
+            System.out.print("Nhap lua chon:");
             int choose = sc.nextInt();
             sc.nextLine();
             switch (choose) {
@@ -61,14 +84,5 @@ public class Customer extends Person {
                     break;
             }
         }
-    }
-    @Override
-    public void editAll() {
-        Customer newCustomer = new Customer();
-        newCustomer.enterPerson();
-        setName(newCustomer.getName());
-        setBirth(newCustomer.getDob());
-        setAddress(newCustomer.getAddress());
-        setPhone(newCustomer.getPhone());
     }
 }

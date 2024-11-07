@@ -1,9 +1,16 @@
 package Model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Scanner;
 
-public class Inventory{
-    //mang luu 1 cai list cac san pham trong kho 
+import File.fileWork;
+
+public class Inventory implements fileWork {
+    //mang luu 1 cai list cac san pham trong kho
+    // product là lớp trừu tượng thì có dùng như vầy được hay không
     private static HashMap<Product, Integer> listInventory = new HashMap<>();
     public Inventory(){}
     
@@ -80,5 +87,19 @@ public class Inventory{
             }
         }
         return null;
+    }
+    @Override
+    public void readFile() throws FileNotFoundException {
+        File myFile = new File("D:\\Study\\OOP\\projectOPP\\Model\\clothingData.txt");
+        Scanner scf = new Scanner(myFile);
+        while(scf.hasNextLine()) {
+            String line = scf.nextLine();
+            String [] arrstr = line.split("\\|");
+            Product newProduct;
+        }
+    }
+    @Override
+    public void writeFile() throws IOException {
+
     }
 }
