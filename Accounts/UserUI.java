@@ -13,8 +13,7 @@ public class UserUI {
         System.out.println("├───────────────────────────────────────────┤");
         System.out.println("│ 1. Danh sach tai khoan                    │");
         System.out.println("│ 2. Tim kiem                               │");
-        System.out.println("│ 3. Them tai khoan                         │");
-        System.out.println("│ 4. Thoat                                  │");
+        System.out.println("│ 3. Thoat                                  │");
         System.out.println("└───────────────────────────────────────────┘");
         boolean complete = false;
         int choose;
@@ -28,9 +27,9 @@ public class UserUI {
                     controlListUsers();
                     break;
                 case 2: 
-
+                    
                     break;
-                case 4: 
+                case 3: 
                     complete = true;
                     break;
                 default:
@@ -66,10 +65,26 @@ public class UserUI {
     }
     public static void controlUser(User choosedUser) {
         choosedUser.displayUser();
-        System.out.println("┌───────────────────────────────────────────┐");
-        System.out.println("│1. Sua thong tin tai khoan                 │");
-        System.out.println("│2. Xoa tai khoan                           │");
-        System.out.println("│3. Thoat                                   │");
-        System.out.println("└───────────────────────────────────────────┘");
+        boolean complete = false;
+        while (!complete) {
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│1. Sua thong tin tai khoan                 │");
+            System.out.println("│2. Xoa tai khoan                           │");
+            System.out.println("│3. Thoat                                   │");
+            System.out.println("└───────────────────────────────────────────┘");
+            System.out.println("Nhap lua chon: ");
+            int choose = sc.nextInt();
+            switch (choose) {
+                case 1:
+                    
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
