@@ -12,11 +12,11 @@ public class Shoes extends Product{
         this.color = color;
     }
 
-    public Shoes(int productID, String productName, double price, int stock, int size, String color) {
-        super(productID, productName, price, stock);
-        this.size = size;
-        this.color = color;
-    }
+    // public Shoes(int productID, String productName, double price, int stock, int size, String color) {
+    //     super(productID, productName, price, stock);
+    //     this.size = size;
+    //     this.color = color;
+    // }
 
     public int getSize() {
         return size;
@@ -48,7 +48,7 @@ public class Shoes extends Product{
         System.out.print("mau giay: ");
         setColor(sc.nextLine());
         System.out.print("gia tien: ");
-        setPrice(sc.nextDouble());
+        setPrice(sc.nextInt());
         sc.nextLine();
     }
 
@@ -58,4 +58,71 @@ public class Shoes extends Product{
         super.displayInfor();
         System.out.println("size giày: " + getSize() + "\nMàu giày: " + getColor());
     }
+
+    public void editSizeG(){
+        System.out.print("new size: ");
+        int newSizeG = sc.nextInt();
+        System.out.print("thay doi thanh cong");
+    }
+
+    public void editColor(){
+        System.out.print("new color: ");
+        String newColor = sc.nextLine();
+        System.out.print("thay doi thanh cong");
+    }
+
+    @Override
+    public void editALLAttributeProduct(){
+        Product newShoes = new Shoes();
+        newShoes.inp();
+        setProductID(newShoes.getProductID());
+        setProductName(newShoes.getProductName());
+        editSizeG();
+        editColor();
+        setPrice(newShoes.getPrice());
+    }
+
+    @Override
+    public void editProduct(){
+        boolean isShoes = false;
+        while(!isShoes){
+            System.out.println("chon thong tin can sua");
+            System.out.println("1.Ma san pham");
+            System.out.println("2.Ten san pham");
+            System.out.println("3.Gia tien");
+            System.out.println("4.Size giay");
+            System.out.println("5.Mau giay");
+            System.out.println("6.Tat ca");
+            System.out.println("7.Thoat");
+            System.out.println("nhap lua chon: ");
+            int choose = sc.nextInt();
+            switch (choose) {
+                case 1:
+                    editProductID();
+                    break;
+                case 2:
+                    editProductName();
+                    break;
+                case 3:
+                    editProductPrice();
+                    break;
+                case 4:
+                    editSizeG();
+                    break;
+                case 5:
+                    editColor();
+                    break;
+                case 6:
+                    editALLAttributeProduct();
+                    break;
+                case 7:
+                    System.out.println("thoat");
+                    isShoes = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
 }

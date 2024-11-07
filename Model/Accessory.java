@@ -11,10 +11,10 @@ public class Accessory extends Product{
     }
     
 
-    public Accessory(int productID, String productName, double price, int stock, String type) {
-        super(productID, productName, price, stock);
-        this.type = type;
-    }
+    // public Accessory(int productID, String productName, double price, int stock, String type) {
+    //     super(productID, productName, price, stock);
+    //     this.type = type;
+    // }
 
     public String getType() {
         return type;
@@ -35,12 +35,69 @@ public class Accessory extends Product{
         System.out.print("loai phu kien: ");
         setType(sc.nextLine());
         System.out.print("gia tien: ");
-        setPrice(sc.nextDouble());
+        setPrice(sc.nextInt());
         sc.nextLine();
     }
     @Override
     public void displayInfor() {
         super.displayInfor();
         System.out.println("loại phụ kiện: " + getType());
+    }
+
+    public void editType(){
+        System.out.print("new type: ");
+        String newType = sc.nextLine();
+        setType(newType);
+        System.out.print("thay doi thanh cong");
+    }
+
+    @Override
+    public void editALLAttributeProduct(){
+        Product newAccessory = new Accessory();
+        newAccessory.inp();
+        setProductID(newAccessory.getProductID());
+        setProductName(newAccessory.getProductName());
+        editType();
+        setPrice(newAccessory.getPrice());
+        
+    }
+
+    @Override
+    public void editProduct(){
+        boolean isAccessory = false;
+        while(!isAccessory){
+            System.out.println("Chon thong tin can sua");
+            System.out.println("1.Ma san pham");
+            System.out.println("2.Ten san pham");
+            System.out.println("3.Gia tien");
+            System.out.println("4.Loai san pham");
+            System.out.println("5.Tat ca");
+            System.out.println("6.Thoat");
+            System.out.println("nhap lua chon: ");
+            int choose = sc.nextInt();
+            switch (choose) {
+                case 1:
+                    editProductID();
+                    break;
+                case 2:
+                    editProductName();
+                    break;
+                case 3:
+                    editProductPrice();
+                    break;
+                case 4:
+                    editType();
+                    break;
+                case 5:
+                    editALLAttributeProduct();
+                    break;
+                case 6:
+                    System.out.println("thoat");
+                    isAccessory = true;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

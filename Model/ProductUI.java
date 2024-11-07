@@ -24,6 +24,50 @@ public class ProductUI {
             switch (choose) {
                 case 1:
                     Inventory.display();
+                    boolean isInventory = false;
+                    while(!isInventory){
+                        // System.out.println("1.Chon san pham!");
+                        System.out.println("2.Sua san pham!");
+                        System.out.println("3.Xoa san pham!");
+                        System.out.println("4.Thoat");
+                        System.out.print("nhap lua chon:");
+                        int choice = sc.nextInt();
+                        switch (choice) {
+                            case 1:
+                                System.out.print("nhap ten san pham: ");
+                               String name = sc.nextLine();
+                               if(Inventory.findProduct(name)){
+                                    Inventory.display();
+                                    isInventory = true;
+                               }
+                                break;
+                            case 2:
+                               System.out.println("nhap ma san pham can sua");
+                               int productIDEdit = sc.nextInt();
+                               Product productEdit = Inventory.getProductByID(productIDEdit);
+                               if(productEdit != null){
+                                System.out.println("thong tin san pham hien tai");
+                                productEdit.displayInfor();
+                                productEdit.editProduct();
+                               }else {
+                                System.out.println("khong tim thay san pham co id: " + productIDEdit);
+                               }
+                               break;
+                            case 3:
+                               sc.nextLine();
+                               System.out.print("Nhap ten san pham can xoa: ");
+                               String productName = sc.nextLine();
+                               Inventory.removeInventory(productName);
+                               break;
+                            case 4:
+                               System.out.println("thoat");
+                               isInventory = true;
+                               break;
+                            default:
+                                break;
+                        }
+
+                    }
                     break;
                 case 2:
                 boolean inpProduct = false;
