@@ -11,8 +11,7 @@ public class Employees implements fileWork {
     }
     @Override
     public void readFile() throws FileNotFoundException {
-        // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Person\\employeesData.txt");        
-        File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\employeesData.txt");        
+        File myFile = new File("D:\\Study\\OOP\\projectOPP\\Person\\employeesData.txt");              
         Scanner scf = new Scanner(myFile);
         while(scf.hasNextLine()) {
             String line = scf.nextLine();
@@ -27,8 +26,8 @@ public class Employees implements fileWork {
     }
     @Override
     public void writeFile() throws IOException {
-        // FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Person\\employeesData.txt");
-        FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\employeesData.txt");
+        FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Person\\employeesData.txt");
+        // FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\employeesData.txt");
         for (Employee cur : listEmployee) {
             myFile.write(cur.getName() + '|' + cur.getDob().getDay() + '/' + cur.getDob().getMonth() + '/' + cur.getDob().getYear() + '|' + cur.getAddress() + '|' + cur.getPhone() + '|' + cur.getID() + '|' + cur.getSalary() + '|' + cur.getJobDescription() + '\n');
         }

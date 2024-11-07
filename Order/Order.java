@@ -4,7 +4,9 @@ import java.util.List;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import Model.Clothing;
 import Model.Product;
+import Model.Shoes;
  
 public class Order {
     private int orderID;
@@ -35,9 +37,18 @@ public class Order {
     // Thêm đơn hàng vào order details
     public void addProduct(Product product, int quantity) {
         for (OrderDetail detail : orderDetails) {
-            if (detail.getProduct().getProductID() == product.getProductID()) {
-                detail.setQuantity(detail.getQuantity() + quantity);
-                return;
+            if (detail.getProduct() instanceof Clothing) {
+                Clothing clothing = (Clothing) detail.getProduct();
+                if (clothing.getProductID() == product.getProductID()) {
+                    detail.setQuantity(detail.getQuantity() + quantity);
+                    return;
+                }
+            } else {
+                Shoes shoes = (Shoes) detail.getProduct();
+                if (shoes.getProductID() == product.getProductID()) {
+                    detail.setQuantity(detail.getQuantity() + quantity);
+                    return;
+                }
             }
         }
         OrderDetail detail = new OrderDetail(product, quantity);

@@ -65,7 +65,7 @@ public class CustomerUI {
 
     public static void mainMenu() {
         boolean complete = false;
-        phoneInList = new ArrayList<>();
+        CustomerUI.phoneInList = new ArrayList<>();
         while (!complete) {
             System.out.println("┌───────────────────────────────────────────┐");
             System.out.println("│                 Khach hang                │");

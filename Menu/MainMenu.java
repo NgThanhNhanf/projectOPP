@@ -4,7 +4,9 @@ import java.util.*;
 import Accounts.User;
 import Accounts.UserUI;
 import Accounts.Users;
+import Model.Inventory;
 import Model.ProductUI;
+import Order.Orders;
 import Order.OrdersUI;
 import Person.CustomerUI;
 import Person.Customers;
@@ -18,10 +20,14 @@ public class MainMenu {
         Users.fileInit();
         Employees.fileInit();
         Customers.fileInit();
+        Inventory.fileInit();
+        Orders.fileInit();
         loginUI();
         Users.fileClose();
         Employees.fileClose();
         Customers.fileClose();
+        Inventory.fileClose();
+        Orders.fileClose();
     }
     public static void MenuM() {
         boolean complete = false;

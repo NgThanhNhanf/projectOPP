@@ -8,15 +8,16 @@ public class Shoes extends Product{
 
     public Shoes() {}
     public Shoes(int size, String color) {
+        super();
         this.size = size;
         this.color = color;
     }
 
-    // public Shoes(int productID, String productName, double price, int stock, int size, String color) {
-    //     super(productID, productName, price, stock);
-    //     this.size = size;
-    //     this.color = color;
-    // }
+    public Shoes(int productID, String productName, double price, int size, String color) {
+        super(productID, productName, size);
+        this.size = size;
+        this.color = color;
+    }
 
     public int getSize() {
         return size;
@@ -56,21 +57,19 @@ public class Shoes extends Product{
     @Override
     public void displayInfor() {
         super.displayInfor();
-        System.out.printf("│ Size giay  : %-26s │\n", getSize());
-        System.out.printf("│ Mau giay  : %-26s │\n", getColor());
-        System.out.println("    ──────────────────────────────────────────");
+        System.out.println("size giày: " + getSize() + "\nMàu giày: " + getColor());
     }
 
     public void editSizeG(){
         System.out.print("new size: ");
         int newSizeG = sc.nextInt();
-        System.out.println("thay doi thanh cong");
+        System.out.print("thay doi thanh cong");
     }
 
     public void editColor(){
         System.out.print("new color: ");
         String newColor = sc.nextLine();
-        System.out.println("thay doi thanh cong");
+        System.out.print("thay doi thanh cong");
     }
 
     @Override
@@ -87,18 +86,15 @@ public class Shoes extends Product{
     @Override
     public void editProduct(){
         boolean isShoes = false;
-        while(!isShoes){ 
-            System.out.println("┌───────────────────────────────────────────┐");
-            System.out.println("│       Chon thong tin can sua              │");
-            System.out.println("├───────────────────────────────────────────┤");
-            System.out.println("│ 1.Ma san pham                             │");
-            System.out.println("│ 2.Ten san pham                            │");
-            System.out.println("│ 3.Gia tien                                │");
-            System.out.println("│ 4.Size giay                               │");
-            System.out.println("│ 5.Mau giay                                │");
-            System.out.println("│ 6.Tat ca                                  │");
-            System.out.println("│ 7.Thoat                                   │");
-            System.out.println("├───────────────────────────────────────────┤");
+        while(!isShoes){
+            System.out.println("chon thong tin can sua");
+            System.out.println("1.Ma san pham");
+            System.out.println("2.Ten san pham");
+            System.out.println("3.Gia tien");
+            System.out.println("4.Size giay");
+            System.out.println("5.Mau giay");
+            System.out.println("6.Tat ca");
+            System.out.println("7.Thoat");
             System.out.println("nhap lua chon: ");
             int choose = sc.nextInt();
             switch (choose) {

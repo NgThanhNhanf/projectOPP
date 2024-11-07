@@ -9,11 +9,9 @@ public abstract class Product {
     private int price;
    Scanner sc = new Scanner(System.in);
 
-   public Product() {
-        
-   }
+   public Product() {}
 
-    public Product(int productID,String productName,int price,int stock){
+    public Product(int productID, String productName, int price){
         this.productID = productID;
         this.productName = productName;
         this.price = price;
@@ -46,12 +44,7 @@ public abstract class Product {
     public abstract void inp();
     //in thong tin full cua san pham trong kho hang
     public void displayInfor(){
-        System.out.println("┌───────────────────────────────────────────┐");
-        System.out.println("│              Thong Tin San Pham           │");
-        System.out.println("├───────────────────────────────────────────┤");
-        System.out.printf("│ Ma san pham   : %-26s │\n", getProductID());
-        System.out.printf("│ Ten san pham  : %-26s │\n", getProductName());
-        System.out.printf("│ Don gia       : %-26d │\n", getPrice());
+        System.out.println("Ma san pham " + getProductID() + "\nTen san pham: " + getProductName() + "\nDon gia: " + getPrice());
     }
 
     public void editProductID(){

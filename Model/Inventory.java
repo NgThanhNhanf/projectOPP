@@ -1,12 +1,20 @@
 package Model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Scanner;
 
-public class Inventory{
-    //mang luu 1 cai list cac san pham trong kho 
+import File.fileWork;
+import Person.Customers;
+
+public class Inventory implements fileWork {
+    //mang luu 1 cai list cac san pham trong kho
+    // product là lớp trừu tượng thì có dùng như vầy được hay không
     private static HashMap<Product, Integer> listInventory = new HashMap<>();
     public Inventory(){}
-    
     // Chỉnh phương thức thành static
     public static HashMap<Product, Integer> getListInventory() {
         return listInventory;
@@ -81,5 +89,52 @@ public class Inventory{
             }
         }
         return null;
+    }
+    @Override
+    public void readFile() throws FileNotFoundException {
+        File myFile = new File("D:\\Study\\OOP\\projectOPP\\Model\\clothingData.txt");
+        Scanner scf = new Scanner(myFile);
+        while(scf.hasNextLine()) {
+            String line = scf.nextLine();
+            String [] arrstr = line.split("\\|");
+            Clothing newClothing = new Clothing(Integer.parseInt(arrstr[0]), arrstr[1], Double.parseDouble(arrstr[2]), arrstr[3], arrstr[4]);
+            Inventory.addInventory(newClothing, Integer.parseInt(arrstr[5]));
+        }
+        scf.close();
+        myFile = new File("D:\\Study\\OOP\\projectOPP\\Model\\shoesData.txt");
+        scf = new Scanner(myFile);
+        while(scf.hasNextLine()) {
+            String line = scf.nextLine();
+            String [] arrstr = line.split("\\|");
+            Shoes newShoes = new Shoes(Integer.parseInt(arrstr[0]), arrstr[1], Double.parseDouble(arrstr[2]), Integer.parseInt(arrstr[3]), arrstr[4]);
+            Inventory.addInventory(newShoes, Integer.parseInt(arrstr[5]));
+        }
+        scf.close();
+    }
+    @Override
+    public void writeFile() throws IOException {
+        FileWriter myFileC = new FileWriter("D:\\Study\\OOP\\projectOPP\\Model\\clothingData.txt");
+        FileWriter myFileS = new FileWriter("D:\\Study\\OOP\\projectOPP\\Model\\shoesData.txt");
+        for (Product cur : Inventory.getListInventory().keySet()) {
+            if(cur instanceof Clothing) {
+                Clothing tmp = (Clothing)cur;
+                myFileC.write(tmp.getProductID() + "|" + tmp.getProductName() + "|" + tmp.getPrice() + "|" + tmp.getSize() + "|" + tmp.getMaterial() + "|" + Inventory.getListInventory().get(cur) + '\n');
+            } else {
+                Shoes tmp = (Shoes)cur;
+                myFileS.write(tmp.getProductID() + "|" + tmp.getProductName() + "|" + tmp.getPrice() + "|" + tmp.getSize() + "|" + tmp.getColor() + "|" + Inventory.getListInventory().get(cur) + '\n');
+            }
+        }
+        myFileC.close();
+        myFileS.close();
+    }
+
+    public static void fileInit() throws FileNotFoundException {
+        Inventory inventory = new Inventory();
+        inventory.readFile();
+    }
+
+    public static void fileClose() throws IOException {
+        Inventory inventory = new Inventory();
+        inventory.writeFile();
     }
 }
