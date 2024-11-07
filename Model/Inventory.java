@@ -24,6 +24,17 @@ public class Inventory{
         }
     }
 
+    public static void removeInventory(String productName){
+        for(Product product : listInventory.keySet()){
+            if(product.getProductName().equals(productName)){
+                listInventory.remove(product);
+            }else {
+                System.out.println("khong tim thay san pham trong kho"); break;
+            }
+        }
+        System.out.println("Xoa san pham thanh cong");
+    }
+
     public static void display(){
         for(Product product : listInventory.keySet()) {
             product.displayInfor();
@@ -55,10 +66,19 @@ public class Inventory{
     
     public static boolean findProduct(String productName){
         for(Product product : listInventory.keySet()){
-            if(product.getProductName() ==  productName){
+            if(product.getProductName().equals(productName)){
                 return true;
             }
         }
         return false;
+    }
+
+    public static Product getProductByName(String productName){
+        for(Product product : listInventory.keySet()){
+            if(product.getProductName().equals(productName)){
+                return product;
+            }
+        }
+        return null;
     }
 }

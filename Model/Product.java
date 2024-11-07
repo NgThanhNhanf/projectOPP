@@ -6,14 +6,14 @@ import java.util.Scanner;
 public abstract class Product {
     private int productID;
     private String productName;
-    private double price;
+    private int price;
    Scanner sc = new Scanner(System.in);
 
    public Product() {
         
    }
 
-    public Product(int productID,String productName,double price,int stock){
+    public Product(int productID,String productName,int price,int stock){
         this.productID = productID;
         this.productName = productName;
         this.price = price;
@@ -35,11 +35,11 @@ public abstract class Product {
         this.productName = productName;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
     //phương thức trừu tượng nhap thông tin sản phẩm
@@ -48,4 +48,27 @@ public abstract class Product {
     public void displayInfor(){
         System.out.println("Ma san pham " + getProductID() + "\nTen san pham: " + getProductName() + "\nDon gia: " + getPrice());
     }
+
+    public void editProductID(){
+        System.out.print("new id: ");
+        int newID = sc.nextInt();
+        setProductID(newID);
+        System.out.print("Thay doi thanh cong");
+    }
+
+    public void editProductName(){
+        System.out.print("new name: ");
+        String newName = sc.nextLine();
+        setProductName(newName);
+        System.out.print("thay doi thanh cong");
+    }
+    public void editProductPrice() {
+        System.out.print("new price: ");
+        int newPrice = sc.nextInt();
+        setPrice(newPrice);
+        System.out.print("thay doi thanh cong");
+
+    }
+    public abstract void editALLAttributeProduct();
+    public abstract void editProduct();
 }
