@@ -38,28 +38,21 @@ public class Orders {
                                 System.out.print("Nhap so luong:");
                                 int quantity = scanner.nextInt();
                                 scanner.nextLine();
-                                Product product;
-                                for(Product cur : listInventory.getListInventory().keySet()) {
+                                Product product = null;
+                                for(Product cur : Inventory.getListInventory().keySet()) {
                                     if (cur.getProductID() == productID) {
                                         product = cur;
+                                        break;
                                     }
                                 }   
                                 if (product != null) {
                                     int stock = Inventory.getListInventory().getOrDefault(product, 0);
-                                    if (stock > 0) {
-                                        System.out.print("Nhap so luong:");
-                                        int quantity = scanner.nextInt();
-                                        scanner.nextLine();
-
-                                        if (stock >= quantity) {
-                                            order.addProduct(product, quantity);
-                                            Inventory.deleteInventory(product, quantity);
-                                            System.out.println("San pham da duoc them vao don hang.");
-                                        } else {
-                                            System.out.println("So luong san pham trong kho khong du.");
-                                        }
+                                    if (stock >= quantity) {
+                                        order.addProduct(product, quantity);
+                                        Inventory.deleteInventory(product, quantity);
+                                        System.out.println("San pham da duoc them vao don hang.");
                                     } else {
-                                        System.out.println("San pham da het hang.");
+                                        System.out.println("So luong san pham trong kho khong du.");
                                     }
                                 } else {
                                     System.out.println("Khong tim thay san pham.");
