@@ -82,13 +82,23 @@ public class Inventory implements fileWork {
         return false;
     }
 
-    public static Product getProductByName(String productName){
-        for(Product product : listInventory.keySet()){
-            if(product.getProductName().equals(productName)){
+    public static Product getProductByName(String productName) {
+        for (Product product : listInventory.keySet()) {
+            if (product.getProductName().toLowerCase().contains(productName.toLowerCase())) {
                 return product;
             }
         }
+        
         return null;
+    }
+    public static void displayProductByName(String productName) {
+        for (Product product : listInventory.keySet()) {
+            if (product.getProductName().toLowerCase().contains(productName.toLowerCase())) {
+                System.out.println("├───────────────────────────────────────────┤");
+                product.displayInfor();
+            }
+        }
+        
     }
     @Override
     public void readFile() throws FileNotFoundException {
