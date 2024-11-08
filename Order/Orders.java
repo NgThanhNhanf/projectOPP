@@ -175,7 +175,7 @@ public class Orders implements fileWork {
     @Override 
     public void readFile() throws FileNotFoundException {
         // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Order\\orderData.txt");
-        File myFile = new File("C:\\OOP\\projectOPP\\Order\\orderData.txt");
+        File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
         Scanner scf = new Scanner(myFile);
         while (scf.hasNextLine()) {
             String line = scf.nextLine();
@@ -190,8 +190,8 @@ public class Orders implements fileWork {
     } 
     @Override 
     public  void writeFile() throws IOException {
-        // FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Order\\orderData.txt");
-        FileWriter myFile = new FileWriter("C:\\OOP\\projectOPP\\Order\\orderData.txt");
+        // FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Order\\orderData.txt");4
+        FileWriter myFile = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
         for (Order cur : Orders.getOrders()) {
             myFile.write(cur.getOrderID() + "|" + cur.getCustomerName() + "|" + cur.getCustomerPhone());
             for (OrderDetail d : cur.getOrderDetails()) {

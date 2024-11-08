@@ -4,6 +4,7 @@ import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Scanner;
 import Model.Inventory;
+import Search.*;
 
 public class ProductUI {
     static Scanner sc = new Scanner(System.in);
@@ -176,11 +177,15 @@ public class ProductUI {
                             case 3:
                                 break;
                             case 4:
+                                SearchMethod search4 = new SearchBySize();
+                                search4.search();
                                 break;
                             case 5:
                                 
                                 break;
                             case 6:
+                               SearchMethod search6 = new SearchByPrice();
+                               search6.search();
                                 break;
                             case 7:
                                 System.out.println("thoat");
