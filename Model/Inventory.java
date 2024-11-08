@@ -103,7 +103,8 @@ public class Inventory implements fileWork {
     @Override
     public void readFile() throws FileNotFoundException {
         // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Model\\clothingData.txt");
-        File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\clothingData.txt");
+        // File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\clothingData.txt");
+        File myFile = new File("C:\\OOP\\projectOPP\\Model\\clothingData.txt");
         Scanner scf = new Scanner(myFile);
         while(scf.hasNextLine()) {
             String line = scf.nextLine();
@@ -113,7 +114,8 @@ public class Inventory implements fileWork {
         }
         scf.close();
         // myFile = new File("D:\\Study\\OOP\\projectOPP\\Model\\shoesData.txt");
-        myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\shoesData.txt");
+        myFile = new File("C:\\OOP\\projectOPP\\Model\\shoesData.txt");
+        // myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\shoesData.txt");
         scf = new Scanner(myFile);
         while(scf.hasNextLine()) {
             String line = scf.nextLine();
@@ -128,8 +130,10 @@ public class Inventory implements fileWork {
         // FileWriter myFileC = new FileWriter("D:\\Study\\OOP\\projectOPP\\Model\\clothingData.txt");
         // FileWriter myFileS = new FileWriter("D:\\Study\\OOP\\projectOPP\\Model\\shoesData.txt");
 
-        FileWriter myFileC = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\clothingData.txt");
-        FileWriter myFileS = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\shoesData.txt");
+        FileWriter myFileC = new FileWriter("C:\\OOP\\projectOPP\\Model\\clothingData.txt");
+        FileWriter myFileS = new FileWriter("C:\\OOP\\projectOPP\\Model\\shoesData.txt");
+        // FileWriter myFileC = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\clothingData.txt");
+        // FileWriter myFileS = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\shoesData.txt");
         for (Product cur : Inventory.getListInventory().keySet()) {
             if(cur instanceof Clothing) {
                 Clothing tmp = (Clothing)cur;
