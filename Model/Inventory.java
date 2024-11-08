@@ -82,17 +82,28 @@ public class Inventory implements fileWork {
         return false;
     }
 
-    public static Product getProductByName(String productName){
-        for(Product product : listInventory.keySet()){
-            if(product.getProductName().equals(productName)){
+    public static Product getProductByName(String productName) {
+        for (Product product : listInventory.keySet()) {
+            if (product.getProductName().toLowerCase().contains(productName.toLowerCase())) {
                 return product;
             }
         }
+        
         return null;
+    }
+    public static void displayProductByName(String productName) {
+        for (Product product : listInventory.keySet()) {
+            if (product.getProductName().toLowerCase().contains(productName.toLowerCase())) {
+                System.out.println("├───────────────────────────────────────────┤");
+                product.displayInfor();
+            }
+        }
+        
     }
     @Override
     public void readFile() throws FileNotFoundException {
-        File myFile = new File("D:\\Study\\OOP\\projectOPP\\Model\\clothingData.txt");
+        // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Model\\clothingData.txt");
+        File myFile = new File("C:\\OOP\\projectOPP\\Model\\clothingData.txt");
         Scanner scf = new Scanner(myFile);
         while(scf.hasNextLine()) {
             String line = scf.nextLine();
@@ -101,7 +112,8 @@ public class Inventory implements fileWork {
             Inventory.addInventory(newClothing, Integer.parseInt(arrstr[5]));
         }
         scf.close();
-        myFile = new File("D:\\Study\\OOP\\projectOPP\\Model\\shoesData.txt");
+        // myFile = new File("D:\\Study\\OOP\\projectOPP\\Model\\shoesData.txt");
+        myFile = new File("C:\\OOP\\projectOPP\\Model\\shoesData.txt");
         scf = new Scanner(myFile);
         while(scf.hasNextLine()) {
             String line = scf.nextLine();
@@ -113,8 +125,10 @@ public class Inventory implements fileWork {
     }
     @Override
     public void writeFile() throws IOException {
-        FileWriter myFileC = new FileWriter("D:\\Study\\OOP\\projectOPP\\Model\\clothingData.txt");
-        FileWriter myFileS = new FileWriter("D:\\Study\\OOP\\projectOPP\\Model\\shoesData.txt");
+        // FileWriter myFileC = new FileWriter("D:\\Study\\OOP\\projectOPP\\Model\\clothingData.txt");
+        FileWriter myFileC = new FileWriter("C:\\OOP\\projectOPP\\Model\\clothingData.txt");
+        // FileWriter myFileS = new FileWriter("D:\\Study\\OOP\\projectOPP\\Model\\shoesData.txt");
+        FileWriter myFileS = new FileWriter("C:\\OOP\\projectOPP\\Model\\shoesData.txt");
         for (Product cur : Inventory.getListInventory().keySet()) {
             if(cur instanceof Clothing) {
                 Clothing tmp = (Clothing)cur;

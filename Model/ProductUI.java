@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Scanner;
 import Model.Inventory;
@@ -133,17 +134,51 @@ public class ProductUI {
 
                         System.out.print("Nhap lua chon: ");
                         int lc = sc.nextInt();
-
+                        
                         switch (lc) {
                             case 1:
+                                boolean ktID = false;
+                                do{
+                                    
+                                    System.out.print("Nhap ma san pham can tim : ");
+                                    int isProductID = sc.nextInt();
+                                    Product resProductID = Inventory.getProductByID(isProductID);
+                                    if(resProductID != null){
+                                        ktID = true;
+                                        resProductID.displayInfor();
+                                    }else{
+                                        sc.nextLine();
+                                        System.out.println("Ma san pham khong ton tai. Ban co muon nhap lai ? (y / n)");
+                                        
+                                        String chooseID = sc.nextLine();
+                                        ktID = !chooseID.equalsIgnoreCase("y");
+                                    }
+                                }while(!ktID);
                                 break;
                             case 2:
+                                boolean ktName = false;
+                                do{
+                                    sc.nextLine();
+                                    System.out.print("Nhap ten san pham can tim : ");
+                                    String isProductName = sc.nextLine();
+                                    Product resProductName = Inventory.getProductByName(isProductName);
+                                    if(resProductName != null){
+                                        ktName = true;
+                                        Inventory.displayProductByName(isProductName);
+                                    }else{
+                                        System.out.println("Ten san pham khong ton tai. Ban co muon nhap lai ? (y / n)");
+                                        
+                                        String chooseID = sc.nextLine();
+                                        ktName = !chooseID.equalsIgnoreCase("y");
+                                    }
+                                }while(!ktName);
                                 break;
                             case 3:
                                 break;
                             case 4:
                                 break;
                             case 5:
+                                
                                 break;
                             case 6:
                                 break;
