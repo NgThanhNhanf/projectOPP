@@ -1,25 +1,28 @@
 package Payment;
 
-import java.util.Date;
+import java.time.LocalDate;
+import Model.Product;
+import Order.*;
 
 public class CardPayment implements PayMent{
-    private String cardNumber;
-    private Date expiryDate;
-    private double balance;
+    private String cardNumber; //số thẻ
+    private LocalDate expiryDate; //ngày hết hạn
+    private double balance; // số dư
 
-    public CardPayment(String cardNumber,Date expiryDate){
+    public CardPayment(String cardNumber,LocalDate expiryDate){
         this.cardNumber = cardNumber;
         this.expiryDate = expiryDate;
     }
 
     @Override
-    public void pay(double amount, double priceItem) {
+    public void pay(Bill bill,double amount) {
+        double priceItem = bill.sumAllBill();
         if(isValid(cardNumber)){
             System.out.println("So tien can thanh toan:" + priceItem);
             if(amount > priceItem){
                 balance = amount - priceItem;
                 System.out.println("Thanh toan thanh cong!");
-                bill(amount,priceItem);
+                bill.inBill("The ngan hang");
             }else System.out.println("Thanh toan khong thanh cong");
         }else{
             System.out.println("so the khong hop le!");
@@ -34,9 +37,9 @@ public class CardPayment implements PayMent{
     @Override
     public void refund(double amount) {
         if (balance > 0) {
-            System.out.println("Hoàn trả: " + balance);
+            System.out.println("Hoan tra: " + balance);
         } else {
-            System.out.println("Không có số dư để hoàn trả.");
+            System.out.println("Khong co so du de hoan tra.");
         }
     }
 
@@ -47,12 +50,5 @@ public class CardPayment implements PayMent{
        }
        if(details.length() != 16) return false;
        return true;
-    }
-
-
-    public void bill(double amount,double priceItem) {
-        Bill.printBill("Thẻ ngân hàng");
-        Bill.printBillDetails(priceItem, amount, getBalance());
-        Bill.printBillFooter();
     }
 }

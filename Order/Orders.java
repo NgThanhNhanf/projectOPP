@@ -1,6 +1,7 @@
 package Order;
 
 import java.util.List;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
@@ -18,6 +19,29 @@ public class Orders {
 
     // Chỉnh sửa đơn hàng theo mã đơn hàng trong iventory của orderUI
     public void edit(int orderID, Inventory inventory, OrdersUI ordersUI) {
+=======
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+import File.fileWork;
+import java.util.Random;
+import Model.*;
+import Person.Customers;
+
+public class Orders implements fileWork {
+    private static List<Order> orders = new ArrayList<>();
+    static Random random = new Random();
+    static Scanner scanner = new Scanner(System.in);
+
+    // Khởi tạo danh sách đơn hàng
+    public Orders() {}
+
+    // Chỉnh sửa đơn hàng theo mã đơn hàng trong iventory của orderUI
+    public static void edit(int orderID) {
+>>>>>>> main
         for (Order order : orders) {
             if (order.getOrderID() == orderID) {
                 while (true) {
@@ -27,12 +51,20 @@ public class Orders {
                     System.out.println("│3. Quay lai                                │");
                     System.out.println("└───────────────────────────────────────────┘");
                     System.out.print("Chon mot tuy chon: ");
+<<<<<<< HEAD
                     Scanner scanner = new Scanner(System.in);
                     int choice = scanner.nextInt();
                     scanner.nextLine();
                     switch (choice) {
                         case 1: 
                             inventory.display();
+=======
+                    int choice = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (choice) {
+                        case 1:
+                            Inventory.display();
+>>>>>>> main
                             boolean loop;
                             do {
                                 System.out.print("Nhap ma san pham:");
@@ -41,6 +73,7 @@ public class Orders {
                                 System.out.print("Nhap so luong:");
                                 int quantity = scanner.nextInt();
                                 scanner.nextLine();
+<<<<<<< HEAD
                                 Product product = inventory.getProductByID(productID);
                                 if (product != null) {
                                     order.addProduct(product, quantity);
@@ -48,18 +81,44 @@ public class Orders {
                                 } else {
                                     System.out.println("Khong tim thay san pham.");
                                 }
+=======
+                                Product product = null;
+                                for(Product cur : Inventory.getListInventory().keySet()) {
+                                    if (cur.getProductID() == productID) {
+                                        product = cur;
+                                        break;
+                                    }
+                                }   
+                                if (product != null) {
+                                    int stock = Inventory.getListInventory().getOrDefault(product, 0);
+                                    if (stock >= quantity) {
+                                        order.addProduct(product, quantity);
+                                        Inventory.deleteInventory(product, quantity);
+                                        System.out.println("San pham da duoc them vao don hang.");
+                                    } else {
+                                        System.out.println("So luong san pham trong kho khong du.");
+                                    }
+                                } else {
+                                    System.out.println("Khong tim thay san pham.");
+                                }
+
+>>>>>>> main
                                 System.out.print("Ban co muon nhap them san pham? (y/n): ");
                                 String answer = scanner.nextLine();
                                 loop = answer.equalsIgnoreCase("y");
                             } while (loop);
                             break;
                         case 2:
+<<<<<<< HEAD
                             order.displayOrder();
+=======
+>>>>>>> main
                             boolean loop1;
                             do {
                                 order.displayOrder();
                                 System.out.print("Nhap ma san pham:");
                                 int trashID = scanner.nextInt();
+<<<<<<< HEAD
                                 Product trashItem = inventory.getProductByID(trashID);
                                 if (trashItem != null) {
                                     order.removeProduct(trashItem);
@@ -67,20 +126,51 @@ public class Orders {
                                 } else {
                                     System.out.println("Khong tim thay san pham.");
                                 }
+=======
+                                scanner.nextLine();
+
+                                OrderDetail detailToRemove = null;
+                                for (OrderDetail detail : order.getOrderDetails()) {
+                                    if (detail.getProduct().getProductID() == trashID) {
+                                        detailToRemove = detail;
+                                        break;
+                                    }
+                                }
+
+                                if (detailToRemove != null) {
+                                    order.removeProduct(detailToRemove.getProduct());
+                                    Inventory.addInventory(detailToRemove.getProduct(), detailToRemove.getQuantity());
+                                    System.out.println("San pham da duoc xoa khoi don hang.");
+                                } else {
+                                    System.out.println("Khong tim thay san pham trong don hang.");
+                                }
+
+>>>>>>> main
                                 System.out.print("Ban co muon xoa them san pham? (y/n): ");
                                 String answer = scanner.nextLine();
                                 loop1 = answer.equalsIgnoreCase("y");
                             } while (loop1);
                             break;
+<<<<<<< HEAD
                         case 3: 
                             ordersUI.viewOrders(inventory);
+=======
+                        case 3:
+                            if (order.getOrderDetails().isEmpty()) {
+                                System.out.println("Don hang khong co san pham nao. Xoa don hang.");
+                                orders.remove(order);
+                            }
+>>>>>>> main
                             return;
                         default:
                             System.out.println("Lua chon khong hop le.");
                             break;
                     }
                     System.out.println("Cap nhat don hang thanh cong.");
+<<<<<<< HEAD
                     break;
+=======
+>>>>>>> main
                 }
             }
         }
@@ -88,6 +178,7 @@ public class Orders {
     }
 
     // Hiển thị danh sách đơn hàng
+<<<<<<< HEAD
     public void displayOrders() {
         System.out.println("┌───────────────────────────────────────────┐");
         System.out.println("│                 ORDER LIST                │");
@@ -95,11 +186,24 @@ public class Orders {
         System.out.println("|#ID                                   Total|");
         for (Order order : orders) {
             System.out.println("|#" + order.getOrderID() + "                             $" + order.calculateTotal() + "|");
+=======
+    public static void displayOrders() {
+        System.out.println("┌───────────────────────────────────────────┐");
+        System.out.println("│                 ORDER LIST                │");
+        System.out.println("├───────────────────────────────────────────┤");
+        System.out.println("│  #ID                              Total   │");
+        for (Order order : orders) {
+            System.out.println("│#" + displayFormat.formatID(order.getOrderID()) + "                        $" + displayFormat.formatPrice(order.calculateTotal()) + "│");
+>>>>>>> main
         }
     }
 
     // Tạo mã đơn hàng ngẫu nhiên và kiểm tra tính duy nhất
+<<<<<<< HEAD
     public int generateId() {
+=======
+    public static int generateId() {
+>>>>>>> main
         int id;
         boolean exists;
         do {
@@ -116,6 +220,7 @@ public class Orders {
     }
 
     // Thêm đơn hàng
+<<<<<<< HEAD
     public void addOrder(Order order) {
         orders.add(order); 
         System.out.println("Don hang da duoc them vao.");
@@ -129,11 +234,77 @@ public class Orders {
 
     // Lấy danh sách đơn hàng
     public List<Order> getOrders() {
+=======
+    public static void addOrder(Order order) {
+        if (!order.getOrderDetails().isEmpty()) {
+            orders.add(order);
+            System.out.println("Don hang da duoc them vao.");
+        } else {
+            System.out.println("Don hang rong. Khong them don hang.");
+        }
+    }
+
+    // Xóa đơn hàng theo mã đơn hàng
+    public static void deleteOrder(int orderID) {
+        boolean removed = orders.removeIf(order -> order.getOrderID() == orderID);
+        if (removed) {
+            System.out.println("Da xoa don hang.");
+        } else {
+            System.out.println("Khong tim thay don hang.");
+        }
+    }
+
+    // Lấy danh sách đơn hàng
+    public static List<Order> getOrders() {
+>>>>>>> main
         return orders;
     }
 
     // Thiết lập danh sách đơn hàng
+<<<<<<< HEAD
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+=======
+    public static void setOrders(List<Order> orders) {
+        Orders.orders = orders;
+    }
+    @Override 
+    public void readFile() throws FileNotFoundException {
+        // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Order\\orderData.txt");
+        File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
+        Scanner scf = new Scanner(myFile);
+        while (scf.hasNextLine()) {
+            String line = scf.nextLine();
+            String [] arrstr = line.split("\\|");
+            Order newOrder = new Order(Integer.parseInt(arrstr[0]), arrstr[1], arrstr[2]);
+            for (int i = 3; i < arrstr.length; i += 2) {
+                newOrder.addProduct(Inventory.getProductByID(Integer.parseInt(arrstr[i])), Integer.parseInt(arrstr[i + 1]));
+            }
+            Orders.addOrder(newOrder);
+        }
+        scf.close();
+    } 
+    @Override 
+    public  void writeFile() throws IOException {
+        // FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Order\\orderData.txt");4
+        FileWriter myFile = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
+        for (Order cur : Orders.getOrders()) {
+            myFile.write(cur.getOrderID() + "|" + cur.getCustomerName() + "|" + cur.getCustomerPhone());
+            for (OrderDetail d : cur.getOrderDetails()) {
+                myFile.write("|" + d.getProduct().getProductID() + "|" + d.getQuantity());
+            }
+            myFile.write('\n');
+        }
+        myFile.close();
+    }
+    public static void fileInit() throws FileNotFoundException {
+        Orders orders = new Orders();
+        orders.readFile();
+    }
+
+    public static void fileClose() throws IOException {
+        Orders orders = new Orders();
+        orders.writeFile();
+>>>>>>> main
     }
 }

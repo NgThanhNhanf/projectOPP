@@ -1,5 +1,7 @@
 package Payment;
 
+import Model.Product;
+
 public class WalletPayment implements PayMent{
     private String soDienThoai;
     private double balance;
@@ -7,13 +9,14 @@ public class WalletPayment implements PayMent{
         this.soDienThoai = soDienThoai;
     }
     @Override
-    public void pay(double amount,double priceItem) {
+    public void pay(Bill bill,double amount) {
+        double allPriceItem = bill.sumAllBill();
         if(!isValid(soDienThoai)){
-            System.out.println("So tien can thanh toan: " + priceItem);
-            if(amount > priceItem){
-                balance = amount - priceItem;
+            System.out.println("So tien can thanh toan: " + allPriceItem);
+            if(amount > allPriceItem){
+                balance = amount - allPriceItem;
                 System.out.println("Thanh toan thanh cong!");
-                bill(amount,priceItem);
+                bill.inBill("Vi dien tu");
             }else System.out.println("Thanh toan khong thanh cong");
         }else{
             System.out.println("So dien thoai khong hop le!");
@@ -26,9 +29,9 @@ public class WalletPayment implements PayMent{
     @Override
     public void refund(double amount) {
         if (balance > 0) {
-            System.out.println("Hoàn trả: " + balance);
+            System.out.println("Hoan tra: " + balance);
         } else {
-            System.out.println("Không có số dư để hoàn trả.");
+            System.out.println("Khong co so du de hoan tra .");
         }
     }
 
@@ -39,11 +42,5 @@ public class WalletPayment implements PayMent{
         }
         if(details.length() != 9) return false;
         return true;
-    }
-
-    public void bill(double amount,double priceItem) {
-        Bill.printBill("Ví điện tử");
-        Bill.printBillDetails(priceItem, amount, getBalance());
-        Bill.printBillFooter();
     }
 }

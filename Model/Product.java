@@ -1,5 +1,6 @@
 package Model;
 
+<<<<<<< HEAD
 public class Product {
     private int productID;
     private String productName;
@@ -18,6 +19,25 @@ public class Product {
     }
 
     // Lấy mã sản phẩm
+=======
+import java.util.Scanner;
+
+//Product : sản phẩm
+public abstract class Product {
+    private int productID;
+    private String productName;
+    private int price;
+   Scanner sc = new Scanner(System.in);
+
+   public Product() {}
+
+    public Product(int productID, String productName, int price){
+        this.productID = productID;
+        this.productName = productName;
+        this.price = price;
+     }
+    //getter & setter cho cac attribute
+>>>>>>> main
     public int getProductID() {
         return productID;
     }
@@ -37,6 +57,7 @@ public class Product {
         this.productName = productName;
     }
 
+<<<<<<< HEAD
     // Lấy giá sản phẩm
     public double getPrice() {
         return price;
@@ -81,3 +102,42 @@ public class Product {
         return "Ma san pham: " + getProductID() + ", Ten san pham: " + getProductName() + ", Gia tien: " + getPrice() + ", So luong ton kho: " + getStock();
     }
 }
+=======
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+    //phương thức trừu tượng nhap thông tin sản phẩm
+    public abstract void inp();
+    //in thong tin full cua san pham trong kho hang
+    public void displayInfor(){
+        System.out.println("Ma san pham " + getProductID() + "\nTen san pham: " + getProductName() + "\nDon gia: " + getPrice());
+    }
+
+    public void editProductID(){
+        System.out.print("new id: ");
+        int newID = sc.nextInt();
+        setProductID(newID);
+        System.out.print("Thay doi thanh cong");
+    }
+
+    public void editProductName(){
+        System.out.print("new name: ");
+        String newName = sc.nextLine();
+        setProductName(newName);
+        System.out.print("thay doi thanh cong");
+    }
+    public void editProductPrice() {
+        System.out.print("new price: ");
+        int newPrice = sc.nextInt();
+        setPrice(newPrice);
+        System.out.print("thay doi thanh cong");
+
+    }
+    public abstract void editALLAttributeProduct();
+    public abstract void editProduct();
+}
+>>>>>>> main

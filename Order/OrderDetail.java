@@ -3,7 +3,10 @@ package Order;
 import Model.Product;
 
 public class OrderDetail {
+<<<<<<< HEAD
     private Order order; //Đơn hàng.
+=======
+>>>>>>> main
     private Product product; // Sản phẩm
     private int quantity; //số lượng
 
@@ -12,8 +15,12 @@ public class OrderDetail {
     }
 
     // Constructor với các tham số
+<<<<<<< HEAD
     OrderDetail(Order order, Product product, int quantity) {
         this.order = order;
+=======
+    OrderDetail(Product product, int quantity) {
+>>>>>>> main
         this.product = product;
         this.quantity = quantity;
     }
@@ -22,6 +29,7 @@ public class OrderDetail {
     public double calculateSubTotal() {
         return product.getPrice() * quantity;
     }
+<<<<<<< HEAD
 
     // Lấy đơn hàng
     public Order getOrder() {
@@ -33,6 +41,9 @@ public class OrderDetail {
         this.order = order;
     }
 
+=======
+    
+>>>>>>> main
     // Lấy sản phẩm
     public Product getProduct() {
         return product;

@@ -1,38 +1,89 @@
 package Person;
-import java.util.InputMismatchException;
+
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.regex.*;
 
-class Birth {
-    int day;
-    int month;
-    int year;
-}
-
-public class Person {
-    Scanner sc = new Scanner(System.in);
-    private String name;
-    private Birth dob;
-    private String address;
+public abstract class Person {
     private String phone;
-    private String email;
-
+    private String name;
+    private Birth dob = new Birth();
+    private String address;
+    Scanner sc = new Scanner(System.in);
+    public Person() {}
+    public Person(String name, Birth dob, String address, String phone) {
+        this.name = name;
+        this.dob = dob;
+        this.address = address;
+        this.phone = phone;;
+    }
+    public boolean validName() {
+        return name.length() > 0;
+    }
+    public boolean validPhone(String phone) {
+        Pattern patternPhone = Pattern.compile("0\\d{9}");
+        Matcher matcher = patternPhone.matcher(phone);
+        return matcher.matches();
+    }
+    public void enterPerson() {
+        boolean valid = false;
+        System.out.println("┌───────────────────────────────────────────┐");
+        System.out.println("│               Nhap thong tin              │");
+        System.out.println("├───────────────────────────────────────────┤");
+        while(!valid) {
+            System.out.print("│ Ten         : ");
+            name = sc.nextLine();
+            valid = validName();
+            if (!valid) { 
+                System.out.println("Khong de trong ten.");
+            }
+        }
+        System.out.println("├───────────────────────────────────────────┤");
+        System.out.println("│ Ngay sinh                                 │");
+        System.out.println("├───────────────────────────────────────────┤");
+        dob.enterBirth();
+        System.out.print("│ Dia chi         : ");
+        address = sc.nextLine();
+        valid = false;
+        while(!valid) {
+            System.out.print("│ So dien thoai         : ");
+            phone = sc.nextLine();
+            valid = validPhone(phone);
+            if (!valid) {
+                System.out.println("So dien thoai khong hop le, vui long thu lai.");
+            }
+        }
+    }
+    public void displayPerson() {
+        // System.out.println("┌───────────────────────────────────────────┐");
+        // System.out.println("│             Thông tin cá nhân             │");
+        // System.out.println("├───────────────────────────────────────────┤");
+        System.out.printf("│ Ten            : %-24s │\n", name);
+        System.out.printf("│ Ngay sinh      : %02d/%02d/%04d               │\n", dob.getDay(), dob.getMonth(), dob.getYear());
+        System.out.printf("│ Dia chi        : %-24s │\n", address);
+        System.out.printf("│ SDT            : %-24s │\n", phone);
+    }
     public String getName() {
         return name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
     public Birth getDob() {
         return dob;
     }
+    public void setBirth(Birth dob) {
+        this.dob = dob;
+    }
     public String getAddress() {
         return address;
     }
-    public String getEmail() {
-        return email;
+    public void setAddress(String address) {
+        this.address = address;
     }
     public String getPhone() {
         return phone;
     }
+<<<<<<< HEAD
 
     public Person() {
         dob = new Birth();
@@ -48,116 +99,43 @@ public class Person {
         this.name = name;
         this.dob = dob;
         this.address = address;
+=======
+    public void setPhone(String phone) {
+>>>>>>> main
         this.phone = phone;
-        this.email = email;
     }
-    public void nhap() {
-        System.out.println("┌───────────────────────────────────────────┐");
-        System.out.println("│            Nhập thông tin cá nhân         │");
-        System.out.println("├───────────────────────────────────────────┤");
-
-        // Nhập tên
-        System.out.print("│ Nhập tên          : ");
-        name = sc.nextLine();
-
-        // Nhập ngày tháng năm sinh
-        System.out.println("├───────────────────────────────────────────┤");
-        System.out.println("│ Nhập ngày tháng năm sinh                  │");
-        boolean kt;
-        do {
-            try {
-                System.out.print("│ Ngày (dd)        : ");
-                dob.day = sc.nextInt();
-                System.out.print("│ Tháng (mm)       : ");
-                dob.month = sc.nextInt();
-                System.out.print("│ Năm (yyyy)       : ");
-                dob.year = sc.nextInt();
-
-                kt = isValidDate(dob.day, dob.month, dob.year);
-                if (!kt) {
-                    System.out.println("├───────────────────────────────────────────┤");
-                    System.out.println("│ Ngày tháng năm sinh không hợp lệ.         │");
-                    System.out.println("│ Vui lòng nhập lại.                        │");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("├───────────────────────────────────────────┤");
-                System.out.println("│ Lỗi: Vui lòng nhập số nguyên hợp lệ!      │");
-                System.out.println("│ Vui lòng nhập lại.                        │");
-                sc.nextLine();
-                kt = false;
-            }
-        } while (!kt);
-
-        sc.nextLine();
-
-        System.out.println("├───────────────────────────────────────────┤");
-        System.out.print("│ Nhập địa chỉ     : ");
-        address = sc.nextLine();
-
-        // Nhập số điện thoại
-        do {
-            System.out.println("├───────────────────────────────────────────┤");
-            System.out.print("│ Nhập số điện thoại: ");
-            phone = sc.nextLine();
-            if (!isValidPhone(phone)) {
-                System.out.println("├───────────────────────────────────────────┤");
-                System.out.println("│ Lỗi : Số điện thoại không hợp lệ.         │\n" +
-                                   "│ Vui lòng nhập lại.                        │");
-            }
-        } while (!isValidPhone(phone));
-
-        // Nhập email
-        do {
-            System.out.println("├───────────────────────────────────────────┤");
-            System.out.print("│ Nhập email       : ");
-            email = sc.nextLine();
-            if (!isValidEmail(email)) {
-                System.out.println("├───────────────────────────────────────────┤");
-                System.out.println("│ Lỗi : Email không hợp lệ.                 │\n" +
-                                   "│ Vui lòng nhập lại.                        │");
-            }
-        } while (!isValidEmail(email));
-
-//        System.out.println("└───────────────────────────────────────────┘");
+    public void editName() {
+        System.out.print("Nhap ten moi: ");
+        String in = sc.nextLine();
+        setName(in);
+        System.out.println("Cap nhat hoan tat!");
     }
-
-    public static boolean isLeapYear(int year) {
-        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    public void editBirth() {
+        System.out.println("Nhap ngay sinh:");
+        Birth newBirth = new Birth();
+        newBirth.enterBirth();
+        setBirth(newBirth);
+        System.out.println("Cap nhat hoan tat!");
     }
-
-    public static boolean isValidDate(int day, int month, int year) {
-        if (month < 1 || month > 12) {
-            return false;
+    public void editAddress() {
+        System.out.print("Nhap dia chi moi: ");
+        String newAddress = sc.nextLine();
+        setAddress(newAddress);
+        System.out.println("Cap nhat hoan tat!");
+    }
+    public void editPhone() {
+        boolean tmp = false;
+        while (!tmp) {
+            System.out.print("Nhap SDT moi: ");
+            String newPhone = sc.nextLine();
+            tmp = validPhone(newPhone);
+            if (!tmp) System.out.println("So dien thoai khong hop le, vui long thu lai.");
+            else {
+                setPhone(newPhone);
+                System.out.println("Cap nhat hoan tat!");
+            }
         }
-        int[] daysInMonth = { 31, (isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-        return day > 0 && day <= daysInMonth[month - 1];
     }
-
-    public static boolean isValidPhone(String phone) {
-        String phoneRegex = "^(\\+84|0)\\d{9,10}$";
-        Pattern pattern = Pattern.compile(phoneRegex);
-        Matcher matcher = pattern.matcher(phone);
-        return matcher.matches();
-    }
-
-    public static boolean isValidEmail(String email) {
-        // Biểu thức chính quy kiểm tra email
-        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
-        Pattern pattern = Pattern.compile(emailRegex);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
-    public void xuat() {
-        System.out.println("┌───────────────────────────────────────────┐");
-        System.out.println("│             Thông tin cá nhân             │");
-        System.out.println("├───────────────────────────────────────────┤");
-        System.out.printf("│ Tên            : %-24s │\n", this.name);
-        System.out.printf("│ Ngày sinh      : %02d/%02d/%04d               │\n", this.dob.day, this.dob.month, this.dob.year);
-        System.out.printf("│ Địa chỉ        : %-24s │\n", this.address);
-        System.out.printf("│ SĐT            : %-24s │\n", this.phone);
-        System.out.printf("│ Email          : %-24s │\n", this.email);
-
-    }
-
-
+    public abstract void editPerson();
+    public abstract void editAll();
 }

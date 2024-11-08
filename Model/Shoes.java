@@ -7,12 +7,13 @@ public class Shoes extends Product {
     public Shoes() {}
 
     public Shoes(int size, String color) {
+        super();
         this.size = size;
         this.color = color;
     }
 
-    public Shoes(int productID, String productName, double price, int stock, int size, String color) {
-        super(productID, productName, price, stock);
+    public Shoes(int productID, String productName, double price, int size, String color) {
+        super(productID, productName, size);
         this.size = size;
         this.color = color;
     }
@@ -34,13 +35,102 @@ public class Shoes extends Product {
     }
 
     @Override
+    public void inp(){
+        System.out.println("nhap thong tin san pham:");
+        System.out.print("ma san pham: ");
+        setProductID(sc.nextInt());
+        sc.nextLine(); // loại bỏ dấu /n sau khi nhập int
+        System.out.print("ten san pham: ");
+        setProductName(sc.nextLine());
+        System.out.print("size: ");
+        setSize(sc.nextInt());
+        sc.nextLine();
+        System.out.print("mau giay: ");
+        setColor(sc.nextLine());
+        System.out.print("gia tien: ");
+        setPrice(sc.nextInt());
+        sc.nextLine();
+    }
+
+
+    @Override
     public void displayInfor() {
         super.displayInfor();
         System.out.println("size giay: " + getSize() + "\nMau giay: " + getColor());
     }
 
+<<<<<<< HEAD
     @Override
     public String toString() {
         return super.toString() + ", size giay: " + getSize() + ", Mau giay: " + getColor();
     }
 }
+=======
+    public void editSizeG(){
+        System.out.print("new size: ");
+        int newSizeG = sc.nextInt();
+        System.out.print("thay doi thanh cong");
+    }
+
+    public void editColor(){
+        System.out.print("new color: ");
+        String newColor = sc.nextLine();
+        System.out.print("thay doi thanh cong");
+    }
+
+    @Override
+    public void editALLAttributeProduct(){
+        Product newShoes = new Shoes();
+        newShoes.inp();
+        setProductID(newShoes.getProductID());
+        setProductName(newShoes.getProductName());
+        editSizeG();
+        editColor();
+        setPrice(newShoes.getPrice());
+    }
+
+    @Override
+    public void editProduct(){
+        boolean isShoes = false;
+        while(!isShoes){
+            System.out.println("chon thong tin can sua");
+            System.out.println("1.Ma san pham");
+            System.out.println("2.Ten san pham");
+            System.out.println("3.Gia tien");
+            System.out.println("4.Size giay");
+            System.out.println("5.Mau giay");
+            System.out.println("6.Tat ca");
+            System.out.println("7.Thoat");
+            System.out.println("nhap lua chon: ");
+            int choose = sc.nextInt();
+            switch (choose) {
+                case 1:
+                    editProductID();
+                    break;
+                case 2:
+                    editProductName();
+                    break;
+                case 3:
+                    editProductPrice();
+                    break;
+                case 4:
+                    editSizeG();
+                    break;
+                case 5:
+                    editColor();
+                    break;
+                case 6:
+                    editALLAttributeProduct();
+                    break;
+                case 7:
+                    System.out.println("thoat");
+                    isShoes = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+}
+>>>>>>> main
