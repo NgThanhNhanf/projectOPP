@@ -38,6 +38,7 @@ public class Customers implements fileWork {
         // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Person\\customersData.txt");
         // File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Person\\customersData.txt");
         File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\customersData.txt");
+        // File myFile = new File("C:\\OOP\\projectOPP\\Person\\customersData.txt");
         Scanner scf = new Scanner(myFile);
         while(scf.hasNextLine()) {
             String line = scf.nextLine();
@@ -56,6 +57,7 @@ public class Customers implements fileWork {
         // FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Person\\customersData.txt");
         // FileWriter myFile = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Person\\customersData.txt");
         FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\customersData.txt");
+        // FileWriter myFile = new FileWriter("C:\\OOP\\projectOPP\\Person\\customersData.txt");
         for (Customer cur : listCustomer) {
             myFile.write(cur.getName() + '|' + cur.getDob().getDay() + '/' + cur.getDob().getMonth() + '/' + cur.getDob().getYear() + '|' + cur.getAddress() + '|' + cur.getPhone() + '\n');
         }

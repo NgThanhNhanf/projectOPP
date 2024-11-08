@@ -138,41 +138,13 @@ public class ProductUI {
                         
                         switch (lc) {
                             case 1:
-                                boolean ktID = false;
-                                do{
-                                    
-                                    System.out.print("Nhap ma san pham can tim : ");
-                                    int isProductID = sc.nextInt();
-                                    Product resProductID = Inventory.getProductByID(isProductID);
-                                    if(resProductID != null){
-                                        ktID = true;
-                                        resProductID.displayInfor();
-                                    }else{
-                                        sc.nextLine();
-                                        System.out.println("Ma san pham khong ton tai. Ban co muon nhap lai ? (y / n)");
-                                        
-                                        String chooseID = sc.nextLine();
-                                        ktID = !chooseID.equalsIgnoreCase("y");
-                                    }
-                                }while(!ktID);
+                                SearchMethod search1 = new SearchByID();
+                                search1.search();
                                 break;
                             case 2:
-                                boolean ktName = false;
-                                do{
-                                    sc.nextLine();
-                                    System.out.print("Nhap ten san pham can tim : ");
-                                    String isProductName = sc.nextLine();
-                                    Product resProductName = Inventory.getProductByName(isProductName);
-                                    if(resProductName != null){
-                                        ktName = true;
-                                        Inventory.displayProductByName(isProductName);
-                                    }else{
-                                        System.out.println("Ten san pham khong ton tai. Ban co muon nhap lai ? (y / n)");
-                                        
-                                        String chooseID = sc.nextLine();
-                                        ktName = !chooseID.equalsIgnoreCase("y");
-                                    }
-                                }while(!ktName);
+                                sc.nextLine();
+                                SearchMethod search2 = new SearchByName();
+                                search2.search();
                                 break;
                             case 3:
                                 break;
@@ -181,7 +153,9 @@ public class ProductUI {
                                 search4.search();
                                 break;
                             case 5:
-                                
+                                sc.nextLine();
+                                SearchMethod search5 = new SearchByMaterial();
+                                search5.search();
                                 break;
                             case 6:
                                SearchMethod search6 = new SearchByPrice();

@@ -14,6 +14,7 @@ public class Employees implements fileWork {
         // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Person\\employeesData.txt");      
         // File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Person\\employeesData.txt");        
         File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\employeesData.txt");        
+        // File myFile = new File("C:\\OOP\\projectOPP\\Person\\employeesData.txt");        
         Scanner scf = new Scanner(myFile);
         while(scf.hasNextLine()) {
             String line = scf.nextLine();
@@ -31,6 +32,8 @@ public class Employees implements fileWork {
         // FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Person\\employeesData.txt");
         // FileWriter myFile = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Person\\employeesData.txt");
         FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\employeesData.txt");
+        // FileWriter myFile = new FileWriter("C:\\OOP\\projectOPP\\Person\\employeesData.txt");
+        // FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\employeesData.txt");
         for (Employee cur : listEmployee) {
             myFile.write(cur.getName() + '|' + cur.getDob().getDay() + '/' + cur.getDob().getMonth() + '/' + cur.getDob().getYear() + '|' + cur.getAddress() + '|' + cur.getPhone() + '|' + cur.getID() + '|' + cur.getSalary() + '|' + cur.getJobDescription() + '\n');
         }
