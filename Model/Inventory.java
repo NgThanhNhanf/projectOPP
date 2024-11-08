@@ -7,62 +7,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-<<<<<<< HEAD
-public class Inventory {
-    private ArrayList<Product> listInventory;
-
-    // Khởi tạo danh sách sản phẩm
-    public Inventory() {
-        listInventory = new ArrayList<>();
-    }
-
-    // Thêm sản phẩm vào danh sách
-    public void addProduct(Product product) {
-        listInventory.add(product);
-    }
-
-    // Hiển thị thông tin tất cả sản phẩm trong danh sách
-    public void display() {
-        for (int i = 0; i < listInventory.size(); i++) {
-            System.out.println(listInventory.get(i));
-        }
-        System.out.println();
-    }
-
-    // Lấy sản phẩm theo mã sản phẩm
-    public Product getProductByID(int productID) {
-        for (Product product : listInventory) {
-            if (product.getProductID() == productID) {
-                return product;
-            }
-        }
-        return null;
-    }
-
-    // Nhận thêm hàng vào kho
-    public void receiveStock(Product product, int quantity) {
-        for (int i = 0; i < listInventory.size(); i++) {
-            Product currentProduct = listInventory.get(i);
-            if (currentProduct.getProductID() == product.getProductID()) {
-                if (currentProduct.updateStock(quantity)) {
-                    System.out.println("San pham " + currentProduct + " da duoc them " + quantity + " san pham");
-                }
-                return;
-            }
-        }
-    }
-
-
-
-    // Tính tổng giá trị của tất cả sản phẩm trong kho
-    public double totalPrice() {
-        double total = 0;
-        for (Product product : listInventory) {
-            total += product.getPrice() * product.getStock();
-        }
-        return total;
-    }
-=======
 import File.fileWork;
 import Person.Customers;
 
@@ -159,7 +103,8 @@ public class Inventory implements fileWork {
     @Override
     public void readFile() throws FileNotFoundException {
         // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Model\\clothingData.txt");
-        File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\clothingData.txt");
+        // File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\clothingData.txt");
+        File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Model\\clothingData.txt");
         Scanner scf = new Scanner(myFile);
         while(scf.hasNextLine()) {
             String line = scf.nextLine();
@@ -169,7 +114,8 @@ public class Inventory implements fileWork {
         }
         scf.close();
         // myFile = new File("D:\\Study\\OOP\\projectOPP\\Model\\shoesData.txt");
-        myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\shoesData.txt");
+        // myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\shoesData.txt");
+        myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Model\\shoesData.txt");
         scf = new Scanner(myFile);
         while(scf.hasNextLine()) {
             String line = scf.nextLine();
@@ -184,8 +130,9 @@ public class Inventory implements fileWork {
         // FileWriter myFileC = new FileWriter("D:\\Study\\OOP\\projectOPP\\Model\\clothingData.txt");
         // FileWriter myFileS = new FileWriter("D:\\Study\\OOP\\projectOPP\\Model\\shoesData.txt");
 
-        FileWriter myFileC = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\clothingData.txt");
-        FileWriter myFileS = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\shoesData.txt");
+        FileWriter myFileC = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Model\\clothingData.txt");
+        // FileWriter myFileS = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\shoesData.txt");
+        FileWriter myFileS = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Model\\shoesData.txt");
         for (Product cur : Inventory.getListInventory().keySet()) {
             if(cur instanceof Clothing) {
                 Clothing tmp = (Clothing)cur;
@@ -208,5 +155,4 @@ public class Inventory implements fileWork {
         Inventory inventory = new Inventory();
         inventory.writeFile();
     }
->>>>>>> main
 }

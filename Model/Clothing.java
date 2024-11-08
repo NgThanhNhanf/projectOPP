@@ -10,14 +10,8 @@ public class Clothing extends Product {
         this.size = size;
         this.material = material;
     }
-<<<<<<< HEAD
-
-    public Clothing(int productID, String productName, double price, int stock, String size, String material) {
-        super(productID, productName, price, stock);
-=======
     public Clothing(int productID, String productName, double price, String size, String material) {
         super(productID, productName, productID);
->>>>>>> main
         this.size = size;
         this.material = material;
     }
@@ -60,8 +54,6 @@ public class Clothing extends Product {
     public void displayInfor() {
         super.displayInfor();
         System.out.println("size: " + getSize() + "\nchat lieu: " + getMaterial());
-<<<<<<< HEAD
-=======
     }
     public void editSize(){
         System.out.print("new size: ");
@@ -128,7 +120,6 @@ public class Clothing extends Product {
                     break;
             }
         }
->>>>>>> main
     }
 
     @Override

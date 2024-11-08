@@ -1,6 +1,9 @@
 package Person;
 
 import java.util.Scanner;
+
+import Order.Orders;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -18,8 +21,9 @@ public class CustomerUI {
         while (!complete) {
             System.out.println("┌───────────────────────────────────────────┐");
             System.out.println("│1. Sua thong tin                           │");
-            System.out.println("│2. Xoa khach hang                          │");
-            System.out.println("│3. Thoat                                   │");
+            System.out.println("│2. Xem lich su don hang                    │"); 
+            System.out.println("│3. Xoa khach hang                          │");
+            System.out.println("│4. Thoat                                   │"); 
             System.out.println("└───────────────────────────────────────────┘");
             System.out.print("Nhap lua chon: ");
             int choose = sc.nextInt();
@@ -29,6 +33,9 @@ public class CustomerUI {
                     choosedCustomer.editPerson();
                     break;
                 case 2:
+                    Orders.displayOrders(choosedCustomer.getPhone());
+                    break;
+                case 3:
                     System.out.println("Ban co chac chan muon xoa khach hang nay?");
                     System.out.println("┌───────────────────────────────────────────┐");
                     System.out.println("│1. Xoa                                     │");
@@ -53,7 +60,7 @@ public class CustomerUI {
                         }
                     }
                     break;
-                case 3:
+                case 4:
                     complete = true;
                     break;
                 default:
@@ -65,15 +72,13 @@ public class CustomerUI {
 
     public static void mainMenu() {
         boolean complete = false;
-        CustomerUI.phoneInList = new ArrayList<>();
         while (!complete) {
+            CustomerUI.phoneInList = new ArrayList<>();
             System.out.println("┌───────────────────────────────────────────┐");
             System.out.println("│                 Khach hang                │");
             Customers.viewCustomer();
-            // System.out.println("┌───────────────────────────────────────────┐");
             System.out.println("│1. Chon khach hang                         │");
-            System.out.println("│2. Them khach hang                         │");
-            System.out.println("│3. Thoat                                   │");
+            System.out.println("│2. Thoat                                   │");
             System.out.println("└───────────────────────────────────────────┘");
             System.out.print("Nhap lua chon: ");
             int choose = sc.nextInt();
@@ -86,12 +91,6 @@ public class CustomerUI {
                     controlCustomer(index);
                     break;
                 case 2:
-                    System.out.println("Them khach hang");
-                    Customer newCustomer = new Customer();
-                    newCustomer.enterPerson();
-                    Customers.addCustomer(newCustomer);
-                    break;
-                case 3:
                     System.out.println("Thoat");
                     complete = true;
                     break;

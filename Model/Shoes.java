@@ -59,13 +59,6 @@ public class Shoes extends Product {
         System.out.println("size giay: " + getSize() + "\nMau giay: " + getColor());
     }
 
-<<<<<<< HEAD
-    @Override
-    public String toString() {
-        return super.toString() + ", size giay: " + getSize() + ", Mau giay: " + getColor();
-    }
-}
-=======
     public void editSizeG(){
         System.out.print("new size: ");
         int newSizeG = sc.nextInt();
@@ -133,4 +126,3 @@ public class Shoes extends Product {
     }
 
 }
->>>>>>> main

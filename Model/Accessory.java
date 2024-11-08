@@ -3,15 +3,7 @@ package Model;
 public class Accessory extends Product {
     private String type;
 
-<<<<<<< HEAD
-    public Accessory() {}
-
-    public Accessory(String type) {
-        this.type = type;
-    }
-=======
     public Accessory(){
->>>>>>> main
 
     }
     
@@ -46,9 +38,6 @@ public class Accessory extends Product {
     @Override
     public void displayInfor() {
         super.displayInfor();
-<<<<<<< HEAD
-        System.out.println("loai phu kien: " + getType());
-=======
         System.out.printf("│ Chat lieu  : %-26s │\n", getType());
         System.out.println("──────────────────────────────────────────");
     }
@@ -111,7 +100,6 @@ public class Accessory extends Product {
                     break;
             }
         }
->>>>>>> main
     }
 
     @Override

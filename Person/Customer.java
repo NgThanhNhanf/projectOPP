@@ -1,114 +1,88 @@
 package Person;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
-
-class Order {
-    private String orderID;
-    private String product;
-    private double price;
-
-    public Order(String orderID, String product, double price) {
-        this.orderID = orderID;
-        this.product = product;
-        this.price = price;
-    }
-
-    public String getOrderID() {
-        return orderID;
-    }
-
-    public String getProduct() {
-        return product;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    @Override
-    public String toString() {
-        return "Order ID: " + orderID + ", Product: " + product + ", Price: $" + price;
-    }
-}
+import Order.Order;
 
 public class Customer extends Person {
-    private String customerID;
     private List<Order> orderHistory;
-    private Scanner sc;
+    Scanner sc = new Scanner(System.in);
 
-    public Customer() {
-        this.orderHistory = new ArrayList<>();
-        this.sc = new Scanner(System.in);
+    public Customer(){
+        super();
+        orderHistory = new ArrayList<>();
+    }
+
+    public Customer(String name, Birth dob, String address, String phone) {
+        super(name, dob, address, phone);
+        orderHistory = new ArrayList<>();
+    }
+
+    public List<Order> getOrderHistory() {
+        return orderHistory;
+    }
+
+    public void addOrder(Order order) {
+        orderHistory.add(order);
     }
 
     @Override
-    public void nhap() {
-        super.nhap();
-        System.out.println("├───────────────────────────────────────────┤");
-        System.out.print("│ Nhập mã khách hàng: ");
-        customerID = sc.nextLine();
-
-        boolean tiepTuc;
-        do {
-            System.out.println("├───────────────────────────────────────────┤");
-            System.out.print("│ Nhập mã đơn hàng: ");
-            String orderID = sc.nextLine();
-            System.out.print("│ Nhập tên sản phẩm: ");
-            String product = sc.nextLine();
-
-            double price = 0;
-            boolean isValidPrice = false;
-            do {
-                try {
-                    System.out.print("│ Nhập giá sản phẩm: ");
-                    price = Double.parseDouble(sc.nextLine());
-                    isValidPrice = true;
-                } catch (NumberFormatException e) {
-                    System.out.println("├───────────────────────────────────────────┤");
-                    System.out.println("│ Lỗi: Vui lòng nhập một số hợp lệ cho giá sản phẩm!");
-                    System.out.println("├───────────────────────────────────────────┤");
-                }
-            } while (!isValidPrice);
-
-            Order order = new Order(orderID, product, price);
-            placeOrder(order);
-
-            System.out.println("├───────────────────────────────────────────┤");
-            System.out.print("│ Bạn có muốn nhập thêm đơn hàng? (y/n): ");
-            String answer = sc.nextLine();
-            tiepTuc = answer.equalsIgnoreCase("y");
-        } while (tiepTuc);
-        System.out.println("└───────────────────────────────────────────┘");
+    public void enterPerson() {
+        super.enterPerson();
     }
 
     @Override
-    public void xuat() {
-        super.xuat();
-        viewOrderHistory();
+    public void displayPerson() {
+        super.displayPerson();
     }
 
-    public void viewOrderHistory() {
-        super.xuat();
-        if (orderHistory.isEmpty()) {
-            System.out.println("│ Lịch sử đặt hàng: Không có đơn hàng nào    │");
-        } else {
-            int cnt = 1;
-            for (Order order : orderHistory) {
-                System.out.println("├───────────────────────────────────────────┤");
-                System.out.printf("│ Đơn hàng %2d                               │\n", cnt++);
-                System.out.println("├───────────────────────────────────────────┤");
-                System.out.printf("│ Mã đơn hàng  : %-27s│\n", order.getOrderID());
-                System.out.printf("│ Sản phẩm     : %-27s│\n", order.getProduct());
-                System.out.printf("│ Giá sản phẩm : $%-26.2f│\n", order.getPrice());
+    @Override
+    public void editAll() {
+        enterPerson();
+    }
+
+    @Override
+    public void editPerson() {
+        boolean complete = false;
+        while(!complete) {
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│        Chon thong tin can chinh sua       │");
+            System.out.println("├───────────────────────────────────────────┤");
+            System.out.println("│ 1. Ten                                    │");
+            System.out.println("│ 2. Ngay sinh                              │");
+            System.out.println("│ 3. Dia chi                                │");
+            System.out.println("│ 4. SDT                                    │");
+            System.out.println("│ 5. Tat ca                                 │");
+            System.out.println("│ 6. Thoat                                  │");
+            System.out.println("└───────────────────────────────────────────┘");
+            System.out.print("Nhap lua chon:");
+            int choose = sc.nextInt();
+            sc.nextLine();
+            switch (choose) {
+                case 1: 
+                    editName();
+                    break;
+                case 2:
+                    editBirth();
+                    break;
+                case 3:
+                    editAddress();
+                    break;
+                case 4:
+                    editPhone();
+                    break;
+                case 5:
+                    editAll();
+                    break;
+                case 6:
+                    System.out.println("Thoat");
+                    complete = true;
+                    break;
+                default:
+                    System.out.println("Lua chon khong hop le vui long nhap lai");
+                    break;
             }
         }
-        System.out.println("└───────────────────────────────────────────┘");
-    }
-
-    public void placeOrder(Order order) {
-        orderHistory.add(order);
-        System.out.println("│ Sản phẩm đã được đặt:\n│ [" + order.toString() + "]");
     }
 }

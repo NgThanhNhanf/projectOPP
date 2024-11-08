@@ -83,25 +83,7 @@ public abstract class Person {
     public String getPhone() {
         return phone;
     }
-<<<<<<< HEAD
-
-    public Person() {
-        dob = new Birth();
-    }
-
-    // 26/10/2024 Hiền viết thêm hàm khởi tạo 2 tham số 
-    public Person(String name, String phone) {
-        this.name = name;
-        this.phone = phone;
-    }
-
-    public Person(String name, Birth dob, String address, String phone, String email){
-        this.name = name;
-        this.dob = dob;
-        this.address = address;
-=======
     public void setPhone(String phone) {
->>>>>>> main
         this.phone = phone;
     }
     public void editName() {
