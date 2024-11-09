@@ -18,17 +18,34 @@ public class Orders implements fileWork {
     static Scanner scanner = new Scanner(System.in);
 
     // Khởi tạo danh sách đơn hàng
-    public Orders() {}
+    public Orders() {
+    }
 
     // Chỉnh sửa đơn hàng theo mã đơn hàng trong iventory của orderUI
     public static void edit(int orderID) {
         for (Order order : orders) {
             if (order.getOrderID() == orderID) {
                 if (order.isOrderStatus()) {
-                    System.out.println("Don hang da thanh toan. Khong the sua.");
-                    return;
+                    boolean completed = false;
+                    while (!completed) {
+                        order.displayOrder();
+                        System.out.println("┌───────────────────────────────────────────┐");
+                        System.out.println("│1. Quay lai                                │");
+                        System.out.println("└───────────────────────────────────────────┘");
+                        System.out.print("Chon 1 de quay lai: ");
+                        int choice = scanner.nextInt();
+                        scanner.nextLine();
+                        switch (choice) {
+                            case 1:
+                                return;
+                            default:
+                                System.out.println("Lua chon khong hop le.");
+                                break;
+                        }
+                    }
                 }
-                while (true) {
+                boolean complete = false;
+                while (!complete) {
                     order.displayOrder();
                     System.out.println("│1. Them San pham                           │");
                     System.out.println("│2. Xoa san pham                            │");
@@ -50,12 +67,12 @@ public class Orders implements fileWork {
                                 int quantity = scanner.nextInt();
                                 scanner.nextLine();
                                 Product product = null;
-                                for(Product cur : Inventory.getListInventory().keySet()) {
+                                for (Product cur : Inventory.getListInventory().keySet()) {
                                     if (cur.getProductID() == productID) {
                                         product = cur;
                                         break;
                                     }
-                                }   
+                                }
                                 if (product != null) {
                                     int stock = Inventory.getListInventory().getOrDefault(product, 0);
                                     if (stock >= quantity) {
@@ -110,13 +127,14 @@ public class Orders implements fileWork {
                                 order.setOrderStatus(true);
                                 System.out.println("Thanh toan thanh cong.");
                             }
+                            complete = true;
                             break;
                         case 4:
                             if (order.getOrderDetails().isEmpty()) {
                                 System.out.println("Don hang khong co san pham nao. Xoa don hang.");
                                 orders.remove(order);
                             }
-                            return;
+                            complete = true;
                         default:
                             System.out.println("Lua chon khong hop le.");
                             break;
@@ -135,11 +153,19 @@ public class Orders implements fileWork {
         System.out.println("├───────────────────────────────────────────┤");
         System.out.println("│  #ID            status            Total   │");
         for (Order order : orders) {
-            System.out.printf("│#%-6s    %-17s    %-7s VND│\n", displayFormat.formatID(order.getOrderID()), order.isOrderStatus() ? "<Da thanh toan>" : "<Chua thanh toan>", displayFormat.formatPrice(order.calculateTotal()));
+            System.out.printf("│#%-6s    %-17s    %-7s VND│\n", displayFormat.formatID(order.getOrderID()),
+                    order.isOrderStatus() ? "<Da thanh toan>" : "<Chua thanh toan>",
+                    displayFormat.formatPrice(order.calculateTotal()));
         }
     }
+<<<<<<< HEAD
     // Nạp chồng phương thức để hiển thị lịch sử đơn hàng của riêng khách hàng đó theo số điện thoại 
     //tính đa hình
+=======
+
+    // Nạp chồng phương thức để hiển thị lịch sử đơn hàng của riêng khách hàng đó
+    // theo số điện thoại
+>>>>>>> main
     public static void displayOrders(String customerPhone) {
         boolean found = false;
         System.out.println("┌───────────────────────────────────────────┐");
@@ -147,7 +173,9 @@ public class Orders implements fileWork {
         System.out.println("├───────────────────────────────────────────┤");
         for (Order order : orders) {
             if (order.getCustomer().getPhone().equals(customerPhone) && order.isOrderStatus()) {
-                System.out.printf("│#%-6s   %-17s    %-7s VND│\n", displayFormat.formatID(order.getOrderID()), order.isOrderStatus() ? "<Da thanh toan>" : "<Chua thanh toan>", displayFormat.formatPrice(order.calculateTotal()));
+                System.out.printf("│#%-6s   %-17s    %-7s VND│\n", displayFormat.formatID(order.getOrderID()),
+                        order.isOrderStatus() ? "<Da thanh toan>" : "<Chua thanh toan>",
+                        displayFormat.formatPrice(order.calculateTotal()));
                 found = true;
             }
         }
@@ -177,6 +205,8 @@ public class Orders implements fileWork {
                     System.out.println("Don hang da thanh toan. Khong the xoa.");
                     return;
                 } else {
+                    // Trả lại sản phẩm về kho
+                    order.returnItemsToInventory();
                     iterator.remove();
                     System.out.println("Da xoa don hang.");
                     return;
@@ -195,16 +225,23 @@ public class Orders implements fileWork {
     public static void setOrders(List<Order> orders) {
         Orders.orders = orders;
     }
-    @Override 
+
+    @Override
     public void readFile() throws FileNotFoundException {
         // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Order\\orderData.txt");
+<<<<<<< HEAD
         File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
         // File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Order\\orderData.txt");
+=======
+        // File myFile = new
+        // File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
+        File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Order\\orderData.txt");
+>>>>>>> main
         // File myFile = new File("C:\\OOP\\projectOPP\\Order\\orderData.txt");
         Scanner scf = new Scanner(myFile);
         while (scf.hasNextLine()) {
             String line = scf.nextLine();
-            String [] arrstr = line.split("\\|");
+            String[] arrstr = line.split("\\|");
             int orderID = Integer.parseInt(arrstr[0]);
             String customerName = arrstr[1];
             String customerPhone = arrstr[2];
@@ -217,17 +254,21 @@ public class Orders implements fileWork {
             // Thêm trạng thái đơn hàng vào
             newOrder.setOrderStatus(orderStatus);
 
-            for (int i = 3; i < arrstr.length-1; i += 2) {
-                newOrder.addProduct(Inventory.getProductByID(Integer.parseInt(arrstr[i])), Integer.parseInt(arrstr[i + 1]));
+            for (int i = 3; i < arrstr.length - 1; i += 2) {
+                newOrder.addProduct(Inventory.getProductByID(Integer.parseInt(arrstr[i])),
+                        Integer.parseInt(arrstr[i + 1]));
             }
             Orders.addOrder(newOrder);
         }
         scf.close();
-    } 
-    @Override 
-    public  void writeFile() throws IOException {
-        // FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Order\\orderData.txt");4
-        // FileWriter myFile = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
+    }
+
+    @Override
+    public void writeFile() throws IOException {
+        // FileWriter myFile = new
+        // FileWriter("D:\\Study\\OOP\\projectOPP\\Order\\orderData.txt");4
+        // FileWriter myFile = new
+        // FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
         FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Order\\orderData.txt");
         for (Order cur : orders) {
             myFile.write(cur.getOrderID() + "|" + cur.getCustomer().getName() + "|" + cur.getCustomer().getPhone());
