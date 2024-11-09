@@ -4,9 +4,7 @@ import java.util.List;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-// import Model.Clothing;
 import Model.Product;
-// import Model.Shoes;
 import Person.Customer;
 import Model.Inventory;
 
@@ -29,7 +27,7 @@ public class Order {
         this.orderStatus = false; // Mặc định chưa thanh toán
     }
 
-    // Tính tổng toàn bộ đơn
+    // Tính tổng của một đơn
     public double calculateTotal() {
         double total = 0;
         for (OrderDetail detail : orderDetails) {
@@ -76,7 +74,7 @@ public class Order {
             System.out.println("│#" + detail.getProduct().getProductID() + " - " + detail.getProduct().getProductName() + " [x" + detail.getQuantity() + "]:      " + displayFormat.formatPrice(detail.calculateSubTotal()) + " VND│");
         }
         System.out.println("├───────────────────────────────────────────┤");
-        System.out.printf("│Total:  %-16s%-8s VND│\n", ' ',displayFormat.formatPrice(calculateTotal()));
+        System.out.printf("│Total:  %-16s%-7s VND│\n", ' ',displayFormat.formatPrice(calculateTotal()));
         System.out.println("└───────────────────────────────────────────┘");
     }
 

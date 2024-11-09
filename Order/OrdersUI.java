@@ -67,11 +67,12 @@ public class OrdersUI {
                 System.out.println("│2. Them vao hang doi                       │");
                 System.out.println("│3. Huy thiet lap                           │");
                 System.out.println("└───────────────────────────────────────────┘");
-                System.out.print("Nhap lua chon (1-3): ");
+                System.out.print("Nhap lua chon: ");
                 int choice = scanner.nextInt();
                 scanner.nextLine();
                 switch (choice) {
                     case 1:
+                        if (!payment(newOrder,customer)) break;
                         newOrder.setOrderStatus(true);
                         Orders.addOrder(newOrder);
                         customer.addOrder(newOrder);
@@ -95,6 +96,70 @@ public class OrdersUI {
                 }
             }
         } else System.out.println("Don hang rong. Khong them don hang.");
+    }
+
+    public static boolean payment(Order order, Customer customer) {
+        boolean validChoice = false;
+        while (!validChoice) {
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│        Chon phuong thuc thanh toan        │");
+            System.out.println("├───────────────────────────────────────────┤");
+            System.out.println("│1. Momo                                    │");
+            System.out.println("│2. Tien mat                                │");
+            System.out.println("│3. Quay lai                                │");
+            System.out.println("└───────────────────────────────────────────┘");
+            System.out.print("Nhap lua chon: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            switch (choice) {
+                case 1:
+                    System.out.print("Nhap so dien thoai Momo: ");
+                    String momoPhone = scanner.nextLine();
+                    if (momoPhone.equals(customer.getPhone())) {
+                        System.out.print("Xac nhan thanh toan qua Momo? (y/n): ");
+                        String confirm = scanner.nextLine();
+                        if (confirm.equalsIgnoreCase("y")) {
+                            validChoice = true;
+                            return true;
+                        }
+                    } else {
+                        System.out.println("So dien thoai khong khop voi khach hang.");
+                    }
+                    break;
+                case 2:
+                    double totalAmount = order.calculateTotal();
+                    order.displayOrder();
+                    boolean paymentSuccess = false;
+                    while (!paymentSuccess) {
+                        System.out.print("Nhap so tien khach dua: ");
+                        double amountGiven = scanner.nextDouble();
+                        scanner.nextLine();
+                        if (amountGiven >= totalAmount) {
+                            double change = amountGiven - totalAmount;
+                            System.out.println("┌───────────────────────────────────────────┐");
+                            System.out.printf("│Tien khach dua:  %-7s%-7s VND│\n", ' ',displayFormat.formatPrice(amountGiven));
+                            System.out.println("│Tien du cua khach:                " + displayFormat.formatPrice(change) + " VND│");
+                            System.out.println("├───────────────────────────────────────────┤");
+                            System.out.println("│           Thanh toan thanh cong           │");
+                            System.out.println("└───────────────────────────────────────────┘");
+                            paymentSuccess = true;
+                            validChoice = true;
+                            return true;
+                        } else {
+                            System.out.println("So tien khong du. Vui long nhap lai.");
+                        }
+                    }
+                    break;
+                case 3:
+                    System.out.println("Quay lai.");
+                    validChoice = true;
+                    return false;
+                default:
+                    System.out.println("Lua chon khong hop le. Vui long chon lai.");
+                    break;
+            }
+        }
+        return false;
     }
 
     // Xem danh sách đơn hàng

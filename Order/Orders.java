@@ -121,10 +121,9 @@ public class Orders implements fileWork {
                             } while (loop1);
                             break;
                         case 3:
-                            System.out.print("Xac nhan thanh toan don hang nay? (y/n): ");
-                            String confirm = scanner.nextLine();
-                            if (confirm.equalsIgnoreCase("y")) {
+                            if (OrdersUI.payment(order, order.getCustomer())) {
                                 order.setOrderStatus(true);
+                                complete = true;
                                 System.out.println("Thanh toan thanh cong.");
                             }
                             complete = true;
@@ -158,14 +157,9 @@ public class Orders implements fileWork {
                     displayFormat.formatPrice(order.calculateTotal()));
         }
     }
-<<<<<<< HEAD
-    // Nạp chồng phương thức để hiển thị lịch sử đơn hàng của riêng khách hàng đó theo số điện thoại 
-    //tính đa hình
-=======
 
     // Nạp chồng phương thức để hiển thị lịch sử đơn hàng của riêng khách hàng đó
     // theo số điện thoại
->>>>>>> main
     public static void displayOrders(String customerPhone) {
         boolean found = false;
         System.out.println("┌───────────────────────────────────────────┐");
@@ -229,14 +223,9 @@ public class Orders implements fileWork {
     @Override
     public void readFile() throws FileNotFoundException {
         // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Order\\orderData.txt");
-<<<<<<< HEAD
-        File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
-        // File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Order\\orderData.txt");
-=======
         // File myFile = new
         // File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
         File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Order\\orderData.txt");
->>>>>>> main
         // File myFile = new File("C:\\OOP\\projectOPP\\Order\\orderData.txt");
         Scanner scf = new Scanner(myFile);
         while (scf.hasNextLine()) {

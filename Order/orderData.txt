@@ -1,7 +1,7 @@
 1|Nguyen Van A|0901234567|101|2|201|1|true
 11|Nguyen Thanh Hien|0866065213|101|3|false
-12|Nguyen Thanh Hien|0866065213|110|2|false
-13|Tran Thanh Sang|0838252123|108|2|false
+12|Nguyen Thanh Hien|0866065213|110|2|true
+13|Tran Thanh Sang|0838252123|108|2|true
 14|Nguyen Thanh Hien|0866065213|103|2|true
 15|Nguyen Thanh Hien|0866065213|107|1|101|2|true
 12|Le Thi Nga|0856123456|110|1|true
