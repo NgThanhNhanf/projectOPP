@@ -28,7 +28,7 @@ public class Promotion {
         //tạo 1 list các sản phẩm khuyến mãi
     }
 
-    public boolean isValidformat(String str){
+    public static boolean isValidformat(String str){
         try {
             LocalDateTime.parse(str, format);
             return true;
