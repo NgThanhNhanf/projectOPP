@@ -1,5 +1,3 @@
-// FILE: OrdersUI.java
-
 package Order;
 
 import java.util.Scanner;
@@ -66,8 +64,8 @@ public class OrdersUI {
                 System.out.println("│        Chon trang thai don hang           │");
                 System.out.println("├───────────────────────────────────────────┤");
                 System.out.println("│1. Thanh Toan                              │");
-                System.out.println("│2. Them vao hang doi                        │");
-                System.out.println("│3. Huy thiet lap                            │");
+                System.out.println("│2. Them vao hang doi                       │");
+                System.out.println("│3. Huy thiet lap                           │");
                 System.out.println("└───────────────────────────────────────────┘");
                 System.out.print("Nhap lua chon (1-3): ");
                 int choice = scanner.nextInt();
@@ -88,6 +86,7 @@ public class OrdersUI {
                         System.out.println("Don hang da duoc them vao hang doi va luu lai.");
                         break;
                     case 3:
+                        newOrder.returnItemsToInventory();
                         System.out.println("Huy thiet lap don hang.");
                         validChoice = true;
                         break;
