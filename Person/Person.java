@@ -44,7 +44,7 @@ public abstract class Person {
         System.out.print("│ Dia chi         : ");
         address = sc.nextLine();
         valid = false;
-        while(!valid) {
+        while(!valid && phone == null) {
             System.out.print("│ So dien thoai         : ");
             phone = sc.nextLine();
             valid = validPhone(phone);

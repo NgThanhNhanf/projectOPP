@@ -4,10 +4,11 @@ import java.util.List;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import Model.Clothing;
+// import Model.Clothing;
 import Model.Product;
-import Model.Shoes;
+// import Model.Shoes;
 import Person.Customer;
+import Model.Inventory;
 
 public class Order {
     private int orderID;
@@ -54,20 +55,28 @@ public class Order {
         orderDetails.removeIf(detail -> detail.getProduct().getProductID() == product.getProductID());
     }
 
+        public void returnItemsToInventory() {
+        for (OrderDetail detail : this.orderDetails) {
+            Product product = detail.getProduct();
+            int quantity = detail.getQuantity();
+            Inventory.addInventory(product, quantity);
+        }
+    }
+
     // Hiển thị đơn hàng
     public void displayOrder() {
         System.out.println("┌───────────────────────────────────────────┐");
-        System.out.println("│                 #" + orderID + "                   │");
-        System.out.println("│Ten khach hang:  " + customer.getName() + " │");
-        System.out.println("│So dien thoai:   " + customer.getPhone() + "                │");
-        System.out.println("│Ngay in don:  " + orderDate + "                   │");
-        System.out.println("│Trang thai:     " + (orderStatus ? "<Da thanh toan>" : "<Chua thanh toan>") + "      │");
+        System.out.printf("│                 #%06d                   │\n", orderID);
+        System.out.printf("│Ten khach hang: %-27s│\n",customer.getName());
+        System.out.printf("│So dien thoai:  %-27s│\n",customer.getPhone());
+        System.out.println("│Ngay in don:   " + orderDate + "                  │");
+        System.out.printf("│Trang thai:   %-28s │\n",(orderStatus ? "<Da thanh toan>" : "<Chua thanh toan>"));
         System.out.println("├───────────────────────────────────────────┤");
         for (OrderDetail detail : orderDetails) {
             System.out.println("│#" + detail.getProduct().getProductID() + " - " + detail.getProduct().getProductName() + " [x" + detail.getQuantity() + "]:      " + displayFormat.formatPrice(detail.calculateSubTotal()) + " VND│");
         }
         System.out.println("├───────────────────────────────────────────┤");
-        System.out.println("│Total:                          " + displayFormat.formatPrice(calculateTotal()) + " VND│");
+        System.out.printf("│Total:  %-16s%-8s VND│\n", ' ',displayFormat.formatPrice(calculateTotal()));
         System.out.println("└───────────────────────────────────────────┘");
     }
 

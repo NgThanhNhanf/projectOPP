@@ -1,13 +1,8 @@
-1|Nguyen Van A|0901234567|101|2|201|1|false
-2|Le Thi B|0902345678|202|3|104|1|false
-3|Tran Van C|0903456789|102|2|103|1|105|1|false
-4|Pham Thi D|0904567890|204|2|false
-5|Bui Van E|0905678901|103|1|207|2|108|1|false
-6|Hoang Thi F|0906789012|206|3|209|1|false
-7|Nguyen Van G|0907890123|105|2|101|1|false
-8|Tran Thi H|0908901234|209|1|201|2|109|1|false
-9|Le Van I|0909012345|107|1|204|1|false
-10|Pham Thi K|0900123456|110|2|208|1|202|2|false
+1|Nguyen Van A|0901234567|101|2|201|1|true
 11|Nguyen Thanh Hien|0866065213|101|3|false
-12|NguyenThanhHien|0866065213|110|2|false
+12|Nguyen Thanh Hien|0866065213|110|2|false
 13|Tran Thanh Sang|0838252123|108|2|false
+14|Nguyen Thanh Hien|0866065213|103|2|true
+15|Nguyen Thanh Hien|0866065213|107|1|101|2|true
+12|Le Thi Nga|0856123456|110|1|true
+13|Nguyen Thanh Phong|0872588123|102|1|true
