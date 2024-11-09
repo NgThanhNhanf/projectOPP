@@ -12,6 +12,7 @@ import Person.CustomerUI;
 import Person.Customers;
 import Person.EmployeeUI;
 import Person.Employees;
+import Statistic.Store;
 
 import java.io.*;
 public class MainMenu {
@@ -63,6 +64,7 @@ public class MainMenu {
                 case 5:
                     break;
                 case 6:
+                    Store.solve();
                     break;
                 case 7:
                     UserUI.rootMenu();
