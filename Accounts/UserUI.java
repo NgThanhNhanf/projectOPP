@@ -127,7 +127,7 @@ public class UserUI {
         System.out.println("Tim kiem tai khoan");
         String search = sc.nextLine();
         Users searcher = new Users();
-        List<String> arrID = searcher.search(search);
+        List<String> arrID = searcher.searching(search);
         Collections.sort(arrID, Comparator.comparingInt(String::length));
         List<User> arrUserS = new ArrayList<>();
         for (String cur : arrID) {

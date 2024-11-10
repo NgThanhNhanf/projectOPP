@@ -1,12 +1,13 @@
 package Accounts;
 import java.util.*;
 import File.fileWork;
+import Person.Customer;
 import Person.Employee;
 import Person.EmployeeUI;
-
+import Search.SearchList;
 import java.io.*;
 
-public class Users implements fileWork {
+public class Users implements fileWork, SearchList{
     private static List<User> users = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
     public Users(){}
@@ -16,9 +17,9 @@ public class Users implements fileWork {
     // đọc file từ file text lên vào Users
     @Override
     public void readFile() throws FileNotFoundException {
-        // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Accounts\\accountsData.txt");
+        File myFile = new File("D:\\Study\\OOP\\projectOPP\\Accounts\\accountsData.txt");
         // File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Accounts\\accountsData.txt");
-        File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Accounts\\accountsData.txt");
+        // File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Accounts\\accountsData.txt");
         // File myFile = new File("C:\\OOP\\projectOPP\\Accounts\\accountsData.txt");
         Scanner scf = new Scanner(myFile);
         while (scf.hasNextLine()) {
@@ -31,9 +32,9 @@ public class Users implements fileWork {
     }
     @Override
     public void writeFile() throws IOException {
-        // FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Accounts\\accountsData.txt");
+        FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Accounts\\accountsData.txt");
         // FileWriter myFile = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Accounts\\accountsData.txt");
-        FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Accounts\\accountsData.txt");
+        // FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Accounts\\accountsData.txt");
         // FileWriter myFile = new FileWriter("C:\\OOP\\projectOPP\\Accounts\\accountsData.txt");
         for (User cur : users) {
             myFile.write(cur.getUserName() + '|' + cur.getPassword() + '|' + cur.getUserId() + '|' + cur.getRole() + '\n');
@@ -108,5 +109,13 @@ public class Users implements fileWork {
             if (cur.getUserId().equals(userId)) return cur;
         }
         return null;
+    }
+    @Override
+    public List<String> searching(String id) {
+        List<String> arr = new ArrayList<>();
+        for (User cur : users) {
+            if (cur.getUserName().contains(id) || cur.getUserId().contains(id)) arr.add(cur.getUserId());
+        }
+        return arr;
     }
 }

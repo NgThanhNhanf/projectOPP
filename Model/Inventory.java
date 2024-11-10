@@ -102,9 +102,9 @@ public class Inventory implements fileWork {
     }
     @Override
     public void readFile() throws FileNotFoundException {
-        // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Model\\clothingData.txt");
+        File myFile = new File("D:\\Study\\OOP\\projectOPP\\Model\\clothingData.txt");
         // File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\clothingData.txt");
-        File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Model\\clothingData.txt");
+        // File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Model\\clothingData.txt");
         // File myFile = new File("C:\\OOP\\projectOPP\\Model\\clothingData.txt");
         Scanner scf = new Scanner(myFile);
         while(scf.hasNextLine()) {
@@ -114,9 +114,9 @@ public class Inventory implements fileWork {
             Inventory.addInventory(newClothing, Integer.parseInt(arrstr[5]));
         }
         scf.close();
-        // myFile = new File("D:\\Study\\OOP\\projectOPP\\Model\\shoesData.txt");
+        myFile = new File("D:\\Study\\OOP\\projectOPP\\Model\\shoesData.txt");
         // myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\shoesData.txt");
-        myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Model\\shoesData.txt");
+        // myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Model\\shoesData.txt");
         // myFile = new File("C:\\OOP\\projectOPP\\Model\\shoesData.txt");
         scf = new Scanner(myFile);
         while(scf.hasNextLine()) {
@@ -129,10 +129,10 @@ public class Inventory implements fileWork {
     }
     @Override
     public void writeFile() throws IOException {
-        // FileWriter myFileC = new FileWriter("D:\\Study\\OOP\\projectOPP\\Model\\clothingData.txt");
-        // FileWriter myFileS = new FileWriter("D:\\Study\\OOP\\projectOPP\\Model\\shoesData.txt");
-        FileWriter myFileC = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Model\\clothingData.txt");
-        FileWriter myFileS = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Model\\shoesData.txt");
+        FileWriter myFileC = new FileWriter("D:\\Study\\OOP\\projectOPP\\Model\\clothingData.txt");
+        FileWriter myFileS = new FileWriter("D:\\Study\\OOP\\projectOPP\\Model\\shoesData.txt");
+        // FileWriter myFileC = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Model\\clothingData.txt");
+        // FileWriter myFileS = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Model\\shoesData.txt");
         // FileWriter myFileC = new FileWriter("C:\\OOP\\projectOPP\\Model\\clothingData.txt");
         // FileWriter myFileS = new FileWriter("C:\\OOP\\projectOPP\\Model\\shoesData.txt");
         // FileWriter myFileC = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\clothingData.txt");

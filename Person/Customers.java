@@ -4,8 +4,9 @@ package Person;
 import java.io.*;
 import java.util.*;
 import File.fileWork;
+import Search.SearchList;
 
-public class Customers implements fileWork {
+public class Customers implements fileWork, SearchList {
     private static List<Customer> listCustomer = new ArrayList<>();
     public static boolean isPhoneExist(String phone) {
         for (Customer c : listCustomer) {
@@ -35,9 +36,9 @@ public class Customers implements fileWork {
     }
     @Override
     public void readFile() throws FileNotFoundException {
-        // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Person\\customersData.txt");
+        File myFile = new File("D:\\Study\\OOP\\projectOPP\\Person\\customersData.txt");
         // File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Person\\customersData.txt");
-        File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\customersData.txt");
+        // File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\customersData.txt");
         // File myFile = new File("C:\\OOP\\projectOPP\\Person\\customersData.txt");
         Scanner scf = new Scanner(myFile);
         while(scf.hasNextLine()) {
@@ -54,9 +55,9 @@ public class Customers implements fileWork {
 
     @Override
     public void writeFile() throws IOException {
-        // FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Person\\customersData.txt");
+        FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Person\\customersData.txt");
         // FileWriter myFile = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Person\\customersData.txt");
-        FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\customersData.txt");
+        // FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\customersData.txt");
         // FileWriter myFile = new FileWriter("C:\\OOP\\projectOPP\\Person\\customersData.txt");
         for (Customer cur : listCustomer) {
             myFile.write(cur.getName() + '|' + cur.getDob().getDay() + '/' + cur.getDob().getMonth() + '/' + cur.getDob().getYear() + '|' + cur.getAddress() + '|' + cur.getPhone() + '\n');
@@ -88,7 +89,6 @@ public class Customers implements fileWork {
             }
         }
     }
-
     public static Customer findCustomer(String phone) { 
         for (Customer cur : listCustomer) {
             if (cur.getPhone().equals(phone)) {
@@ -97,8 +97,15 @@ public class Customers implements fileWork {
         }
         return null;
     }
-
     public static void deleteCustomer(String phone) {
         listCustomer.removeIf(c -> c.getPhone().equals(phone));
+    }
+    @Override
+    public List<String> searching(String id) {
+        List<String> arr = new ArrayList<>();
+        for (Customer cur : listCustomer) {
+            if (cur.getPhone().contains(id) || cur.getName().contains(id)) arr.add(cur.getPhone());
+        }
+        return arr;
     }
 }

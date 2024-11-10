@@ -2,18 +2,20 @@ package Person;
 
 import java.util.*;
 import File.fileWork;
+import Search.SearchList;
+
 import java.io.*;
 
-public class Employees implements fileWork {
+public class Employees implements fileWork, SearchList{
     private static List<Employee> listEmployee = new ArrayList<>();
     public static void addEmployee(Employee e) {
         listEmployee.add(e);
     }
     @Override
     public void readFile() throws FileNotFoundException {
-        // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Person\\employeesData.txt");      
+        File myFile = new File("D:\\Study\\OOP\\projectOPP\\Person\\employeesData.txt");      
         // File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Person\\employeesData.txt");        
-        File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\employeesData.txt");        
+        // File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\employeesData.txt");        
         // File myFile = new File("C:\\OOP\\projectOPP\\Person\\employeesData.txt");        
         Scanner scf = new Scanner(myFile);
         while(scf.hasNextLine()) {
@@ -29,9 +31,9 @@ public class Employees implements fileWork {
     }
     @Override
     public void writeFile() throws IOException {
-        // FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Person\\employeesData.txt");
+        FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Person\\employeesData.txt");
         // FileWriter myFile = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Person\\employeesData.txt");
-        FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\employeesData.txt");
+        // FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\employeesData.txt");
         // FileWriter myFile = new FileWriter("C:\\OOP\\projectOPP\\Person\\employeesData.txt");
         for (Employee cur : listEmployee) {
             myFile.write(cur.getName() + '|' + cur.getDob().getDay() + '/' + cur.getDob().getMonth() + '/' + cur.getDob().getYear() + '|' + cur.getAddress() + '|' + cur.getPhone() + '|' + cur.getID() + '|' + cur.getSalary() + '|' + cur.getJobDescription() + '\n');
@@ -80,5 +82,19 @@ public class Employees implements fileWork {
                 return;
             }
         }
+    }
+    public static Employee getEmployee(String id) {
+        for (Employee cur : listEmployee) {
+            if (cur.getID().equals(id)) return cur;
+        }
+        return null;
+    }
+    @Override
+    public List<String> searching(String id) {
+        List<String> arr = new ArrayList<>();
+        for (Employee cur : listEmployee) {
+            if (cur.getID().contains(id) || cur.getName().contains(id)) arr.add(cur.getID());
+        }
+        return arr;
     }
 }
