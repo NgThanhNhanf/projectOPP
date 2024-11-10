@@ -6,8 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Scanner;
+import java.util.Set;
+
 import File.fileWork;
 import Model.*;
 import Person.Customer;
@@ -124,7 +127,6 @@ public class Orders implements fileWork {
                             if (OrdersUI.payment(order, order.getCustomer())) {
                                 order.setOrderStatus(true);
                                 complete = true;
-                                System.out.println("Thanh toan thanh cong.");
                             }
                             complete = true;
                             break;
@@ -158,8 +160,7 @@ public class Orders implements fileWork {
         }
     }
 
-    // Nạp chồng phương thức để hiển thị lịch sử đơn hàng của riêng khách hàng đó
-    // theo số điện thoại
+    // Nạp chồng phương thức để hiển thị lịch sử đơn hàng của riêng khách hàng đó theo số điện thoại
     public static void displayOrders(String customerPhone) {
         boolean found = false;
         System.out.println("┌───────────────────────────────────────────┐");
@@ -167,10 +168,50 @@ public class Orders implements fileWork {
         System.out.println("├───────────────────────────────────────────┤");
         for (Order order : orders) {
             if (order.getCustomer().getPhone().equals(customerPhone) && order.isOrderStatus()) {
-                System.out.printf("│#%-6s   %-17s    %-7s VND│\n", displayFormat.formatID(order.getOrderID()),
+                System.out.printf("│#%-6s    %-17s    %-7s VND│\n", displayFormat.formatID(order.getOrderID()),
                         order.isOrderStatus() ? "<Da thanh toan>" : "<Chua thanh toan>",
                         displayFormat.formatPrice(order.calculateTotal()));
                 found = true;
+            }
+        }
+        boolean completed = false;
+        while (!completed) {
+            System.out.println("├───────────────────────────────────────────┤");
+            System.out.println("│1. Xem chi tiet                            │");
+            System.out.println("│2. Quay lai                                │");
+            System.out.println("└───────────────────────────────────────────┘");
+            System.out.print("Chon 1 de quay lai: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            switch (choice) {
+                case 1:
+                    for (Order order : orders) {
+                        if (order.getCustomer().getPhone().equals(customerPhone) && order.isOrderStatus()) {
+                            order.displayOrder();
+                        }
+                    }
+                    boolean confirm = false;
+                    while (!confirm) {
+                        System.out.println("┌───────────────────────────────────────────┐");
+                        System.out.println("│1. Quay lai                                │");
+                        System.out.println("└───────────────────────────────────────────┘");
+                        System.out.print("Chon 1 de quay lai: ");
+                        int choice2 = scanner.nextInt();
+                        scanner.nextLine();
+                        switch (choice2) {
+                            case 1:
+                                return;
+                            default:
+                                System.out.println("Lua chon khong hop le.");
+                                break;
+                        }
+                    }
+                    return;
+                case 2:
+                    return;
+                default:
+                    System.out.println("Lua chon khong hop le.");
+                    break;
             }
         }
         if (!found) {
@@ -250,6 +291,20 @@ public class Orders implements fileWork {
             Orders.addOrder(newOrder);
         }
         scf.close();
+    }
+
+    // Dùng set để kiểm tra và tạo id
+    public static int generateID() {
+        Set<Integer> existingIds = new HashSet<>();
+        for (Order order : orders) {
+            existingIds.add(order.getOrderID());
+        }
+
+        int idCounter = 1;
+        while (existingIds.contains(idCounter)) {
+            idCounter++;
+        }
+        return idCounter;
     }
 
     @Override

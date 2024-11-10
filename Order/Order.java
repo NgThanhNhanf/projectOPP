@@ -71,10 +71,10 @@ public class Order {
         System.out.printf("│Trang thai:   %-28s │\n",(orderStatus ? "<Da thanh toan>" : "<Chua thanh toan>"));
         System.out.println("├───────────────────────────────────────────┤");
         for (OrderDetail detail : orderDetails) {
-            System.out.println("│#" + detail.getProduct().getProductID() + " - " + detail.getProduct().getProductName() + " [x" + detail.getQuantity() + "]:      " + displayFormat.formatPrice(detail.calculateSubTotal()) + " VND│");
+            System.out.printf("│#%03d - %s [x%02d]:%-3s %s VND│\n",detail.getProduct().getProductID(),  detail.getProduct().getProductName(), detail.getQuantity(), ' ', displayFormat.formatPrice(detail.calculateSubTotal()));
         }
         System.out.println("├───────────────────────────────────────────┤");
-        System.out.printf("│Total:  %-16s%-7s VND│\n", ' ',displayFormat.formatPrice(calculateTotal()));
+        System.out.printf("│Total:  %-24s%-7s VND│\n", ' ',displayFormat.formatPrice(calculateTotal()));
         System.out.println("└───────────────────────────────────────────┘");
     }
 

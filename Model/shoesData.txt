@@ -1,10 +1,10 @@
-209|Jordan 1 Mid|42|42|Xanh Den|6
-201|Nike Air Max|42|42|Den|12
-206|Reebok Classic|40|40|Trang|14
+209|Jordan 1 Mid|42|42|Xanh Den|3
+208|Asics10 Gel-Lyte III|44|44|Den|9
 203|Puma Suede Classic|43|43|Xanh|20
+205|Vans Old Skool|42|42|Den|18
 204|Converse Chuck Taylor|41|41|Do|15
 207|New Balance 574|39|39|Xam|10
 202|Adidas Ultraboost|40|40|Trang|20
-208|Asics10 Gel-Lyte III|44|44|Den|9
 200|Fila Disruptor|38|38|Trang|9
-205|Vans Old Skool|42|42|Den|18
+201|Nike Air Max|42|42|Den|13
+206|Reebok Classic|40|40|Trang|14

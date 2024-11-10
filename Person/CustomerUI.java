@@ -21,9 +21,9 @@ public class CustomerUI {
         while (!complete) {
             System.out.println("┌───────────────────────────────────────────┐");
             System.out.println("│1. Sua thong tin                           │");
-            System.out.println("│2. Xem lich su don hang                    │"); 
+            System.out.println("│2. Xem lich su don hang                    │");
             System.out.println("│3. Xoa khach hang                          │");
-            System.out.println("│4. Thoat                                   │"); 
+            System.out.println("│4. Thoat                                   │");
             System.out.println("└───────────────────────────────────────────┘");
             System.out.print("Nhap lua chon: ");
             int choose = sc.nextInt();

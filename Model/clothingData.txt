@@ -1,11 +1,11 @@
-103|Quan jeans Skinny|103|32|Denim|14
-109|Ao blazer Basic|109|L|Polyester|13
+103|Quan jeans Skinny|103|32|Denim|13
+109|Ao blazer Basic|109|L|Polyester|11
 105|Ao khoac Bomber|105|L|Nylon|21
-101|Ao thun Cotton|101|M|Cotton|24
-102|Ao so mi Linen|102|L|Linen|18
+101|Ao thun Cotton|101|M|Cotton|26
+102|Ao so mi Linen|102|L|Linen|17
 104|Ao hoodie Unisex|104|XL|Polyester|26
 100|Quan short Casual|100|M|Cotton|25
-106|Quan tay Classic|106|34|Cotton|19
-108|Vay Maxi Floral|108|S|Voan|8
-107|Ao len Cardigan|107|M|Len|17
-110|Ao khoac levents|110|M|Vai|19
+106|Quan tay Classic|106|34|Cotton|17
+108|Vay Maxi Floral|108|S|Voan|7
+107|Ao len Cardigan|107|M|Len|15
+110|Ao khoac levents|110|M|Vai|18

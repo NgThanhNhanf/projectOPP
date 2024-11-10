@@ -22,7 +22,7 @@ public class OrdersUI {
             Customers.addCustomer(customer);
         }
 
-        int orderID = Orders.getOrders().size() + 1;
+        int orderID = Orders.generateID();
         Order newOrder = new Order(orderID, customer);
 
         boolean tiepTuc;
@@ -72,7 +72,8 @@ public class OrdersUI {
                 scanner.nextLine();
                 switch (choice) {
                     case 1:
-                        if (!payment(newOrder,customer)) break;
+                        if (!payment(newOrder, customer))
+                            break;
                         newOrder.setOrderStatus(true);
                         Orders.addOrder(newOrder);
                         customer.addOrder(newOrder);
@@ -95,7 +96,8 @@ public class OrdersUI {
                         System.out.println("Lua chon khong hop le. Vui long chon lai.");
                 }
             }
-        } else System.out.println("Don hang rong. Khong them don hang.");
+        } else
+            System.out.println("Don hang rong. Khong them don hang.");
     }
 
     public static boolean payment(Order order, Customer customer) {
@@ -131,17 +133,34 @@ public class OrdersUI {
                     order.displayOrder();
                     boolean paymentSuccess = false;
                     while (!paymentSuccess) {
-                        System.out.print("Nhap so tien khach dua: ");
+                        System.out.print("Nhap so tien khach dua (boi so cua 1.000 VND): ");
                         double amountGiven = scanner.nextDouble();
                         scanner.nextLine();
                         if (amountGiven >= totalAmount) {
-                            double change = amountGiven - totalAmount;
+                            double change = amountGiven - totalAmount; // -2s
                             System.out.println("┌───────────────────────────────────────────┐");
-                            System.out.printf("│Tien khach dua:  %-7s%-7s VND│\n", ' ',displayFormat.formatPrice(amountGiven));
-                            System.out.println("│Tien du cua khach:                " + displayFormat.formatPrice(change) + " VND│");
+                            System.out.printf("│Tien khach dua:  %-15s%-7s VND│\n", ' ',displayFormat.formatPrice(amountGiven));
+                            System.out.printf("│Tien du cua khach: %-13s%s VND│\n", ' ',displayFormat.formatPrice(change));
                             System.out.println("├───────────────────────────────────────────┤");
                             System.out.println("│           Thanh toan thanh cong           │");
                             System.out.println("└───────────────────────────────────────────┘");
+                            boolean confirm = false;
+                            while (!confirm) {
+                                System.out.println("┌───────────────────────────────────────────┐");
+                                System.out.println("│1. Hoan Thanh                              │");
+                                System.out.println("└───────────────────────────────────────────┘");
+                                System.out.print("Chon 1 de hoan thanh va quay lai: ");
+                                int choice2 = scanner.nextInt();
+                                scanner.nextLine();
+                                switch (choice2) {
+                                    case 1:
+                                        confirm = true;
+                                        break;
+                                    default:
+                                        System.out.println("Lua chon khong hop le.");
+                                        break;
+                                }
+                            }
                             paymentSuccess = true;
                             validChoice = true;
                             return true;
@@ -184,7 +203,12 @@ public class OrdersUI {
                     System.out.print("Nhap ma don hang can xoa: ");
                     int orderID = scanner.nextInt();
                     scanner.nextLine();
-                    Orders.deleteOrder(orderID);
+                    System.out.print("Ban co chan chan mua xoa don hang? (y/n): ");
+                    String confirm = scanner.nextLine();
+                    if (confirm.equalsIgnoreCase("y")) {
+                        complete = true;
+                        Orders.deleteOrder(orderID);
+                    }
                     break;
                 case 3:
                     return;
@@ -196,7 +220,7 @@ public class OrdersUI {
 
     // Chỉnh sửa đơn hàng
     public static void editOrder() {
-        System.out.print("Nhap ma don hang can sua: ");
+        System.out.print("Nhap ma don hang ban muon chon: ");
         int orderID = scanner.nextInt();
         scanner.nextLine();
         Orders.edit(orderID); // Truy cập phương thức tĩnh
