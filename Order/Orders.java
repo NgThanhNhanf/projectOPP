@@ -161,7 +161,6 @@ public class Orders implements fileWork {
     }
 
     // Nạp chồng phương thức để hiển thị lịch sử đơn hàng của riêng khách hàng đó theo số điện thoại
-    //tinh da hinh
     public static void displayOrders(String customerPhone) {
         boolean found = false;
         System.out.println("┌───────────────────────────────────────────┐");
