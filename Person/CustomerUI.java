@@ -147,7 +147,7 @@ public class CustomerUI {
             System.out.println("└───────────────────────────────────────────┘"); 
         }
         System.out.println("┌───────────────────────────────────────────┐");
-        System.out.println("│1. Chon khach hang de thuc hien chuc nang   │");
+        System.out.println("│1. Chon khach hang de thuc hien chuc nang  │");
         System.out.println("│2. Thoat                                   │");
         System.out.println("└───────────────────────────────────────────┘");
         boolean complete = false;

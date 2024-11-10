@@ -13,9 +13,9 @@ public class Employees implements fileWork, SearchList{
     }
     @Override
     public void readFile() throws FileNotFoundException {
-        File myFile = new File("D:\\Study\\OOP\\projectOPP\\Person\\employeesData.txt");      
+        // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Person\\employeesData.txt");      
         // File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Person\\employeesData.txt");        
-        // File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\employeesData.txt");        
+        File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\employeesData.txt");        
         // File myFile = new File("C:\\OOP\\projectOPP\\Person\\employeesData.txt");        
         Scanner scf = new Scanner(myFile);
         while(scf.hasNextLine()) {
@@ -31,8 +31,8 @@ public class Employees implements fileWork, SearchList{
     }
     @Override
     public void writeFile() throws IOException {
-        FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Person\\employeesData.txt");
-        // FileWriter myFile = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Person\\employeesData.txt");
+        // FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Person\\employeesData.txt");
+        FileWriter myFile = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Person\\employeesData.txt");
         // FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\employeesData.txt");
         // FileWriter myFile = new FileWriter("C:\\OOP\\projectOPP\\Person\\employeesData.txt");
         for (Employee cur : listEmployee) {
