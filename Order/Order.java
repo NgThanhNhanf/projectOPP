@@ -10,10 +10,10 @@ import Model.Inventory;
 
 public class Order {
     private int orderID;
-    private LocalDate orderDate;
+    private  LocalDate orderDate;
     private Customer customer; 
     private List<OrderDetail> orderDetails;
-    private boolean orderStatus; // true: Đã thanh toán, false: Chưa thanh toán
+    private boolean orderStatus;  // true: Đã thanh toán, false: Chưa thanh toán
 
     public Order() {
         this.orderStatus = false; // Mặc định chưa thanh toán

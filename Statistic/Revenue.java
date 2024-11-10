@@ -61,7 +61,7 @@ public class Revenue {
         return getRevenueInRange(LocalDate.of(year, month, 1), LocalDate.of(year, month, dayEnd));
     }
     // lấy doanh thu hóa đơn trong 1 năm nào đó
-    public static int getRevenueInYearRange(int year) {
+    public static int    getRevenueInYearRange(int year) {
         return getRevenueInRange(LocalDate.of(year, 1, 1), LocalDate.of(year, 12, 31));
     }
 }
