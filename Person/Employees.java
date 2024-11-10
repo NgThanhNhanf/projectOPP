@@ -33,7 +33,6 @@ public class Employees implements fileWork {
         FileWriter myFile = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Person\\employeesData.txt");
         // FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\employeesData.txt");
         // FileWriter myFile = new FileWriter("C:\\OOP\\projectOPP\\Person\\employeesData.txt");
-        // FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\employeesData.txt");
         for (Employee cur : listEmployee) {
             myFile.write(cur.getName() + '|' + cur.getDob().getDay() + '/' + cur.getDob().getMonth() + '/' + cur.getDob().getYear() + '|' + cur.getAddress() + '|' + cur.getPhone() + '|' + cur.getID() + '|' + cur.getSalary() + '|' + cur.getJobDescription() + '\n');
         }

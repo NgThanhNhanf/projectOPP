@@ -131,12 +131,12 @@ public class Inventory implements fileWork {
     public void writeFile() throws IOException {
         // FileWriter myFileC = new FileWriter("D:\\Study\\OOP\\projectOPP\\Model\\clothingData.txt");
         // FileWriter myFileS = new FileWriter("D:\\Study\\OOP\\projectOPP\\Model\\shoesData.txt");
-        // FileWriter myFileC = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Model\\clothingData.txt");
-        // FileWriter myFileS = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Model\\shoesData.txt");
+        FileWriter myFileC = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Model\\clothingData.txt");
+        FileWriter myFileS = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Model\\shoesData.txt");
         // FileWriter myFileC = new FileWriter("C:\\OOP\\projectOPP\\Model\\clothingData.txt");
         // FileWriter myFileS = new FileWriter("C:\\OOP\\projectOPP\\Model\\shoesData.txt");
-        FileWriter myFileC = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\clothingData.txt");
-        FileWriter myFileS = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\shoesData.txt");
+        // FileWriter myFileC = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\clothingData.txt");
+        // FileWriter myFileS = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\shoesData.txt");
         for (Product cur : Inventory.getListInventory().keySet()) {
             if(cur instanceof Clothing) {
                 Clothing tmp = (Clothing)cur;
