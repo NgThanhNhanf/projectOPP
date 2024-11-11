@@ -20,9 +20,10 @@ public class Store {
     private static HashMap<Orders,Integer> statistic = new HashMap<>();
     private static List<Order> listOnDay = new ArrayList<>();
     private static List<Order> listOnMonth = new ArrayList<>();
+    private static List<Order> listOnYear = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
-    static DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    static DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     static SimpleDateFormat sformat = new SimpleDateFormat("MM-yyyy");
 
 
@@ -60,6 +61,7 @@ public class Store {
                 it.displayOrder();
                 totalInDay += it.calculateTotal();
             }
+            listOnDay.clear();
             System.out.println("Doanh thu trong ngay: " + dayOrder + " la: " + totalInDay + ".000 VND");
         }else {
             System.out.println("khong co don hang trong ngay");
@@ -111,10 +113,43 @@ public class Store {
                 it.displayOrder();
                 totalInMonth += it.calculateTotal();
             }
+            listOnMonth.clear();
             System.out.println("doanh thu trong thang " + month + " nam " + "la: " + totalInMonth + ".000 VND");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
         }else {
             System.out.println("khong co don hang trong thang");
             checkMonth = false;
+        }
+    }
+
+    public static void statisticInYear() {
+        System.out.println("nhap nam: ");
+        int year = sc.nextInt();
+        if(year < 2000) {
+            System.out.println("vui long nhap nam > 2000");
+        }
+
+        boolean checkYear = false;
+        for(Order order : Orders.getOrders()) {
+            String time = order.getOrderDate().toString();
+            String[] ye = time.split("-");
+            int y = Integer.parseInt(ye[0]);
+            if(y == year && order.isOrderStatus()) {
+                listOnYear.add(order);
+                checkYear = true;
+            }
+        }
+
+        int totalInYear = 0;
+        if(checkYear) {
+            for(Order it : listOnYear) {
+                it.displayOrder();
+                totalInYear += it.calculateTotal();
+            }
+            listOnYear.clear();
+            System.out.println("doanh thu trong nam " + year + " la: " + totalInYear);
+        }else {
+            System.out.println("khong co don hang nao trong nam " + year + ".000 VND");
+            checkYear = false;
         }
     }
     
@@ -141,6 +176,8 @@ public class Store {
                     statisticInMonth();
                     break;
                 case 3:
+                    sc.nextLine();
+                    statisticInYear();
                     break;
                 case 4:
                     System.out.println("thoat");
