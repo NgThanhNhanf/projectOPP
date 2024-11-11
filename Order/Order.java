@@ -65,8 +65,10 @@ public class Order {
     public void displayOrder() {
         System.out.println("┌───────────────────────────────────────────┐");
         System.out.printf("│                 #%06d                   │\n", orderID);
-        System.out.printf("│Ten khach hang: %-27s│\n", customer.getName());
-        System.out.printf("│So dien thoai:  %-27s│\n", customer.getPhone());
+        String customerName = (customer != null && customer.getName() != null) ? customer.getName() : "<N/A>";
+        String customerPhone = (customer != null && customer.getPhone() != null) ? customer.getPhone() : "<xxxxxxxxxx>";
+        System.out.printf("│Ten khach hang: %-27s│\n", customerName);
+        System.out.printf("│So dien thoai:  %-27s│\n", customerPhone);
         System.out.println("│Ngay in don:   " + orderDate + "                  │");
         System.out.printf("│Trang thai:   %-28s │\n", (orderStatus ? "<Da thanh toan>" : "<Chua thanh toan>"));
         System.out.println("├───────────────────────────────────────────┤");
@@ -76,7 +78,7 @@ public class Order {
                     displayFormat.formatPrice(detail.calculateSubTotal()));
         }
         System.out.println("├───────────────────────────────────────────┤");
-        System.out.printf("│Total:  %-24s%-7s VND│\n", ' ', displayFormat.formatPrice(calculateTotal()));
+        System.out.printf("│Total:  %-24s%-7s VND│\n", " ", displayFormat.formatPrice(calculateTotal()));
         System.out.println("└───────────────────────────────────────────┘");
     }
 

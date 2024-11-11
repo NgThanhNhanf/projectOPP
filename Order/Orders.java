@@ -162,66 +162,6 @@ public class Orders implements fileWork {
         }
     }
 
-    // Nạp chồng phương thức để hiển thị lịch sử đơn hàng của riêng khách hàng đó theo số điện thoại
-    public static void displayOrders(String customerPhone) {
-        boolean found = false;
-        System.out.println("┌───────────────────────────────────────────┐");
-        System.out.println("│              Lich su don hang             │");
-        System.out.println("├───────────────────────────────────────────┤");
-        for (Order order : orders) {
-            if (order.getCustomer().getPhone().equals(customerPhone) && order.isOrderStatus()) {
-                System.out.printf("│#%-6s    %-17s    %-7s VND│\n", displayFormat.formatID(order.getOrderID()),
-                        order.isOrderStatus() ? "<Da thanh toan>" : "<Chua thanh toan>",
-                        displayFormat.formatPrice(order.calculateTotal()));
-                found = true;
-            }
-        }
-        boolean completed = false;
-        while (!completed) {
-            System.out.println("├───────────────────────────────────────────┤");
-            System.out.println("│1. Xem chi tiet                            │");
-            System.out.println("│2. Quay lai                                │");
-            System.out.println("└───────────────────────────────────────────┘");
-            System.out.print("Chon 1 de quay lai: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
-            switch (choice) {
-                case 1:
-                    for (Order order : orders) {
-                        if (order.getCustomer().getPhone().equals(customerPhone) && order.isOrderStatus()) {
-                            order.displayOrder();
-                        }
-                    }
-                    boolean confirm = false;
-                    while (!confirm) {
-                        System.out.println("┌───────────────────────────────────────────┐");
-                        System.out.println("│1. Quay lai                                │");
-                        System.out.println("└───────────────────────────────────────────┘");
-                        System.out.print("Chon 1 de quay lai: ");
-                        int choice2 = scanner.nextInt();
-                        scanner.nextLine();
-                        switch (choice2) {
-                            case 1:
-                                return;
-                            default:
-                                System.out.println("Lua chon khong hop le.");
-                                break;
-                        }
-                    }
-                    return;
-                case 2:
-                    return;
-                default:
-                    System.out.println("Lua chon khong hop le.");
-                    break;
-            }
-        }
-        if (!found) {
-            System.out.println("│     Khong co don hang nao duoc tim thay   │");
-        }
-        System.out.println("└───────────────────────────────────────────┘");
-    }
-
     // Thêm đơn hàng
     public static void addOrder(Order order) {
         if (!order.getOrderDetails().isEmpty()) {
@@ -266,7 +206,8 @@ public class Orders implements fileWork {
     @Override
     public void readFile() throws FileNotFoundException {
         // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Order\\orderData.txt");
-        // File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
+        // File myFile = new
+        // File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
         File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Order\\orderData.txt");
         // File myFile = new File("C:\\OOP\\projectOPP\\Order\\orderData.txt");
         Scanner scf = new Scanner(myFile);
@@ -277,16 +218,24 @@ public class Orders implements fileWork {
             String customerName = arrstr[1];
             String customerPhone = arrstr[2];
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
-            LocalDate orderDate =LocalDate.parse(arrstr[3],formatter);
-
-            // Thêm biến đọc trạng thái đơn hàng
+            LocalDate orderDate = LocalDate.parse(arrstr[3], formatter);
             boolean orderStatus = Boolean.parseBoolean(arrstr[arrstr.length - 1]);
-            Customer customer = new Customer();
-            customer.setName(customerName);
-            customer.setPhone(customerPhone);
+
+            Customer customer = null;
+            if (!customerName.equals("null") && !customerPhone.equals("null")) {
+                customer = Customers.findCustomer(customerPhone);
+                if (customer == null) {
+                    customer = new Customer();
+                    customer.setName(customerName);
+                    customer.setPhone(customerPhone);
+                    Customers.addCustomer(customer);
+                }
+            }
+
             Order newOrder = new Order(orderID, customer);
             newOrder.setOrderDate(orderDate);
             newOrder.setOrderStatus(orderStatus);
+            if (customer != null) customer.addOrder(newOrder);
 
             for (int i = 4; i < arrstr.length - 1; i += 2) {
                 newOrder.addProduct(Inventory.getProductByID(Integer.parseInt(arrstr[i])),
@@ -313,11 +262,19 @@ public class Orders implements fileWork {
 
     @Override
     public void writeFile() throws IOException {
-        // FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Order\\orderData.txt");
-        // FileWriter myFile = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
+        // FileWriter myFile = new
+        // FileWriter("D:\\Study\\OOP\\projectOPP\\Order\\orderData.txt");
+        // FileWriter myFile = new
+        // FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
         FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Order\\orderData.txt");
         for (Order cur : orders) {
-            myFile.write(cur.getOrderID() + "|" + cur.getCustomer().getName() + "|" + cur.getCustomer().getPhone() + "|" + cur.getOrderDate());
+            myFile.write(cur.getOrderID() + "|");
+            if (cur.getCustomer() != null) {
+                myFile.write(cur.getCustomer().getName() + "|" + cur.getCustomer().getPhone());
+            } else {
+                myFile.write("null|null");
+            }
+            myFile.write("|" + cur.getOrderDate());
             for (OrderDetail d : cur.getOrderDetails()) {
                 myFile.write("|" + d.getProduct().getProductID() + "|" + d.getQuantity());
             }

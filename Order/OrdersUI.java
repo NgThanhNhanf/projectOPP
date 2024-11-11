@@ -27,14 +27,14 @@ public class OrdersUI {
 
         boolean tiepTuc;
         do {
-            // Hiển thị danh sách sản phẩm từ kho.
+
             Inventory.display();
 
             System.out.print("Nhap ma san pham: ");
             int productID = scanner.nextInt();
-            scanner.nextLine(); // Thêm dòng này để đọc bỏ ký tự xuống dòng
+            scanner.nextLine(); 
 
-            Product product = Inventory.getProductByID(productID); // Truy xuất trực tiếp bằng productID
+            Product product = Inventory.getProductByID(productID);
 
             if (product != null) {
                 System.out.print("Nhap so luong: ");
@@ -43,8 +43,8 @@ public class OrdersUI {
 
                 int stock = Inventory.getListInventory().getOrDefault(product, 0);
                 if (stock >= quantity) {
-                    newOrder.addProduct(product, quantity); // Thêm sản phẩm vào đơn hàng
-                    Inventory.deleteInventory(product, quantity); // Cập nhật số lượng hàng tồn kho
+                    newOrder.addProduct(product, quantity);
+                    Inventory.deleteInventory(product, quantity); 
                 } else {
                     System.out.println("So luong san pham trong kho khong du.");
                 }
@@ -137,7 +137,7 @@ public class OrdersUI {
                         double amountGiven = scanner.nextDouble();
                         scanner.nextLine();
                         if (amountGiven >= totalAmount) {
-                            double change = amountGiven - totalAmount; // -2s
+                            double change = amountGiven - totalAmount; 
                             System.out.println("┌───────────────────────────────────────────┐");
                             System.out.printf("│Tien khach dua:  %-15s%-7s VND│\n", ' ',displayFormat.formatPrice(amountGiven));
                             System.out.printf("│Tien du cua khach: %-13s%s VND│\n", ' ',displayFormat.formatPrice(change));
@@ -185,7 +185,7 @@ public class OrdersUI {
     public static void viewOrders() {
         boolean complete = false;
         while (!complete) {
-            Orders.displayOrders(); // Truy cập phương thức tĩnh
+            Orders.displayOrders();
             System.out.println("├───────────────────────────────────────────┤");
             System.out.println("│ 1. Xem don hang                           │");
             System.out.println("│ 2. Xoa don hang                           │");
@@ -223,7 +223,7 @@ public class OrdersUI {
         System.out.print("Nhap ma don hang ban muon chon: ");
         int orderID = scanner.nextInt();
         scanner.nextLine();
-        Orders.edit(orderID); // Truy cập phương thức tĩnh
+        Orders.edit(orderID); 
     }
 
     // Menu gốc

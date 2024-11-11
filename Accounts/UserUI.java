@@ -11,23 +11,22 @@ public class UserUI {
     static Scanner sc = new Scanner(System.in);
 
     public static void rootMenu() {
-        System.out.println("┌───────────────────────────────────────────┐");
-        System.out.println("│                 Tai khoan                 │");
-        System.out.println("├───────────────────────────────────────────┤");
-        System.out.println("│ 1. Danh sach tai khoan                    │");
-        System.out.println("│ 2. Tim kiem                               │");
-        System.out.println("│ 3. Thoat                                  │");
-        System.out.println("└───────────────────────────────────────────┘");
         boolean complete = false;
         int choose;
         while (!complete) {
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│                 Tai khoan                 │");
+            System.out.println("├───────────────────────────────────────────┤");
+            System.out.println("│ 1. Danh sach tai khoan                    │");
+            System.out.println("│ 2. Tim kiem                               │");
+            System.out.println("│ 3. Thoat                                  │");
+            System.out.println("└───────────────────────────────────────────┘");
             System.out.print("Nhap lua chon: ");
             choose = sc.nextInt();
             switch (choose) {
                 case 1:
                     System.out.println("Danh sach tai khoan.");
                     idUser = new ArrayList<>();
-                    Users.displayUsers();
                     controlListUsers();
                     break;
                 case 2:
@@ -35,6 +34,7 @@ public class UserUI {
                     searchUser();
                     break;
                 case 3:
+                    complete = true;
                     return;
                 default:
                     System.out.println("Lua chon khong hop le vui long nhap lai");
@@ -44,9 +44,9 @@ public class UserUI {
     }
 
     public static void controlUser(User choosedUser) {
-        choosedUser.displayUser();
         boolean complete = false;
         while (!complete) {
+            choosedUser.displayUser();
             System.out.println("┌───────────────────────────────────────────┐");
             System.out.println("│1. Sua thong tin tai khoan                 │");
             System.out.println("│2. Xoa tai khoan                           │");
@@ -74,6 +74,7 @@ public class UserUI {
                                 System.out.println("Xoa thanh cong!");
                                 break;
                             case 2:
+                                complete = true;
                                 System.out.println("Thoat");
                                 return;
                             default:
@@ -81,8 +82,10 @@ public class UserUI {
                                 break;
                         }
                     }
+                    complete = true;
                     break;
                 case 3:
+                    complete = true;
                     System.out.println("Thoat");
                     return;
                 default:
@@ -93,13 +96,14 @@ public class UserUI {
     }
 
     public static void controlListUsers() {
-        System.out.println("┌───────────────────────────────────────────┐");
-        System.out.println("│1. Chon tai khoan de thuc hien chuc nang   │");
-        System.out.println("│2. Tim kiem                                │");
-        System.out.println("│3. Thoat                                   │");
-        System.out.println("└───────────────────────────────────────────┘");
         boolean complete = false;
         while (!complete) {
+            Users.displayUsers();
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│1. Chon tai khoan de thuc hien chuc nang   │");
+            System.out.println("│2. Tim kiem                                │");
+            System.out.println("│3. Thoat                                   │");
+            System.out.println("└───────────────────────────────────────────┘");
             System.out.println("Nhap lua chon: ");
             int choose = sc.nextInt();
             switch (choose) {
@@ -114,6 +118,7 @@ public class UserUI {
                     searchUser();
                     break;
                 case 3:
+                    complete = true;
                     return;
                 default:
                     System.out.println("Lua chon khong hop le vui long nhap lai");
@@ -156,6 +161,7 @@ public class UserUI {
                     controlUser(arrUserS.get(--index));
                     break;
                 case 2:
+                    complete = true;
                     return;
                 default:
                     System.out.println("Lua chon khong hop le vui long nhap lai");

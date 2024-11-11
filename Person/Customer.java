@@ -4,12 +4,13 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 import Order.Order;
+import Order.displayFormat;
 
 public class Customer extends Person {
     private List<Order> orderHistory;
     Scanner sc = new Scanner(System.in);
 
-    public Customer(){
+    public Customer() {
         super();
         orderHistory = new ArrayList<>();
     }
@@ -25,6 +26,55 @@ public class Customer extends Person {
 
     public void addOrder(Order order) {
         orderHistory.add(order);
+    }
+
+    public void displayOrderHistory() {
+        if (orderHistory.isEmpty()) {
+            System.out.println("Khách hàng chưa có đơn hàng nào.");
+        } else {
+            boolean temp = false;
+            while (!temp) {
+                System.out.println("┌───────────────────────────────────────────┐");
+                System.out.println("│              Lich su don hang             │");
+                System.out.println("├───────────────────────────────────────────┤");
+                for (Order order : orderHistory) {
+                    System.out.printf("│#%06d%-6s %-17s %-7s VND│\n", order.getOrderID(), ' ', "<Da thanh toán>",displayFormat.formatPrice(order.calculateTotal()));
+                }
+                System.out.println("├───────────────────────────────────────────┤");
+                System.out.println("│1. Xem chi tiet                            │");
+                System.out.println("│2. Quay lai                                │");
+                System.out.println("└───────────────────────────────────────────┘");
+                System.out.print("Chon 1 de quay lai: ");
+                int choice = sc.nextInt();
+                sc.nextLine();
+                switch (choice) {
+                    case 1:
+                        for (Order order : orderHistory) order.displayOrder();
+                        boolean confirm = false;
+                        while (!confirm) {
+                            System.out.println("┌───────────────────────────────────────────┐");
+                            System.out.println("│1. Quay lai                                │");
+                            System.out.println("└───────────────────────────────────────────┘");
+                            System.out.print("Chon 1 de quay lai: ");
+                            int choice2 = sc.nextInt();
+                            sc.nextLine();
+                            switch (choice2) {
+                                case 1:
+                                    return;
+                                default:
+                                    System.out.println("Lua chon khong hop le.");
+                                    break;
+                            }
+                        }
+                        return;
+                    case 2:
+                        return;
+                    default:
+                        System.out.println("Lua chon khong hop le.");
+                        break;
+                }
+            }
+        }
     }
 
     @Override
@@ -45,7 +95,7 @@ public class Customer extends Person {
     @Override
     public void editPerson() {
         boolean complete = false;
-        while(!complete) {
+        while (!complete) {
             System.out.println("┌───────────────────────────────────────────┐");
             System.out.println("│        Chon thong tin can chinh sua       │");
             System.out.println("├───────────────────────────────────────────┤");
@@ -60,7 +110,7 @@ public class Customer extends Person {
             int choose = sc.nextInt();
             sc.nextLine();
             switch (choose) {
-                case 1: 
+                case 1:
                     editName();
                     break;
                 case 2:

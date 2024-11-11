@@ -14,11 +14,11 @@ public class CustomerUI {
     static Scanner sc = new Scanner(System.in);
 
     public static void controlCustomer(Customer choosedCustomer) {
-        System.out.println("┌───────────────────────────────────────────┐");
-        System.out.println("│             Thong tin ca nhan             │");
-        System.out.println("├───────────────────────────────────────────┤");
         boolean complete = false;
         while (!complete) {
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│             Thong tin ca nhan             │");
+            System.out.println("├───────────────────────────────────────────┤");
             choosedCustomer.displayPerson();
             System.out.println("┌───────────────────────────────────────────┐");
             System.out.println("│1. Sua thong tin                           │");
@@ -34,7 +34,7 @@ public class CustomerUI {
                     choosedCustomer.editPerson();
                     break;
                 case 2:
-                    Orders.displayOrders(choosedCustomer.getPhone());
+                    choosedCustomer.displayOrderHistory();
                     break;
                 case 3:
                     System.out.println("Ban co chac chan muon xoa khach hang nay?");
@@ -51,6 +51,8 @@ public class CustomerUI {
                             case 1:
                                 System.out.println("Xoa thanh cong!");
                                 Customers.deleteCustomer(choosedCustomer.getPhone());
+                                tmp = true;
+                                complete = true;
                                 break;
                             case 2:
                                 tmp = true;
@@ -70,6 +72,7 @@ public class CustomerUI {
             }
         }
     }
+
     public static void mainMenu() {
         boolean complete = false;
         while (!complete) {
@@ -86,8 +89,6 @@ public class CustomerUI {
             sc.nextLine();
             switch (choose) {
                 case 1:
-                    System.out.println("Danh sach nhan vien");
-                    Customers.viewCustomer();
                     controlListCustomer();
                     break;
                 case 2:
@@ -102,13 +103,17 @@ public class CustomerUI {
             }
         }
     }
+
     public static void controlListCustomer() {
-        System.out.println("┌───────────────────────────────────────────┐");
-        System.out.println("│1. Chon khach hang de thuc hien chuc nang  │");
-        System.out.println("│2. Thoat                                   │");
-        System.out.println("└───────────────────────────────────────────┘");
         boolean complete = false;
         while (!complete) {
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│            Danh sach khach hang           │");
+            Customers.viewCustomer();
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│1. Chon khach hang de thuc hien chuc nang  │");
+            System.out.println("│2. Thoat                                   │");
+            System.out.println("└───────────────────────────────────────────┘");
             System.out.print("Nhap lua chon: ");
             int choose = sc.nextInt();
             switch (choose) {
@@ -120,6 +125,7 @@ public class CustomerUI {
                     controlCustomer(choosedCustomer);
                     break;
                 case 2:
+                    complete = true;
                     return;
                 default:
                     System.out.println("Lua chon khong hop le vui long nhap lai");
@@ -127,6 +133,7 @@ public class CustomerUI {
             }
         }
     }
+
     public static void searchCustomer() {
         System.err.print("Tim kiem khach hang: ");
         String search = sc.nextLine();
@@ -139,10 +146,10 @@ public class CustomerUI {
         }
         for (int i = 0; i < arrCustomerS.size(); ++i) {
             System.out.println("┌───────────────────────────────────────────┐");
-            System.out.printf("│ STT            : %-24s │\n", i+1);
+            System.out.printf("│ STT            : %-24s │\n", i + 1);
             System.out.printf("│ SDT            : %-24s │\n", arrCustomerS.get(i).getPhone());
             System.out.printf("│ Ten            : %-24s │\n", arrCustomerS.get(i).getName());
-            System.out.println("└───────────────────────────────────────────┘"); 
+            System.out.println("└───────────────────────────────────────────┘");
         }
         System.out.println("┌───────────────────────────────────────────┐");
         System.out.println("│1. Chon khach hang de thuc hien chuc nang  │");
