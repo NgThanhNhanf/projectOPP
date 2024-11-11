@@ -37,8 +37,8 @@ public class Customers implements fileWork, SearchList {
     @Override
     public void readFile() throws FileNotFoundException {
         // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Person\\customersData.txt");
-        // File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Person\\customersData.txt");
-        File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\customersData.txt");
+        File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Person\\customersData.txt");
+        // File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Person\\customersData.txt");
         // File myFile = new File("C:\\OOP\\projectOPP\\Person\\customersData.txt");
         Scanner scf = new Scanner(myFile);
         while(scf.hasNextLine()) {
