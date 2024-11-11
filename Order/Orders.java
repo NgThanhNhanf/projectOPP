@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -274,16 +276,19 @@ public class Orders implements fileWork {
             int orderID = Integer.parseInt(arrstr[0]);
             String customerName = arrstr[1];
             String customerPhone = arrstr[2];
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
+            LocalDate orderDate =LocalDate.parse(arrstr[3],formatter);
+
             // Thêm biến đọc trạng thái đơn hàng
             boolean orderStatus = Boolean.parseBoolean(arrstr[arrstr.length - 1]);
             Customer customer = new Customer();
             customer.setName(customerName);
             customer.setPhone(customerPhone);
             Order newOrder = new Order(orderID, customer);
-            // Thêm trạng thái đơn hàng vào
+            newOrder.setOrderDate(orderDate);
             newOrder.setOrderStatus(orderStatus);
 
-            for (int i = 3; i < arrstr.length - 1; i += 2) {
+            for (int i = 4; i < arrstr.length - 1; i += 2) {
                 newOrder.addProduct(Inventory.getProductByID(Integer.parseInt(arrstr[i])),
                         Integer.parseInt(arrstr[i + 1]));
             }
@@ -312,7 +317,7 @@ public class Orders implements fileWork {
         // FileWriter myFile = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
         FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Order\\orderData.txt");
         for (Order cur : orders) {
-            myFile.write(cur.getOrderID() + "|" + cur.getCustomer().getName() + "|" + cur.getCustomer().getPhone());
+            myFile.write(cur.getOrderID() + "|" + cur.getCustomer().getName() + "|" + cur.getCustomer().getPhone() + "|" + cur.getOrderDate());
             for (OrderDetail d : cur.getOrderDetails()) {
                 myFile.write("|" + d.getProduct().getProductID() + "|" + d.getQuantity());
             }

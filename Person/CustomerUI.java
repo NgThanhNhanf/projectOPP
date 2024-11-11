@@ -17,9 +17,9 @@ public class CustomerUI {
         System.out.println("┌───────────────────────────────────────────┐");
         System.out.println("│             Thong tin ca nhan             │");
         System.out.println("├───────────────────────────────────────────┤");
-        choosedCustomer.displayPerson();
         boolean complete = false;
         while (!complete) {
+            choosedCustomer.displayPerson();
             System.out.println("┌───────────────────────────────────────────┐");
             System.out.println("│1. Sua thong tin                           │");
             System.out.println("│2. Xem lich su don hang                    │");
@@ -91,7 +91,6 @@ public class CustomerUI {
                     controlListCustomer();
                     break;
                 case 2:
-                    System.out.println("Tim kiem");
                     searchCustomer();
                     break;
                 case 3:
@@ -129,7 +128,6 @@ public class CustomerUI {
         }
     }
     public static void searchCustomer() {
-        sc.nextLine();
         System.err.print("Tim kiem khach hang: ");
         String search = sc.nextLine();
         Customers searcher = new Customers();
@@ -142,7 +140,7 @@ public class CustomerUI {
         for (int i = 0; i < arrCustomerS.size(); ++i) {
             System.out.println("┌───────────────────────────────────────────┐");
             System.out.printf("│ STT            : %-24s │\n", i+1);
-            System.out.printf("│ SDT            : %-25s │\n", arrCustomerS.get(i).getPhone());
+            System.out.printf("│ SDT            : %-24s │\n", arrCustomerS.get(i).getPhone());
             System.out.printf("│ Ten            : %-24s │\n", arrCustomerS.get(i).getName());
             System.out.println("└───────────────────────────────────────────┘"); 
         }

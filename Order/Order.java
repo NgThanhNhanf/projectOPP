@@ -10,10 +10,10 @@ import Model.Inventory;
 
 public class Order {
     private int orderID;
-    private  LocalDate orderDate;
-    private Customer customer; 
+    private LocalDate orderDate;
+    private Customer customer;
     private List<OrderDetail> orderDetails;
-    private boolean orderStatus;  // true: Đã thanh toán, false: Chưa thanh toán
+    private boolean orderStatus; // true: Đã thanh toán, false: Chưa thanh toán
 
     public Order() {
         this.orderStatus = false; // Mặc định chưa thanh toán
@@ -21,7 +21,7 @@ public class Order {
 
     public Order(int orderID, Customer customer) {
         this.orderID = orderID;
-        this.orderDate = LocalDate.now(); 
+        this.orderDate = LocalDate.now();
         this.customer = customer;
         this.orderDetails = new ArrayList<>();
         this.orderStatus = false; // Mặc định chưa thanh toán
@@ -53,7 +53,7 @@ public class Order {
         orderDetails.removeIf(detail -> detail.getProduct().getProductID() == product.getProductID());
     }
 
-        public void returnItemsToInventory() {
+    public void returnItemsToInventory() {
         for (OrderDetail detail : this.orderDetails) {
             Product product = detail.getProduct();
             int quantity = detail.getQuantity();
@@ -65,16 +65,18 @@ public class Order {
     public void displayOrder() {
         System.out.println("┌───────────────────────────────────────────┐");
         System.out.printf("│                 #%06d                   │\n", orderID);
-        System.out.printf("│Ten khach hang: %-27s│\n",customer.getName());
-        System.out.printf("│So dien thoai:  %-27s│\n",customer.getPhone());
+        System.out.printf("│Ten khach hang: %-27s│\n", customer.getName());
+        System.out.printf("│So dien thoai:  %-27s│\n", customer.getPhone());
         System.out.println("│Ngay in don:   " + orderDate + "                  │");
-        System.out.printf("│Trang thai:   %-28s │\n",(orderStatus ? "<Da thanh toan>" : "<Chua thanh toan>"));
+        System.out.printf("│Trang thai:   %-28s │\n", (orderStatus ? "<Da thanh toan>" : "<Chua thanh toan>"));
         System.out.println("├───────────────────────────────────────────┤");
         for (OrderDetail detail : orderDetails) {
-            System.out.printf("│#%03d - %s [x%02d]:%-3s %s VND│\n",detail.getProduct().getProductID(),  detail.getProduct().getProductName(), detail.getQuantity(), ' ', displayFormat.formatPrice(detail.calculateSubTotal()));
+            System.out.printf("│#%03d - %s [x%02d]:%-3s %s VND│\n", detail.getProduct().getProductID(),
+                    detail.getProduct().getProductName(), detail.getQuantity(), ' ',
+                    displayFormat.formatPrice(detail.calculateSubTotal()));
         }
         System.out.println("├───────────────────────────────────────────┤");
-        System.out.printf("│Total:  %-24s%-7s VND│\n", ' ',displayFormat.formatPrice(calculateTotal()));
+        System.out.printf("│Total:  %-24s%-7s VND│\n", ' ', displayFormat.formatPrice(calculateTotal()));
         System.out.println("└───────────────────────────────────────────┘");
     }
 
@@ -109,6 +111,10 @@ public class Order {
 
     public boolean isOrderStatus() {
         return orderStatus;
+    }
+
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
     }
 
     public void setOrderStatus(boolean orderStatus) {
