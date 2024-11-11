@@ -1,12 +1,13 @@
 package Accounts;
 import java.util.*;
 import File.fileWork;
+import Person.Customer;
 import Person.Employee;
 import Person.EmployeeUI;
-
+import Search.SearchList;
 import java.io.*;
 
-public class Users implements fileWork {
+public class Users implements fileWork, SearchList{
     private static List<User> users = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
     public Users(){}
@@ -108,5 +109,13 @@ public class Users implements fileWork {
             if (cur.getUserId().equals(userId)) return cur;
         }
         return null;
+    }
+    @Override
+    public List<String> searching(String id) {
+        List<String> arr = new ArrayList<>();
+        for (User cur : users) {
+            if (cur.getUserName().contains(id) || cur.getUserId().contains(id)) arr.add(cur.getUserId());
+        }
+        return arr;
     }
 }

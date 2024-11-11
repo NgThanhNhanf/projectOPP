@@ -6,19 +6,20 @@ import Order.Orders;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class CustomerUI {
     static List<String> phoneInList;
     static Scanner sc = new Scanner(System.in);
 
-    public static void controlCustomer(int index) {
-        Customer choosedCustomer = Customers.findCustomer(phoneInList.get(--index));
+    public static void controlCustomer(Customer choosedCustomer) {
         System.out.println("┌───────────────────────────────────────────┐");
         System.out.println("│             Thong tin ca nhan             │");
         System.out.println("├───────────────────────────────────────────┤");
-        choosedCustomer.displayPerson();
         boolean complete = false;
         while (!complete) {
+            choosedCustomer.displayPerson();
             System.out.println("┌───────────────────────────────────────────┐");
             System.out.println("│1. Sua thong tin                           │");
             System.out.println("│2. Xem lich su don hang                    │");
@@ -69,33 +70,99 @@ public class CustomerUI {
             }
         }
     }
-
     public static void mainMenu() {
         boolean complete = false;
         while (!complete) {
             CustomerUI.phoneInList = new ArrayList<>();
             System.out.println("┌───────────────────────────────────────────┐");
-            System.out.println("│                 Khach hang                │");
-            Customers.viewCustomer();
-            System.out.println("│1. Chon khach hang                         │");
-            System.out.println("│2. Thoat                                   │");
+            System.out.println("│                 Khach Hang                │");
+            System.out.println("├───────────────────────────────────────────┤");
+            System.out.println("│1. Danh sach khach hang                    │");
+            System.out.println("│2. Tim kiem                                │");
+            System.out.println("│3. Thoat                                   │");
             System.out.println("└───────────────────────────────────────────┘");
             System.out.print("Nhap lua chon: ");
             int choose = sc.nextInt();
             sc.nextLine();
             switch (choose) {
                 case 1:
-                    System.out.print("Chon khach hang\nNhap STT: ");
-                    int index = sc.nextInt();
-                    sc.nextLine();
-                    controlCustomer(index);
+                    System.out.println("Danh sach nhan vien");
+                    Customers.viewCustomer();
+                    controlListCustomer();
                     break;
                 case 2:
-                    System.out.println("Thoat");
-                    complete = true;
+                    searchCustomer();
                     break;
+                case 3:
+                    System.out.println("Thoat");
+                    return;
                 default:
                     System.out.println("Lua chon khong hop le, vui long nhap lai.");
+                    break;
+            }
+        }
+    }
+    public static void controlListCustomer() {
+        System.out.println("┌───────────────────────────────────────────┐");
+        System.out.println("│1. Chon khach hang de thuc hien chuc nang  │");
+        System.out.println("│2. Thoat                                   │");
+        System.out.println("└───────────────────────────────────────────┘");
+        boolean complete = false;
+        while (!complete) {
+            System.out.print("Nhap lua chon: ");
+            int choose = sc.nextInt();
+            switch (choose) {
+                case 1:
+                    System.out.println("Nhap STT:");
+                    int index = sc.nextInt();
+                    sc.nextLine();
+                    Customer choosedCustomer = Customers.findCustomer(phoneInList.get(index - 1));
+                    controlCustomer(choosedCustomer);
+                    break;
+                case 2:
+                    return;
+                default:
+                    System.out.println("Lua chon khong hop le vui long nhap lai");
+                    break;
+            }
+        }
+    }
+    public static void searchCustomer() {
+        System.err.print("Tim kiem khach hang: ");
+        String search = sc.nextLine();
+        Customers searcher = new Customers();
+        List<String> arrID = searcher.searching(search);
+        Collections.sort(arrID, Comparator.comparingInt(String::length));
+        List<Customer> arrCustomerS = new ArrayList<>();
+        for (String cur : arrID) {
+            arrCustomerS.add(Customers.findCustomer(cur));
+        }
+        for (int i = 0; i < arrCustomerS.size(); ++i) {
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.printf("│ STT            : %-24s │\n", i+1);
+            System.out.printf("│ SDT            : %-24s │\n", arrCustomerS.get(i).getPhone());
+            System.out.printf("│ Ten            : %-24s │\n", arrCustomerS.get(i).getName());
+            System.out.println("└───────────────────────────────────────────┘"); 
+        }
+        System.out.println("┌───────────────────────────────────────────┐");
+        System.out.println("│1. Chon khach hang de thuc hien chuc nang  │");
+        System.out.println("│2. Thoat                                   │");
+        System.out.println("└───────────────────────────────────────────┘");
+        boolean complete = false;
+        while (!complete) {
+            System.out.print("Nhap lua chon: ");
+            int choose = sc.nextInt();
+            switch (choose) {
+                case 1:
+                    System.out.println("Nhap STT:");
+                    int index = sc.nextInt();
+                    sc.nextLine();
+                    controlCustomer(arrCustomerS.get(--index));
+                    break;
+                case 2:
+                    return;
+                default:
+                    System.out.println("Lua chon khong hop le vui long nhap lai");
                     break;
             }
         }

@@ -2,9 +2,11 @@ package Person;
 
 import java.util.*;
 import File.fileWork;
+import Search.SearchList;
+
 import java.io.*;
 
-public class Employees implements fileWork {
+public class Employees implements fileWork, SearchList{
     private static List<Employee> listEmployee = new ArrayList<>();
     public static void addEmployee(Employee e) {
         listEmployee.add(e);
@@ -80,5 +82,19 @@ public class Employees implements fileWork {
                 return;
             }
         }
+    }
+    public static Employee getEmployee(String id) {
+        for (Employee cur : listEmployee) {
+            if (cur.getID().equals(id)) return cur;
+        }
+        return null;
+    }
+    @Override
+    public List<String> searching(String id) {
+        List<String> arr = new ArrayList<>();
+        for (Employee cur : listEmployee) {
+            if (cur.getID().contains(id) || cur.getName().contains(id)) arr.add(cur.getID());
+        }
+        return arr;
     }
 }

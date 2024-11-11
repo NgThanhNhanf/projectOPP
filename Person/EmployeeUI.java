@@ -1,14 +1,51 @@
 package Person;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
 public class EmployeeUI {
     static List<String> phoneInList; 
     static Scanner sc = new Scanner(System.in);
-    public static void controlEmployees(int index) {
-        Employee choosedEmployee = Employees.findEmployee(phoneInList.get(--index));
+    public static void mainMenu() {
+        boolean complete = false;
+        while(!complete) {
+            EmployeeUI.phoneInList = new ArrayList<>();
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│                 Nhan Vien                 │");
+            System.out.println("├───────────────────────────────────────────┤");
+            System.out.println("│1. Danh sach nhan vien                     │");
+            System.out.println("│2. Them nhan vien                          │");
+            System.out.println("│3. Tim kiem                                │");
+            System.out.println("│4. Thoat                                   │");
+            System.out.println("└───────────────────────────────────────────┘");
+            int choose = sc.nextInt();
+            switch (choose) {
+                case 1:
+                    System.out.println("Danh sach nhan vien");
+                    Employees.viewEmployee();
+                    controlListEmployees();
+                    break;
+                case 2:
+                    System.out.println("Them nhan vien");
+                    Employee newEmployee = new Employee();
+                    newEmployee.enterPerson();
+                    break;
+                case 3:
+                    System.out.println("Tim kiem");
+                    searchEmployee();
+                    break;
+                case 4:
+                    System.out.println("Thoat");
+                    return;
+                default:
+                    break;
+            }
+        }
+    }
+    public static void controlEmployee(Employee choosedEmployee) {
         System.out.println("┌───────────────────────────────────────────┐");
         System.out.println("│             Thông tin cá nhân             │");
         System.out.println("├───────────────────────────────────────────┤");
@@ -44,8 +81,7 @@ public class EmployeeUI {
                                 break;
                             case 2:
                                 System.out.println("Thoat");
-                                tmp = true;
-                                break;
+                                return;
                             default:
                                 System.out.println("Lua chon khong hop le vui long nhap lai");
                                 break;
@@ -61,37 +97,68 @@ public class EmployeeUI {
             }
         }
     }
-    public static void mainMenu() {
+    public static void controlListEmployees() {
+        System.out.println("┌───────────────────────────────────────────┐");
+        System.out.println("│1. Chon nhan vien de thuc hien chuc nang   │");
+        System.out.println("│2. Thoat                                   │");
+        System.out.println("└───────────────────────────────────────────┘");
         boolean complete = false;
-        while(!complete) {
-            EmployeeUI.phoneInList = new ArrayList<>();
-            System.out.println("┌───────────────────────────────────────────┐");
-            System.out.println("│                 Nhan Vien                 │");
-            Employees.viewEmployee();
-            System.out.println("┌───────────────────────────────────────────┐");
-            System.out.println("│1. Chon nhan vien                          │");
-            System.out.println("│2. Them nhan vien                          │");
-            System.out.println("│3. Thoat                                   │");
-            System.out.println("└───────────────────────────────────────────┘");
+        while (!complete) {
+            System.out.print("Nhap lua chon: ");
             int choose = sc.nextInt();
             switch (choose) {
                 case 1:
-                    System.out.println("Chon nhan vien");
                     System.out.println("Nhap STT:");
                     int index = sc.nextInt();
                     sc.nextLine();
-                    controlEmployees(index);
+                    Employee choosedEmployee = Employees.findEmployee(phoneInList.get(--index));
+                    controlEmployee(choosedEmployee);
                     break;
                 case 2:
-                    System.out.println("Them nhan vien");
-                    Employee newEmployee = new Employee();
-                    newEmployee.enterPerson();
-                    break;
-                case 3:
-                    System.out.println("Thoat");
-                    complete = true;
-                    break;
+                    return;
                 default:
+                    System.out.println("Lua chon khong hop le vui long nhap lai");
+                    break;
+            }
+        }
+    }
+    public static void searchEmployee() {
+        sc.nextLine();
+        System.out.print("Tim kiem nhan vien: ");
+        String search = sc.nextLine();
+        Employees searcher = new Employees();
+        List<String> arrID = searcher.searching(search);
+        Collections.sort(arrID, Comparator.comparingInt(String::length));
+        List<Employee> arrEmployeeS = new ArrayList<>();
+        for (String cur : arrID) {
+            arrEmployeeS.add(Employees.getEmployee(cur));
+        }
+        for (int i = 0; i < arrEmployeeS.size(); ++i) {
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.printf("│ STT            : %-24s │\n", i+1);
+            System.out.printf("│ ID            : %-25s │\n", arrEmployeeS.get(i).getID());
+            System.out.printf("│ Ten            : %-24s │\n", arrEmployeeS.get(i).getName());
+            System.out.println("└───────────────────────────────────────────┘"); 
+        }
+        System.out.println("┌───────────────────────────────────────────┐");
+        System.out.println("│1. Chon nhan vien de thuc hien chuc nang   │");
+        System.out.println("│2. Thoat                                   │");
+        System.out.println("└───────────────────────────────────────────┘");
+        boolean complete = false;
+        while (!complete) {
+            System.out.print("Nhap lua chon: ");
+            int choose = sc.nextInt();
+            switch (choose) {
+                case 1:
+                    System.out.println("Nhap STT:");
+                    int index = sc.nextInt();
+                    sc.nextLine();
+                    controlEmployee(arrEmployeeS.get(--index));
+                    break;
+                case 2:
+                    return;
+                default:
+                    System.out.println("Lua chon khong hop le vui long nhap lai");
                     break;
             }
         }

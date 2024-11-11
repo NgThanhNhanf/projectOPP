@@ -4,8 +4,9 @@ package Person;
 import java.io.*;
 import java.util.*;
 import File.fileWork;
+import Search.SearchList;
 
-public class Customers implements fileWork {
+public class Customers implements fileWork, SearchList {
     private static List<Customer> listCustomer = new ArrayList<>();
     public static boolean isPhoneExist(String phone) {
         for (Customer c : listCustomer) {
@@ -88,7 +89,6 @@ public class Customers implements fileWork {
             }
         }
     }
-
     public static Customer findCustomer(String phone) { 
         for (Customer cur : listCustomer) {
             if (cur.getPhone().equals(phone)) {
@@ -97,8 +97,15 @@ public class Customers implements fileWork {
         }
         return null;
     }
-
     public static void deleteCustomer(String phone) {
         listCustomer.removeIf(c -> c.getPhone().equals(phone));
+    }
+    @Override
+    public List<String> searching(String id) {
+        List<String> arr = new ArrayList<>();
+        for (Customer cur : listCustomer) {
+            if (cur.getPhone().contains(id) || cur.getName().contains(id)) arr.add(cur.getPhone());
+        }
+        return arr;
     }
 }
