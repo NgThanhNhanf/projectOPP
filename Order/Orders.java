@@ -275,8 +275,7 @@ public class Orders implements fileWork {
             for (OrderDetail d : cur.getOrderDetails()) {
                 myFile.write("|" + d.getProduct().getProductID() + "|" + d.getQuantity());
             }
-            myFile.write("|" + cur.isOrderStatus()); // Ghi thêm trạng thái vào file
-            myFile.write('\n');
+            myFile.write("|" + cur.isOrderStatus()); 
         }
         myFile.close();
     }
