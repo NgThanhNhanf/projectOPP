@@ -206,8 +206,7 @@ public class Orders implements fileWork {
     @Override
     public void readFile() throws FileNotFoundException {
         // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Order\\orderData.txt");
-        // File myFile = new
-        // File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
+        // File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
         File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Order\\orderData.txt");
         // File myFile = new File("C:\\OOP\\projectOPP\\Order\\orderData.txt");
         Scanner scf = new Scanner(myFile);
@@ -262,9 +261,7 @@ public class Orders implements fileWork {
 
     @Override
     public void writeFile() throws IOException {
-        // FileWriter myFile = new
         // FileWriter("D:\\Study\\OOP\\projectOPP\\Order\\orderData.txt");
-        // FileWriter myFile = new
         // FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
         FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Order\\orderData.txt");
         for (Order cur : orders) {
