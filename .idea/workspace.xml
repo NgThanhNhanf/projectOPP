@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01fe36bb-62e7-4719-ab34-49af2f893ae9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Accounts/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/Accounts/Users.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Accessory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Accessory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Clothing.java" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Clothing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/ProductUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/Model/ProductUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/Shoes.java" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Shoes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +40,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "hanh",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }

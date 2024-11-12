@@ -42,7 +42,7 @@ public class Store {
         String dayOrder;
         int totalInDay = 0;
         do {
-            System.out.print("nhap ngay/thang/nam: ");
+            System.out.print("nhap ngay-thang-nam: ");
              dayOrder = sc.nextLine();
             if(!isValid(dayOrder)){
             System.out.println("du lieu ban nhap khong hop le!Vui long nhap lai");
