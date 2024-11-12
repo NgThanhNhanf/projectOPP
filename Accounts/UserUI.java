@@ -46,6 +46,9 @@ public class UserUI {
     public static void controlUser(User choosedUser) {
         boolean complete = false;
         while (!complete) {
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│              Thong tin ca nhan            │");
+            System.out.println("├───────────────────────────────────────────┤");
             choosedUser.displayUser();
             System.out.println("┌───────────────────────────────────────────┐");
             System.out.println("│1. Sua thong tin tai khoan                 │");
@@ -59,22 +62,23 @@ public class UserUI {
                     choosedUser.editUser();
                     break;
                 case 2:
-                    System.out.println("Ban co chac chan muon xoa nhan vien nay?");
-                    System.out.println("┌───────────────────────────────────────────┐");
-                    System.out.println("│1. Xoa                                     │");
-                    System.out.println("│2. Thoat                                   │");
-                    System.out.println("└───────────────────────────────────────────┘");
                     boolean tmp = false;
                     while (!tmp) {
+                        System.out.println("Ban co chac chan muon xoa nhan vien nay?");
+                        System.out.println("┌───────────────────────────────────────────┐");
+                        System.out.println("│1. Xoa                                     │");
+                        System.out.println("│2. Thoat                                   │");
+                        System.out.println("└───────────────────────────────────────────┘");
                         System.out.print("Nhap lua chon: ");
                         int confirm = sc.nextInt();
                         switch (confirm) {
                             case 1:
                                 Users.removeUser(choosedUser.getUserId());
                                 System.out.println("Xoa thanh cong!");
+                                tmp = true;
                                 break;
                             case 2:
-                                complete = true;
+                                tmp = true;
                                 System.out.println("Thoat");
                                 return;
                             default:

@@ -53,6 +53,7 @@ public class Order {
         orderDetails.removeIf(detail -> detail.getProduct().getProductID() == product.getProductID());
     }
 
+    // Khôi phục lại đơn hàng cho iventory khi đơn hàng bị xóa
     public void returnItemsToInventory() {
         for (OrderDetail detail : this.orderDetails) {
             Product product = detail.getProduct();
@@ -61,8 +62,13 @@ public class Order {
         }
     }
 
-    // Hiển thị đơn hàng
     public void displayOrder() {
+        System.out.printf("│#%-6s   %-17s %11s VND│\n", displayFormat.formatID(getOrderID()),
+            isOrderStatus() ? "<Da thanh toan>" : "<Chua thanh toan>",
+                displayFormat.formatPrice(calculateTotal()));
+    }
+    // Hiển thị chi tiết đơn hàng
+    public void displayOrderDetails() {
         System.out.println("┌───────────────────────────────────────────┐");
         System.out.printf("│                 #%06d                   │\n", orderID);
         String customerName = (customer != null && customer.getName() != null) ? customer.getName() : "<N/A>";
@@ -73,12 +79,12 @@ public class Order {
         System.out.printf("│Trang thai:   %-28s │\n", (orderStatus ? "<Da thanh toan>" : "<Chua thanh toan>"));
         System.out.println("├───────────────────────────────────────────┤");
         for (OrderDetail detail : orderDetails) {
-            System.out.printf("│#%03d - %s [x%02d]:%-3s %s VND│\n", detail.getProduct().getProductID(),
-                    detail.getProduct().getProductName(), detail.getQuantity(), ' ',
+            System.out.printf("│#%03d-%-20s[x%02d]: %7s VND│\n", detail.getProduct().getProductID(),
+                    detail.getProduct().getProductName(), detail.getQuantity(),
                     displayFormat.formatPrice(detail.calculateSubTotal()));
         }
         System.out.println("├───────────────────────────────────────────┤");
-        System.out.printf("│Total:  %-24s%-7s VND│\n", " ", displayFormat.formatPrice(calculateTotal()));
+        System.out.printf("│Total:  %31s VND│\n", displayFormat.formatPrice(calculateTotal()));
         System.out.println("└───────────────────────────────────────────┘");
     }
 

@@ -33,7 +33,7 @@ public class Orders implements fileWork {
                 if (order.isOrderStatus()) {
                     boolean completed = false;
                     while (!completed) {
-                        order.displayOrder();
+                        order.displayOrderDetails();
                         System.out.println("┌───────────────────────────────────────────┐");
                         System.out.println("│1. Quay lai                                │");
                         System.out.println("└───────────────────────────────────────────┘");
@@ -51,7 +51,7 @@ public class Orders implements fileWork {
                 }
                 boolean complete = false;
                 while (!complete) {
-                    order.displayOrder();
+                    order.displayOrderDetails();
                     System.out.println("│1. Them San pham                           │");
                     System.out.println("│2. Xoa san pham                            │");
                     System.out.println("│3. Xac nhan thanh toan                     │");
@@ -155,11 +155,7 @@ public class Orders implements fileWork {
         System.out.println("│                 ORDER LIST                │");
         System.out.println("├───────────────────────────────────────────┤");
         System.out.println("│  #ID            status            Total   │");
-        for (Order order : orders) {
-            System.out.printf("│#%-6s    %-17s    %-7s VND│\n", displayFormat.formatID(order.getOrderID()),
-                    order.isOrderStatus() ? "<Da thanh toan>" : "<Chua thanh toan>",
-                    displayFormat.formatPrice(order.calculateTotal()));
-        }
+        for (Order order : orders) order.displayOrder();
     }
 
     // Thêm đơn hàng
@@ -206,7 +202,7 @@ public class Orders implements fileWork {
     @Override
     public void readFile() throws FileNotFoundException {
         // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Order\\orderData.txt");
-        // File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
+        // File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
         File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Order\\orderData.txt");
         // File myFile = new File("C:\\OOP\\projectOPP\\Order\\orderData.txt");
         Scanner scf = new Scanner(myFile);
@@ -245,6 +241,7 @@ public class Orders implements fileWork {
         scf.close();
     }
 
+
     // Dùng set để kiểm tra và tạo id
     public static int generateID() {
         Set<Integer> existingIds = new HashSet<>();
@@ -275,7 +272,8 @@ public class Orders implements fileWork {
             for (OrderDetail d : cur.getOrderDetails()) {
                 myFile.write("|" + d.getProduct().getProductID() + "|" + d.getQuantity());
             }
-            myFile.write("|" + cur.isOrderStatus()); 
+            myFile.write("|" + cur.isOrderStatus()); // Ghi thêm trạng thái vào file
+            myFile.write('\n');
         }
         myFile.close();
     }

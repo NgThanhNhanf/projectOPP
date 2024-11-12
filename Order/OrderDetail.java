@@ -16,7 +16,7 @@ public class OrderDetail {
         this.quantity = quantity;
     }
 
-    // Tính đơn giá
+    // Tính tổng món hàng
     public double calculateSubTotal() {
         return product.getPrice() * quantity;
     }

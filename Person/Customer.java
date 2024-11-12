@@ -49,7 +49,7 @@ public class Customer extends Person {
                 sc.nextLine();
                 switch (choice) {
                     case 1:
-                        for (Order order : orderHistory) order.displayOrder();
+                        for (Order order : orderHistory) order.displayOrderDetails();
                         boolean confirm = false;
                         while (!confirm) {
                             System.out.println("┌───────────────────────────────────────────┐");

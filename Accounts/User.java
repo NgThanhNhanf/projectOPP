@@ -115,6 +115,7 @@ public class User {
             System.out.printf("│ 1.User name: %-29s│\n", ' ');
             System.out.printf("│ 2.User id: %-31s│\n", ' ');
             System.out.printf("│ 3.Password: %-30s│\n", ' ');
+            System.out.printf("│ 4.Thoat %-34s│\n", ' ');
             System.out.println("└───────────────────────────────────────────┘");
             System.out.print("Nhap lua chon: ");
             choose = sc.nextInt();
@@ -132,12 +133,17 @@ public class User {
                     editPasseword();
                     complete = true;
                     break;
+                case 4:
+                    complete = true;
+                    break;
                 default:
                     System.out.println("│           Lua chon khong hop le           │");
                     break;
             }
             if (complete) {
+                System.out.println("┌───────────────────────────────────────────┐");
                 System.out.println("│             Sua doi thanh cong            │");
+                System.out.println("└───────────────────────────────────────────┘");
             }
         }
     }

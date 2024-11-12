@@ -1,4 +1,5 @@
 Hanh|1/1/2005|LA|0847979732|123|123.0|100000.0
 nhan|16/10/2005|LA|0847979732|789|45.0|lkajdfj
 hai|1/1/1|1|0000000000|222|23.0|sdfa
-none|1/1/1|none|none|258|20.0|20000
+Nguyen Thanh Hien|6/10/2005|273 An Duong Vuong|0852136606|258|1250.0|Bao
+Vo Thi Lan Phuong|11/10/2003|197 Tran Hung Dao|0898146522|215|10.0|Shipper
