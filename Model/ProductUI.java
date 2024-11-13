@@ -1,10 +1,8 @@
 package Model;
 
-import java.io.StringReader;
-import java.util.HashMap;
-import java.util.Scanner;
-import Model.Inventory;
 import Search.*;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class ProductUI {
     static Scanner sc = new Scanner(System.in);
@@ -22,7 +20,16 @@ public class ProductUI {
             System.out.println("└───────────────────────────────────────────┘");
 
             System.out.print("Nhap lua chon: ");
-            int choose = sc.nextInt();
+            int choose;
+            do {
+                try {
+                    choose = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             switch (choose) {
                 case 1:
                 //NOTE : cap nhap san pham trong kho hang
@@ -36,7 +43,16 @@ public class ProductUI {
                         System.out.println("│ 4. Thoat                                  │");
                         System.out.println("└───────────────────────────────────────────┘");
                         System.out.print("nhap lua chon:");
-                        int choice = sc.nextInt();
+                        int choice;
+                        do {
+                            try {
+                                choice = sc.nextInt();
+                                break;
+                            } catch (InputMismatchException e) {
+                                System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                                sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                            }
+                        } while (true);
                         switch (choice) {
                             case 1:
                                 System.out.print("nhap ten san pham: ");
@@ -48,7 +64,17 @@ public class ProductUI {
                                 break;
                             case 2:
                                System.out.println("nhap ma san pham can sua");
-                               int productIDEdit = sc.nextInt();
+                               int productIDEdit;
+                                do {
+                                    try {
+                                        productIDEdit = sc.nextInt();
+                                        break;
+                                    } catch (InputMismatchException e) {
+                                        System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                                        sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                                    }
+                                } while (true);
+            
                                Product productEdit = Inventory.getProductByID(productIDEdit);
                                if(productEdit != null){
                                 System.out.println("thong tin san pham hien tai");
@@ -88,7 +114,15 @@ public class ProductUI {
                         int lc;
                         Product product;
                         System.out.print("nhap lua chon: ");
-                        lc = sc.nextInt();
+                        do {
+                            try {
+                                lc = sc.nextInt();
+                                break;
+                            } catch (InputMismatchException e) {
+                                System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                                sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                            }
+                        } while (true);
                         if(lc == 1) {
                             product = new Clothing();
                         }else if(lc == 2){
@@ -104,7 +138,15 @@ public class ProductUI {
                             product.inp();
                         int quantily;
                         System.out.print("nhap so luong can them: ");
-                        quantily = sc.nextInt();
+                        do {
+                            try {
+                                quantily = sc.nextInt();
+                                break;
+                            } catch (InputMismatchException e) {
+                                System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                                sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                            }
+                        } while (true);
                         Inventory.addInventory(product,quantily);
                         }else{
                             System.out.println("khong them them san pham!");
@@ -134,7 +176,16 @@ public class ProductUI {
                         System.out.println("├───────────────────────────────────────────┤");
 
                         System.out.print("Nhap lua chon: ");
-                        int lc = sc.nextInt();
+                        int lc;
+                        do {
+                            try {
+                                lc = sc.nextInt();
+                                break;
+                            } catch (InputMismatchException e) {
+                                System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                                sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                            }
+                        } while (true);
                         
                         switch (lc) {
                             case 1:

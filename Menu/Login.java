@@ -1,9 +1,9 @@
 package Menu;
 
-import java.util.*;
 import Accounts.User;
 import Accounts.Users;
 import Person.Employees;
+import java.util.*;
 
 public class Login {
     Scanner sc = new Scanner(System.in);
@@ -19,7 +19,18 @@ public class Login {
             System.out.println("│ 1. Nhap thong tin.                        │");
             System.out.println("│ 2. Thoat.                                 │");
             System.out.println("└───────────────────────────────────────────┘");
-            int choose = sc.nextInt();
+            int choose;
+            do {
+                try {
+                    choose = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
+
+            
             sc.nextLine();
             if (choose == 2) {
                 System.out.println("-Chon thoat.");
@@ -60,7 +71,16 @@ public class Login {
             System.out.println("│ 1. Nhap thong tin.                        │");
             System.out.println("│ 2. Thoat.                                 │");
             System.out.println("└───────────────────────────────────────────┘");
-            int choose = sc.nextInt();
+            int choose ;
+            do {
+                try {
+                    choose = sc.nextInt();
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             sc.nextLine();
 
             if (choose == 2) {
@@ -92,7 +112,17 @@ public class Login {
                 System.out.println("│ 2. Dang nhap.                             │");
                 System.out.println("│ 3. Thoat.                                 │");
                 System.out.println("└───────────────────────────────────────────┘");
-                int choose1 = sc.nextInt();
+                int choose1;
+                do {
+                    try {
+                        choose1 = sc.nextInt();
+                        break;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                        sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                    }
+                } while (true);
+
                 switch (choose1) {
                     case 1:
                         register();

@@ -118,7 +118,16 @@ public class User {
             System.out.printf("│ 4.Thoat %-34s│\n", ' ');
             System.out.println("└───────────────────────────────────────────┘");
             System.out.print("Nhap lua chon: ");
-            choose = sc.nextInt();
+            do {
+                try {
+                    choose = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
+            
             sc.nextLine();
             switch (choose) {
                 case 1:

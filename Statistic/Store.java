@@ -1,19 +1,15 @@
 package Statistic;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Collections;
+import Order.Order;
+import Order.Orders;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.*;
-
-import Model.Product;
-import Order.Orders;
-import Order.Order;
-import Order.OrderDetail;
-import Model.Inventory;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
 
 public class Store {
     private static  LocalDate day;
@@ -123,7 +119,17 @@ public class Store {
 
     public static void statisticInYear() {
         System.out.println("nhap nam: ");
-        int year = sc.nextInt();
+        int year;
+        do {
+            try {
+                year = sc.nextInt();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+            }
+        } while (true);
+            
         if(year < 2000) {
             System.out.println("vui long nhap nam > 2000");
         }
@@ -164,7 +170,15 @@ public class Store {
             System.out.println("4.thoat");
             int choice;
             System.out.print("nhap lua chon: ");
-            choice = sc.nextInt();
+            do {
+                try {
+                    choice = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
 
             switch (choice) {
                 case 1:

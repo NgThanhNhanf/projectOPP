@@ -1,8 +1,8 @@
 package Search;
 
-import java.util.Scanner;
-
 import Model.*;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class SearchByPrice implements SearchMethod {
     Scanner sc = new Scanner(System.in);
@@ -11,9 +11,29 @@ public class SearchByPrice implements SearchMethod {
         while(!isSeachPrice){
             System.out.println("nhap khoang gia tien: ");
             System.out.print("Tu:  ");
-            int minPrice = sc.nextInt();
+            int minPrice;
+            do {
+                try {
+                    minPrice = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
+            
             System.out.print("Den: ");
-            int maxPrice = sc.nextInt();
+            int maxPrice;
+            do {
+                try {
+                    maxPrice = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
+
             if(minPrice <= 0 || minPrice > maxPrice){
                 System.out.println("gia tri min khong hop le! vui long nhap lai");
                 isSeachPrice =false;
