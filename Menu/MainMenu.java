@@ -1,6 +1,4 @@
 package Menu;
-import java.util.*;
-
 import Accounts.User;
 import Accounts.UserUI;
 import Accounts.Users;
@@ -13,8 +11,8 @@ import Person.Customers;
 import Person.EmployeeUI;
 import Person.Employees;
 import Statistic.Store;
-
 import java.io.*;
+import java.util.*;
 public class MainMenu {
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) throws IOException {
@@ -47,7 +45,17 @@ public class MainMenu {
             System.out.println("│ 9. Thoat                                  │");
             System.out.println("└───────────────────────────────────────────┘");
             System.out.println("Nhap lua chon:");
-            int choose = sc.nextInt(); sc.nextLine();
+            int choose;
+            do {
+                try {
+                    choose = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
+            sc.nextLine();
             switch (choose) {
                 case 1: 
                     OrdersUI.rootMenu();
@@ -92,7 +100,16 @@ public class MainMenu {
             System.out.println("│ 2. Dang ky.                               │");
             System.out.println("│ 3. Thoat.                                 │");
             System.out.println("└───────────────────────────────────────────┘");
-            int choose = sc.nextInt();
+            int choose;
+            do {
+                try {
+                    choose = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             sc.nextLine();
             switch (choose) {
                 case 1: 

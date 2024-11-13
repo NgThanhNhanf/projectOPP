@@ -1,10 +1,11 @@
 package Search;
 
-import java.util.Scanner;
 import Model.Clothing;
-import Model.Shoes;
 import Model.Inventory;
 import Model.Product;
+import Model.Shoes;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class SearchBySize implements SearchMethod {
     Scanner sc = new Scanner(System.in);
@@ -15,7 +16,17 @@ public class SearchBySize implements SearchMethod {
             System.out.println("1.Size Clothing");
             System.out.println("2.Size Shoes");
             System.out.println("nhap lua chon: ");
-            int choose = sc.nextInt();
+            int choose;
+            do {
+                try {
+                    choose = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
+
             sc.nextLine();
             switch (choose) {
                 case 1:
@@ -42,8 +53,18 @@ public class SearchBySize implements SearchMethod {
                     break;
                 case 2:
                 boolean isShoes = false;
-                    System.out.print("Nhap size ban muon tim kiem: ");
-                    int y = sc.nextInt();
+                    System.out.print("Nhap size giay ban muon tim kiem: ");
+                    int y;
+                    do {
+                        try {
+                            y = sc.nextInt();
+                            break;
+                        } catch (InputMismatchException e) {
+                            System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                            sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                        }
+                    } while (true);
+            
                     for(Product product : Inventory.getListInventory().keySet()){
                         Shoes shoes = (Shoes) product;
                         if(shoes.getSize() == y){

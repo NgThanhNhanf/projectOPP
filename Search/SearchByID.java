@@ -1,7 +1,7 @@
 package Search;
-import java.util.*;
 import Model.Inventory;
 import Model.Product;
+import java.util.*;
 
 public class SearchByID implements SearchMethod {
     Scanner sc = new Scanner(System.in);
@@ -10,7 +10,16 @@ public class SearchByID implements SearchMethod {
         do{
             
             System.out.print("Nhap ma san pham can tim : ");
-            int isProductID = sc.nextInt();
+            int isProductID;
+            do {
+                try {
+                    isProductID = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             Product resProductID = Inventory.getProductByID(isProductID);
             if(resProductID != null){
                 ktID = true;

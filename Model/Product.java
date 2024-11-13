@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 //Product : sản phẩm
@@ -52,7 +53,17 @@ public abstract class Product {
 
     public void editProductID(){
         System.out.print("new id: ");
-        int newID = sc.nextInt();
+        int newID;
+        do {
+            try {
+                newID = sc.nextInt();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+            }
+        } while (true);
+            
         setProductID(newID);
         System.out.print("Thay doi thanh cong");
     }
@@ -65,7 +76,18 @@ public abstract class Product {
     }
     public void editProductPrice() {
         System.out.print("new price: ");
-        int newPrice = sc.nextInt();
+
+        int newPrice;
+        do {
+            try {
+                newPrice = sc.nextInt();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+            }
+        } while (true);
+
         setPrice(newPrice);
         System.out.print("thay doi thanh cong");
 

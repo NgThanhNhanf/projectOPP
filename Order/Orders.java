@@ -1,6 +1,9 @@
 package Order;
 
-import java.util.List;
+import File.fileWork;
+import Model.*;
+import Person.Customer;
+import Person.Customers;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -9,14 +12,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.InputMismatchException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
-
-import File.fileWork;
-import Model.*;
-import Person.Customer;
-import Person.Customers;
 
 public class Orders implements fileWork {
     private static List<Order> orders = new ArrayList<>();
@@ -38,7 +38,16 @@ public class Orders implements fileWork {
                         System.out.println("│1. Quay lai                                │");
                         System.out.println("└───────────────────────────────────────────┘");
                         System.out.print("Chon 1 de quay lai: ");
-                        int choice = scanner.nextInt();
+                        int choice;
+                        do {
+                            try {
+                                choice = scanner.nextInt();
+                                break;
+                            } catch (InputMismatchException e) {
+                                System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                                scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                            }
+                        } while (true);
                         scanner.nextLine();
                         switch (choice) {
                             case 1:
@@ -58,7 +67,16 @@ public class Orders implements fileWork {
                     System.out.println("│4. Quay lai                                │");
                     System.out.println("└───────────────────────────────────────────┘");
                     System.out.print("Chon mot tuy chon: ");
-                    int choice = scanner.nextInt();
+                    int choice;
+                    do {
+                        try {
+                            choice = scanner.nextInt();
+                            break;
+                        } catch (InputMismatchException e) {
+                            System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                            scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                        }
+                    } while (true);
                     scanner.nextLine();
                     switch (choice) {
                         case 1:
@@ -66,10 +84,28 @@ public class Orders implements fileWork {
                             boolean loop;
                             do {
                                 System.out.print("Nhap ma san pham:");
-                                int productID = scanner.nextInt();
+                                int productID;
+                                do {
+                                    try {
+                                        productID = scanner.nextInt();
+                                        break;
+                                    } catch (InputMismatchException e) {
+                                        System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                                        scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                                    }
+                                } while (true);
                                 scanner.nextLine();
                                 System.out.print("Nhap so luong:");
-                                int quantity = scanner.nextInt();
+                                int quantity;
+                                do {
+                                    try {
+                                        quantity = scanner.nextInt();
+                                        break;
+                                    } catch (InputMismatchException e) {
+                                        System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                                        scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                                    }
+                                } while (true);
                                 scanner.nextLine();
                                 Product product = null;
                                 for (Product cur : Inventory.getListInventory().keySet()) {
@@ -101,7 +137,16 @@ public class Orders implements fileWork {
                             do {
                                 order.displayOrder();
                                 System.out.print("Nhap ma san pham:");
-                                int trashID = scanner.nextInt();
+                                int trashID;
+                                do {
+                                    try {
+                                        trashID = scanner.nextInt();
+                                        break;
+                                    } catch (InputMismatchException e) {
+                                        System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                                        scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                                    }
+                                } while (true);
                                 scanner.nextLine();
 
                                 OrderDetail detailToRemove = null;
@@ -202,9 +247,9 @@ public class Orders implements fileWork {
     @Override
     public void readFile() throws FileNotFoundException {
         // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Order\\orderData.txt");
-       File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
+    //    File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
         // File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Order\\orderData.txt");
-        // File myFile = new File("C:\\OOP\\projectOPP\\Order\\orderData.txt");
+        File myFile = new File("C:\\OOP\\projectOPP\\Order\\orderData.txt");
         Scanner scf = new Scanner(myFile);
         while (scf.hasNextLine()) {
             String line = scf.nextLine();
@@ -259,8 +304,9 @@ public class Orders implements fileWork {
     @Override
     public void writeFile() throws IOException {
         // FileWriter("D:\\Study\\OOP\\projectOPP\\Order\\orderData.txt");
-      FileWriter myFile = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
+    //   FileWriter myFile = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
         // FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Order\\orderData.txt");
+        FileWriter myFile = new FileWriter("C:\\OOP\\projectOPP\\Order\\orderData.txt");
         for (Order cur : orders) {
             myFile.write(cur.getOrderID() + "|");
             if (cur.getCustomer() != null) {

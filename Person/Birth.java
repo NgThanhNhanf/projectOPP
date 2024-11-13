@@ -1,5 +1,6 @@
 package Person;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Birth {
@@ -48,16 +49,42 @@ public class Birth {
         boolean complete = false;
         while (!complete) {
             System.out.print("│ Ngay         : ");
-            day = sc.nextInt();
+            do {
+                try {
+                    day = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             System.out.print("│ Thang         : ");
-            month = sc.nextInt();
+            
+            do {
+                try {
+                    month = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             System.out.print("│ Nam         : ");
-            year = sc.nextInt();
+            
+            do {
+                try {
+                    year = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             complete = validBirth();
             if (!complete) {
                 System.out.println("├───────────────────────────────────────────┤");
-                System.out.println("│ Ngày tháng năm sinh không hợp lệ.         │");
-                System.out.println("│ Vui lòng nhập lại.                        │");
+                System.out.println("│ Ngay thang nam sinh khong hop le.         │");
+                System.out.println("│ Vui long nhap lai.                        │");
                 System.out.println("├───────────────────────────────────────────┤");
             }
         }

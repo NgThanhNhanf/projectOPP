@@ -1,10 +1,11 @@
 package Person;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Scanner;
 import Order.Order;
 import Order.displayFormat;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
 
 public class Customer extends Person {
     private List<Order> orderHistory;
@@ -45,7 +46,17 @@ public class Customer extends Person {
                 System.out.println("│2. Quay lai                                │");
                 System.out.println("└───────────────────────────────────────────┘");
                 System.out.print("Chon 1 de quay lai: ");
-                int choice = sc.nextInt();
+                int choice;
+                do {
+                    try {
+                        choice = sc.nextInt();
+                        break;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                        sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                    }
+                } while (true);
+                
                 sc.nextLine();
                 switch (choice) {
                     case 1:
@@ -56,7 +67,16 @@ public class Customer extends Person {
                             System.out.println("│1. Quay lai                                │");
                             System.out.println("└───────────────────────────────────────────┘");
                             System.out.print("Chon 1 de quay lai: ");
-                            int choice2 = sc.nextInt();
+                            int choice2;
+                            do {
+                                try {
+                                    choice2 = sc.nextInt();
+                                    break;
+                                } catch (InputMismatchException e) {
+                                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                                }
+                            } while (true);
                             sc.nextLine();
                             switch (choice2) {
                                 case 1:
@@ -107,7 +127,17 @@ public class Customer extends Person {
             System.out.println("│ 6. Thoat                                  │");
             System.out.println("└───────────────────────────────────────────┘");
             System.out.print("Nhap lua chon:");
-            int choose = sc.nextInt();
+            int choose;
+            do {
+                try {
+                    choose = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
+            
             sc.nextLine();
             switch (choose) {
                 case 1:

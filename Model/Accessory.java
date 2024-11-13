@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.InputMismatchException;
+
 public class Accessory extends Product {
     private String type;
 
@@ -75,7 +77,16 @@ public class Accessory extends Product {
             System.out.println("│ 6.Thoat                                   │");
             System.out.println("├───────────────────────────────────────────┤");
             System.out.print("Nhap lua chon: ");
-            int choose = sc.nextInt();
+            int choose;
+            do {
+                try {
+                    choose = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             switch (choose) {
                 case 1:
                     editProductID();

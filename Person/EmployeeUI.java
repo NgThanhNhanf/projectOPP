@@ -3,6 +3,7 @@ package Person;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,7 +22,16 @@ public class EmployeeUI {
             System.out.println("│3. Tim kiem                                │");
             System.out.println("│4. Thoat                                   │");
             System.out.println("└───────────────────────────────────────────┘");
-            int choose = sc.nextInt();
+            int choose;
+            do {
+                try {
+                    choose = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             switch (choose) {
                 case 1:
                     System.out.println("Danh sach nhan vien");
@@ -58,7 +68,16 @@ public class EmployeeUI {
             System.out.println("│3. Thoat                                   │");
             System.out.println("└───────────────────────────────────────────┘");
             System.out.println("Nhap lua chon:");
-            int choose = sc.nextInt();
+            int choose;
+            do {
+                try {
+                    choose = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             sc.nextLine();
             switch (choose) {
                 case 1:
@@ -73,7 +92,16 @@ public class EmployeeUI {
                         System.out.println("│2. Thoat                                   │");
                         System.out.println("└───────────────────────────────────────────┘");
                         System.out.print("Nhap lua chon: ");
-                        int confirm = sc.nextInt();
+                        int confirm;
+                        do {
+                            try {
+                                confirm = sc.nextInt();
+                                break;
+                            } catch (InputMismatchException e) {
+                                System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                                sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                            }
+                        } while (true);
                         switch (confirm) {
                             case 1:
                                 System.out.println("Xoa thanh cong!");
@@ -109,11 +137,30 @@ public class EmployeeUI {
             System.out.println("│2. Thoat                                   │");
             System.out.println("└───────────────────────────────────────────┘");
             System.out.print("Nhap lua chon: ");
-            int choose = sc.nextInt();
+            int choose;
+            do {
+                try {
+                    choose = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             switch (choose) {
                 case 1:
                     System.out.print("Nhap STT:");
-                    int index = sc.nextInt();
+                    int index;
+                    do {
+                        try {
+                            index = sc.nextInt();
+                            break;
+                        } catch (InputMismatchException e) {
+                            System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                            sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                        }
+                    } while (true);
+            
                     sc.nextLine();
                     Employee choosedEmployee = Employees.findEmployee(phoneInList.get(--index));
                     controlEmployee(choosedEmployee);
@@ -152,7 +199,16 @@ public class EmployeeUI {
         boolean complete = false;
         while (!complete) {
             System.out.print("Nhap lua chon: ");
-            int choose = sc.nextInt();
+            int choose;
+            do {
+                try {
+                    choose = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             switch (choose) {
                 case 1:
                     System.out.print("Nhap STT:");

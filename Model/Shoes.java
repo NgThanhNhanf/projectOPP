@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.InputMismatchException;
+
 public class Shoes extends Product {
     private int size;
     private String color;
@@ -61,7 +63,16 @@ public class Shoes extends Product {
 
     public void editSizeG(){
         System.out.print("new size: ");
-        int newSizeG = sc.nextInt();
+        int newSizeG;
+        do {
+            try {
+                newSizeG = sc.nextInt();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+            }
+        } while (true);
         System.out.print("thay doi thanh cong");
     }
 
@@ -95,7 +106,16 @@ public class Shoes extends Product {
             System.out.println("6.Tat ca");
             System.out.println("7.Thoat");
             System.out.println("nhap lua chon: ");
-            int choose = sc.nextInt();
+            int choose;
+            do {
+                try {
+                    choose = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             switch (choose) {
                 case 1:
                     editProductID();

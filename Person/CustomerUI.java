@@ -1,13 +1,11 @@
 package Person;
 
-import java.util.Scanner;
-
-import Order.Orders;
-
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
 
 public class CustomerUI {
     static List<String> phoneInList;
@@ -26,7 +24,16 @@ public class CustomerUI {
             System.out.println("│4. Thoat                                   │");
             System.out.println("└───────────────────────────────────────────┘");
             System.out.print("Nhap lua chon: ");
-            int choose = sc.nextInt();
+            int choose;
+            do {
+                try {
+                    choose = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             sc.nextLine();
             switch (choose) {
                 case 1:
@@ -44,7 +51,16 @@ public class CustomerUI {
                     boolean tmp = false;
                     while (!tmp) {
                         System.out.print("Nhap lua chon: ");
-                        int confirm = sc.nextInt();
+                        int confirm;
+                        do {
+                            try {
+                                confirm = sc.nextInt();
+                                break;
+                            } catch (InputMismatchException e) {
+                                System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                                sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                            }
+                        } while (true);
                         sc.nextLine();
                         switch (confirm) {
                             case 1:
@@ -84,7 +100,16 @@ public class CustomerUI {
             System.out.println("│3. Thoat                                   │");
             System.out.println("└───────────────────────────────────────────┘");
             System.out.print("Nhap lua chon: ");
-            int choose = sc.nextInt();
+            int choose;
+            do {
+                try {
+                    choose = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             sc.nextLine();
             switch (choose) {
                 case 1:
@@ -114,7 +139,16 @@ public class CustomerUI {
             System.out.println("│2. Thoat                                   │");
             System.out.println("└───────────────────────────────────────────┘");
             System.out.print("Nhap lua chon: ");
-            int choose = sc.nextInt();
+            int choose;
+            do {
+                try {
+                    choose = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             switch (choose) {
                 case 1:
                     System.out.println("Nhap STT:");
@@ -157,11 +191,30 @@ public class CustomerUI {
         boolean complete = false;
         while (!complete) {
             System.out.print("Nhap lua chon: ");
-            int choose = sc.nextInt();
+            int choose;
+            do {
+                try {
+                    choose = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             switch (choose) {
                 case 1:
                     System.out.println("Nhap STT:");
-                    int index = sc.nextInt();
+                    int index;
+                    do {
+                        try {
+                            index = sc.nextInt();
+                            break;
+                        } catch (InputMismatchException e) {
+                            System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                            sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                        }
+                    } while (true);
+            
                     sc.nextLine();
                     controlCustomer(arrCustomerS.get(--index));
                     break;

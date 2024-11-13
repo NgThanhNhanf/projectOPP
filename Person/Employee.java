@@ -1,5 +1,6 @@
 package Person;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Employee extends Person {
@@ -118,7 +119,16 @@ public class Employee extends Person {
             System.out.println("│ 9. Thoat                                  │");
             System.out.println("└───────────────────────────────────────────┘");
             System.out.println("Nhap lua chon:");
-            int choose = sc.nextInt();
+            int choose;
+            do {
+                try {
+                    choose = sc.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             sc.nextLine();
             switch (choose) {
                 case 1: 

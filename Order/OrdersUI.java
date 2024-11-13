@@ -1,10 +1,11 @@
 package Order;
 
-import java.util.Scanner;
+import Model.Inventory;
 import Model.Product;
 import Person.Customer;
 import Person.Customers;
-import Model.Inventory;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class OrdersUI {
     private static Scanner scanner = new Scanner(System.in);
@@ -68,7 +69,16 @@ public class OrdersUI {
                 System.out.println("│3. Huy thiet lap                           │");
                 System.out.println("└───────────────────────────────────────────┘");
                 System.out.print("Nhap lua chon: ");
-                int choice = scanner.nextInt();
+                int choice;
+                do {
+                    try {
+                        choice = scanner.nextInt();
+                        break;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                        scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                    }
+                } while (true);
                 scanner.nextLine();
                 switch (choice) {
                     case 1:
@@ -111,7 +121,16 @@ public class OrdersUI {
             System.out.println("│3. Quay lai                                │");
             System.out.println("└───────────────────────────────────────────┘");
             System.out.print("Nhap lua chon: ");
-            int choice = scanner.nextInt();
+            int choice;
+            do {
+                try {
+                    choice = scanner.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             scanner.nextLine();
             switch (choice) {
                 case 1:
@@ -150,7 +169,16 @@ public class OrdersUI {
                                 System.out.println("│1. Hoan Thanh                              │");
                                 System.out.println("└───────────────────────────────────────────┘");
                                 System.out.print("Chon 1 de hoan thanh va quay lai: ");
-                                int choice2 = scanner.nextInt();
+                                int choice2;
+                                do {
+                                    try {
+                                        choice2 = scanner.nextInt();
+                                        break;
+                                    } catch (InputMismatchException e) {
+                                        System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                                        scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                                    }
+                                } while (true);
                                 scanner.nextLine();
                                 switch (choice2) {
                                     case 1:
@@ -192,7 +220,16 @@ public class OrdersUI {
             System.out.println("│ 3. Quay lai                               │");
             System.out.println("└───────────────────────────────────────────┘");
             System.out.print("Chon mot tuy chon: ");
-            int choice = scanner.nextInt();
+            int choice;
+            do {
+                try {
+                    choice = scanner.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             scanner.nextLine();
 
             switch (choice) {
@@ -201,8 +238,16 @@ public class OrdersUI {
                     break;
                 case 2:
                     System.out.print("Nhap ma don hang can xoa: ");
-                    int orderID = scanner.nextInt();
-                    scanner.nextLine();
+                    int orderID;
+                    do {
+                        try {
+                            orderID = scanner.nextInt();
+                            break;
+                        } catch (InputMismatchException e) {
+                            System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                            scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                        }
+                    } while (true);
                     System.out.print("Ban co chan chan mua xoa don hang? (y/n): ");
                     String confirm = scanner.nextLine();
                     if (confirm.equalsIgnoreCase("y")) {
@@ -221,7 +266,16 @@ public class OrdersUI {
     // Chỉnh sửa đơn hàng
     public static void editOrder() {
         System.out.print("Nhap ma don hang ban muon chon: ");
-        int orderID = scanner.nextInt();
+        int orderID;
+        do {
+            try {
+                orderID = scanner.nextInt();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+            }
+        } while (true);
         scanner.nextLine();
         Orders.edit(orderID); 
     }
@@ -238,7 +292,16 @@ public class OrdersUI {
             System.out.println("│ 3. Thoat                                  │");
             System.out.println("└───────────────────────────────────────────┘");
             System.out.print("Chon mot tuy chon: ");
-            int choice = scanner.nextInt();
+            int choice;
+            do {
+                try {
+                    choice = scanner.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            } while (true);
             scanner.nextLine();
             switch (choice) {
                 case 1:
