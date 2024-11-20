@@ -151,9 +151,24 @@ public class CustomerUI {
             } while (true);
             switch (choose) {
                 case 1:
-                    System.out.println("Nhap STT:");
-                    int index = sc.nextInt();
-                    sc.nextLine();
+                    System.out.print("Nhap STT:");
+                    int index;
+                    while (true) {
+                        try {
+                            index = sc.nextInt();
+                            sc.nextLine();
+                            if (index < 1 || index > phoneInList.size()) {
+                                System.out.println("STT nhap vao khong hop le. Vui long nhap lai.");
+                                System.out.print("Nhap STT:");
+                            } else {
+                                break;
+                            }
+                        } catch (InputMismatchException e) {
+                            System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                            System.out.print("Nhap STT:");
+                            sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                        }
+                    }
                     Customer choosedCustomer = Customers.findCustomer(phoneInList.get(index - 1));
                     controlCustomer(choosedCustomer);
                     break;
@@ -177,52 +192,88 @@ public class CustomerUI {
         for (String cur : arrID) {
             arrCustomerS.add(Customers.findCustomer(cur));
         }
-        for (int i = 0; i < arrCustomerS.size(); ++i) {
+    
+        if (arrCustomerS.isEmpty()) {
+            System.out.println("Khong tim thay khach hang nao ung voi tim kiem");
             System.out.println("┌───────────────────────────────────────────┐");
-            System.out.printf("│ STT            : %-24s │\n", i + 1);
-            System.out.printf("│ SDT            : %-24s │\n", arrCustomerS.get(i).getPhone());
-            System.out.printf("│ Ten            : %-24s │\n", arrCustomerS.get(i).getName());
+            System.out.println("│1. Quay lai                                │");
             System.out.println("└───────────────────────────────────────────┘");
-        }
-        System.out.println("┌───────────────────────────────────────────┐");
-        System.out.println("│1. Chon khach hang de thuc hien chuc nang  │");
-        System.out.println("│2. Thoat                                   │");
-        System.out.println("└───────────────────────────────────────────┘");
-        boolean complete = false;
-        while (!complete) {
-            System.out.print("Nhap lua chon: ");
-            int choose;
-            do {
-                try {
-                    choose = sc.nextInt();
-                    break;
-                } catch (InputMismatchException e) {
-                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
-                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+            boolean complete = false;
+            while (!complete) {
+                System.out.print("Nhap lua chon: ");
+                int choose;
+                do {
+                    try {
+                        choose = sc.nextInt();
+                        break;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                        sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                    }
+                } while (true);
+                sc.nextLine();
+                switch (choose) {
+                    case 1:
+                        complete = true;
+                        return;
+                    default:
+                        System.out.println("Lua chon khong hop le, vui long nhap lai.");
+                        break;
                 }
-            } while (true);
-            switch (choose) {
-                case 1:
-                    System.out.println("Nhap STT:");
-                    int index;
-                    do {
-                        try {
-                            index = sc.nextInt();
-                            break;
-                        } catch (InputMismatchException e) {
-                            System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
-                            sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+            }
+        } else {
+            for (int i = 0; i < arrCustomerS.size(); ++i) {
+                System.out.println("┌───────────────────────────────────────────┐");
+                System.out.printf("│ STT            : %-24s │\n", i + 1);
+                System.out.printf("│ SDT            : %-24s │\n", arrCustomerS.get(i).getPhone());
+                System.out.printf("│ Ten            : %-24s │\n", arrCustomerS.get(i).getName());
+                System.out.println("└───────────────────────────────────────────┘");
+            }
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│1. Chon khach hang de thuc hien chuc nang  │");
+            System.out.println("│2. Thoat                                   │");
+            System.out.println("└───────────────────────────────────────────┘");
+            boolean complete = false;
+            while (!complete) {
+                System.out.print("Nhap lua chon: ");
+                int choose;
+                do {
+                    try {
+                        choose = sc.nextInt();
+                        break;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                        sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                    }
+                } while (true);
+                switch (choose) {
+                    case 1:
+                        System.out.println("Nhap STT:");
+                        int index;
+                        while (true) {
+                            try {
+                                index = sc.nextInt();
+                                sc.nextLine();
+                                if (index < 1 || index > arrCustomerS.size()) {
+                                    System.out.println("STT nhap vao khong hop le. Vui long nhap lai.");
+                                    System.out.println("Nhap STT:");
+                                } else {
+                                    break;
+                                }
+                            } catch (InputMismatchException e) {
+                                System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                                sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                            }
                         }
-                    } while (true);
-            
-                    sc.nextLine();
-                    controlCustomer(arrCustomerS.get(--index));
-                    break;
-                case 2:
-                    return;
-                default:
-                    System.out.println("Lua chon khong hop le vui long nhap lai");
-                    break;
+                        Customer choosedCustomer = arrCustomerS.get(index - 1);
+                        controlCustomer(choosedCustomer);
+                        break;
+                    case 2:
+                        return;
+                    default:
+                        System.out.println("Lua chon khong hop le vui long nhap lai");
+                        break;
+                }
             }
         }
     }

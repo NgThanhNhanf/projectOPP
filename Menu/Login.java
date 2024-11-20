@@ -19,6 +19,7 @@ public class Login {
             System.out.println("│ 1. Nhap thong tin.                        │");
             System.out.println("│ 2. Thoat.                                 │");
             System.out.println("└───────────────────────────────────────────┘");
+            System.out.print("Nhap lua chon: ");
             int choose;
             do {
                 try {
@@ -71,6 +72,7 @@ public class Login {
             System.out.println("│ 1. Nhap thong tin.                        │");
             System.out.println("│ 2. Thoat.                                 │");
             System.out.println("└───────────────────────────────────────────┘");
+            System.out.print("Nhap lua chon: ");
             int choose ;
             do {
                 try {
@@ -112,6 +114,7 @@ public class Login {
                 System.out.println("│ 2. Dang nhap.                             │");
                 System.out.println("│ 3. Thoat.                                 │");
                 System.out.println("└───────────────────────────────────────────┘");
+                System.out.print("Nhap lua chon: ");
                 int choose1;
                 do {
                     try {

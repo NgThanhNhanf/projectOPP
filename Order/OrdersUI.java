@@ -12,10 +12,19 @@ public class OrdersUI {
 
     // Thêm sản phẩm vào đơn hàng
     public static void addNewOrder() {
-        System.out.print("Nhap so dien thoai: ");
-        String phone = scanner.nextLine();
+        String phone;
+        Customer customer;
+        Customer tempCustomer = new Customer(); // Đối tượng tạm để kiểm tra số điện thoại
 
-        Customer customer = Customers.findCustomer(phone);
+        // Vòng lặp nhập số điện thoại và kiểm tra tính hợp lệ
+        while (true) {
+            System.out.print("Nhap so dien thoai: ");
+            phone = scanner.nextLine();
+            if (tempCustomer.validPhone(phone)) break;
+            else System.out.println("So dien thoai khong hop le, vui long nhap lai.");
+        }
+
+        customer = Customers.findCustomer(phone);
         if (customer == null) {
             customer = new Customer();
             customer.setPhone(phone);
@@ -32,9 +41,17 @@ public class OrdersUI {
             Inventory.display();
 
             System.out.print("Nhap ma san pham: ");
-            int productID = scanner.nextInt();
-            scanner.nextLine(); 
-
+            int productID;
+            while (true) {
+                try {
+                    productID = scanner.nextInt();
+                    scanner.nextLine();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Ma san pham chi bao gom chu so. Vui long nhap lai.");
+                    scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                }
+            }
             Product product = Inventory.getProductByID(productID);
 
             if (product != null) {
@@ -45,7 +62,7 @@ public class OrdersUI {
                 int stock = Inventory.getListInventory().getOrDefault(product, 0);
                 if (stock >= quantity) {
                     newOrder.addProduct(product, quantity);
-                    Inventory.deleteInventory(product, quantity); 
+                    Inventory.deleteInventory(product, quantity);
                 } else {
                     System.out.println("So luong san pham trong kho khong du.");
                 }
@@ -156,10 +173,12 @@ public class OrdersUI {
                         double amountGiven = scanner.nextDouble();
                         scanner.nextLine();
                         if (amountGiven >= totalAmount) {
-                            double change = amountGiven - totalAmount; 
+                            double change = amountGiven - totalAmount;
                             System.out.println("┌───────────────────────────────────────────┐");
-                            System.out.printf("│Tien khach dua:  %-15s%-7s VND│\n", ' ',displayFormat.formatPrice(amountGiven));
-                            System.out.printf("│Tien du cua khach: %-13s%s VND│\n", ' ',displayFormat.formatPrice(change));
+                            System.out.printf("│Tien khach dua:  %-15s%-7s VND│\n", ' ',
+                                    displayFormat.formatPrice(amountGiven));
+                            System.out.printf("│Tien du cua khach: %-13s%s VND│\n", ' ',
+                                    displayFormat.formatPrice(change));
                             System.out.println("├───────────────────────────────────────────┤");
                             System.out.println("│           Thanh toan thanh cong           │");
                             System.out.println("└───────────────────────────────────────────┘");
@@ -245,10 +264,11 @@ public class OrdersUI {
                             break;
                         } catch (InputMismatchException e) {
                             System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
-                            scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                            scanner.nextLine();
                         }
                     } while (true);
-                    System.out.print("Ban co chan chan mua xoa don hang? (y/n): ");
+                    System.out.print("Ban co chan chan mua xoa don hang? (y/n): \n");
+                    scanner.nextLine();
                     String confirm = scanner.nextLine();
                     if (confirm.equalsIgnoreCase("y")) {
                         complete = true;
@@ -277,7 +297,7 @@ public class OrdersUI {
             }
         } while (true);
         scanner.nextLine();
-        Orders.edit(orderID); 
+        Orders.edit(orderID);
     }
 
     // Menu gốc

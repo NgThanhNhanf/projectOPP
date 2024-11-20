@@ -1,4 +1,5 @@
 package Menu;
+
 import Accounts.User;
 import Accounts.UserUI;
 import Accounts.Users;
@@ -13,8 +14,10 @@ import Person.Employees;
 import Statistic.Store;
 import java.io.*;
 import java.util.*;
+
 public class MainMenu {
     static Scanner sc = new Scanner(System.in);
+
     public static void main(String[] args) throws IOException {
         Users.fileInit();
         Employees.fileInit();
@@ -28,9 +31,10 @@ public class MainMenu {
         Inventory.fileClose();
         Orders.fileClose();
     }
+
     public static void MenuM() {
         boolean complete = false;
-        while(!complete) {
+        while (!complete) {
             System.out.println("┌───────────────────────────────────────────┐");
             System.out.println("│                 Menu Chinh                │");
             System.out.println("├───────────────────────────────────────────┤");
@@ -44,7 +48,7 @@ public class MainMenu {
             System.out.println("│ 8. Dang xuat                              │");
             System.out.println("│ 9. Thoat                                  │");
             System.out.println("└───────────────────────────────────────────┘");
-            System.out.println("Nhap lua chon:");
+            System.out.print("Nhap lua chon: ");
             int choose;
             do {
                 try {
@@ -57,7 +61,7 @@ public class MainMenu {
             } while (true);
             sc.nextLine();
             switch (choose) {
-                case 1: 
+                case 1:
                     OrdersUI.rootMenu();
                     break;
                 case 2:
@@ -82,12 +86,13 @@ public class MainMenu {
                 case 9:
                     complete = true;
                     break;
-                default: 
+                default:
                     System.out.println("Lua chon khong hop le vui long nhap lai");
                     break;
             }
         }
     }
+
     public static void loginUI() throws FileNotFoundException {
         Login login = new Login();
         User user;
@@ -100,6 +105,7 @@ public class MainMenu {
             System.out.println("│ 2. Dang ky.                               │");
             System.out.println("│ 3. Thoat.                                 │");
             System.out.println("└───────────────────────────────────────────┘");
+            System.out.print("Nhap lua chon: ");
             int choose;
             do {
                 try {
@@ -112,7 +118,7 @@ public class MainMenu {
             } while (true);
             sc.nextLine();
             switch (choose) {
-                case 1: 
+                case 1:
                     System.out.println("-Chon dang nhap.");
                     user = login.login();
                     if (user != null) {
@@ -135,7 +141,7 @@ public class MainMenu {
                     System.out.println("-Chon thoat.");
                     complete = true;
                     break;
-                default: 
+                default:
                     System.out.println("-Lua chon khong hop le, hay thu lai!");
             }
         }
