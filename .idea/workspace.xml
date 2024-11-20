@@ -6,6 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="01fe36bb-62e7-4719-ab34-49af2f893ae9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accounts/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/Accounts/Users.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accounts/accountsData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Accounts/accountsData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/ProductUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/Model/ProductUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/Promotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/Model/Promotion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/clothingData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Model/clothingData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/shoesData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Model/shoesData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Order/Orders.java" beforeDir="false" afterPath="$PROJECT_DIR$/Order/Orders.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Order/orderData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Order/orderData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Person/Customers.java" beforeDir="false" afterPath="$PROJECT_DIR$/Person/Customers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Person/Employees.java" beforeDir="false" afterPath="$PROJECT_DIR$/Person/Employees.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Person/customersData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Person/customersData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Person/employeesData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Person/employeesData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Statistic/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/Statistic/Store.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +41,9 @@
     &quot;accountId&quot;: &quot;fe3400ad-375d-4222-8b3b-95092633e450&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 6
@@ -36,15 +53,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "hanh",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;hanh&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Java/Nhom14/OOP-hanh/DoAnOOP/Project&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Project" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
