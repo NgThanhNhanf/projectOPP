@@ -228,12 +228,15 @@ public class ProductUI {
                     Promotion promotion = new Promotion();
                     boolean isPromotion = false;
                     while(!isPromotion){
-                        System.out.println("-----Thong tin--------");
-                        System.out.println("1.them san pham vao danh muc giam gia");
-                        System.out.println("2.xoa san pham khoi danh muc giam gia");
-                        System.out.println("3.San pham giam gia");
-                        System.out.println("4.thoat!");
-
+                        System.out.println("┌───────────────────────────────────────────┐");
+                        System.out.println("│                Thong tin                  │");
+                        System.out.println("├───────────────────────────────────────────┤");
+                        System.out.println("│ 1. them san pham vao danh muc giam gia    │");
+                        System.out.println("│ 2. xoa san pham khoi danh muc giam gia    │");
+                        System.out.println("│ 3. San pham giam gia                      │");
+                        System.out.println("│ 4. Thoat                                  │");
+                        System.out.println("└───────────────────────────────────────────┘");
+                  
                         System.out.print("nhap lua chon: ");
                         int choice = sc.nextInt();
 

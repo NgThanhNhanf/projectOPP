@@ -187,14 +187,18 @@ public class Store {
     public static void solve() {
         boolean isStatistic = false;
         while(!isStatistic) {
-            System.out.println("Chon cach thong ke");
-            System.out.println("1.Thong ke theo ngay");
-            System.out.println("2.Thong ke theo thang");
-            System.out.println("3.thong ke theo nam");
-            System.out.println("4.thong ke theo quy");
-            System.out.println("5.thoat");
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│      Chon cach thong ke                   │");
+            System.out.println("├───────────────────────────────────────────┤");
+            System.out.println("│ 1.Thong ke theo ngay                      │");
+            System.out.println("│ 2.Thong ke theo thang                     │");
+            System.out.println("│ 3.Thong ke theo nam                       │");
+            System.out.println("│ 4.Tim kiem theo size                      │");
+            System.out.println("│ 4.Thong ke theo quy                       │");
+            System.out.println("│ 5.Thoat                                   │");
+            System.out.println("├───────────────────────────────────────────┤");
             int choice;
-            System.out.print("nhap lua chon: ");
+            System.out.print("Nhap lua chon: ");
             do {
                 try {
                     choice = sc.nextInt();
