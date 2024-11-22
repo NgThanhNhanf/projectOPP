@@ -3,6 +3,7 @@ package Model;
 import Search.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import Order.*;
 
 public class ProductUI {
     static Scanner sc = new Scanner(System.in);
@@ -16,7 +17,8 @@ public class ProductUI {
             System.out.println("│ 1. Danh sach san pham                     │");
             System.out.println("│ 2. Them san pham                          │");
             System.out.println("│ 3. Tim kiem                               │");
-            System.out.println("│ 4. Thoat                                  │");
+            System.out.println("│ 4. Thong tin giam gia                     │");
+            System.out.println("│ 5. Thoat                                  │");
             System.out.println("└───────────────────────────────────────────┘");
 
             System.out.print("Nhap lua chon: ");
@@ -223,6 +225,57 @@ public class ProductUI {
                     }
                     break;
                 case 4:
+                    Promotion promotion = new Promotion();
+                    boolean isPromotion = false;
+                    while(!isPromotion){
+                        System.out.println("┌───────────────────────────────────────────┐");
+                        System.out.println("│                Thong tin                  │");
+                        System.out.println("├───────────────────────────────────────────┤");
+                        System.out.println("│ 1. them san pham vao danh muc giam gia    │");
+                        System.out.println("│ 2. xoa san pham khoi danh muc giam gia    │");
+                        System.out.println("│ 3. San pham giam gia                      │");
+                        System.out.println("│ 4. Thoat                                  │");
+                        System.out.println("└───────────────────────────────────────────┘");
+                  
+                        System.out.print("nhap lua chon: ");
+                        int choice = sc.nextInt();
+
+                        switch (choice) {
+                            case 1:
+                            sc.nextLine();
+                            System.out.println("nhap them san pham can them: ");
+                            String nameProductPromotionInAdd = sc.nextLine();
+                            for(Product product : Inventory.getListInventory().keySet()){
+                                if(product.getProductName().equals(nameProductPromotionInAdd)){
+                                    promotion.inpPromocodeandDiscount();
+                                    promotion.inpDate();
+                                    promotion.applyDiscount(product);
+                                    promotion.addProductPromo(product);
+                                }
+                            }
+                                break;
+                            case 2:
+                            sc.nextLine();
+                                System.out.print("nhap ten san pham can xoa: ");
+                                String nameProductPromotion = sc.nextLine();
+                                for(Product product : promotion.getApplicableProducts()) {
+                                    if(product.getProductName().equals(nameProductPromotion)){
+                                        promotion.removeProductPromo(product);
+                                    }
+                                }
+                                break;
+                            case 3:
+                                promotion.displayApplicableProducts();
+                                break;
+                            case 4:
+                                isPromotion = true;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    break;
+                case 5:
                     complete = true;
                     break;
                 default:

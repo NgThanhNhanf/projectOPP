@@ -1,22 +1,22 @@
-113|Ao thun Unisex|113|M|Cotton|20
-102|Ao so mi Linen|102|L|Linen|17
-110|Ao khoac levents|110|M|Vai|18
-106|Quan tay Classic|106|34|Cotton|16
-109|Ao blazer Basic|109|L|Polyester|11
-103|Quan jeans Skinny|103|32|Denim|13
 118|Ao thun Polo|118|M|Cotton|22
 108|Vay Maxi Floral|108|S|Voan|6
-115|Quan jeans Ripped|115|32|Denim|13
 111|Dam thuc Unisex|111|L|ren|32
-107|Ao len Cardigan|107|M|Len|14
-105|Ao khoac Bomber|105|L|Nylon|16
-119|Quan short Jean|119|M|Jean|14
-100|Quan short Casual|100|M|Cotton|25
-114|Quan kaki Slimfit|114|32|Kaki|15
-117|Quan jogger|117|L|Cotton|18
-101|Ao thun Cotton|101|M|Cotton|22
-120|Ao khoac Dù|120|L|Polyester|16
+113|Ao thun Unisex|113|M|Cotton|20
 116|Ao len Turtleneck|116|M|Len|12
-112|Ao khoac Yame|112|L|Jean|23
 121|Ao thun Graphic|121|M|Cotton|19
-104|Ao hoodie Unisex|104|XL|Polyester|26
+101|Ao thun Cotton|101|M|Cotton|22
+103|Quan jeans Skinny|103|32|Denim|13
+105|Ao khoac Bomber|105|L|Nylon|16
+114|Quan kaki Slimfit|114|32|Kaki|15
+119|Quan short Jean|119|M|Jean|14
+117|Quan jogger|117|L|Cotton|18
+115|Quan jeans Ripped|115|32|Denim|13
+102|Ao so mi Linen|102|L|Linen|17
+107|Ao len Cardigan|107|M|Len|14
+120|Ao khoac Dù|120|L|Polyester|16
+112|Ao khoac Yame|112|L|Jean|23
+100|Quan short Casual|100|M|Cotton|25
+106|Quan tay Classic|106|34|Cotton|16
+110|Ao khoac levents|110|M|Vai|18
+109|Ao blazer Basic|109|L|Polyester|11
+104|Ao hoodie Unisex|104|XL|Polyester|25
