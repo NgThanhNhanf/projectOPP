@@ -61,14 +61,14 @@ public class Clothing extends Product {
         System.out.print("new size: ");
         String newSize = sc.next();
         setSize(newSize);
-        System.out.print("thay doi thanh cong");
+        System.out.println("thay doi thanh cong");
     }
 
     public void editMaterial(){
         System.out.print("new material: ");
         String newMaterial = sc.nextLine();
         setMaterial(newMaterial);
-        System.out.print("thay doi thanh cong");
+        System.out.println("thay doi thanh cong");
     }
 
     @Override

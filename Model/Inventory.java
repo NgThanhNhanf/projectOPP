@@ -21,7 +21,6 @@ public class Inventory implements fileWork {
     // them so luong ton kho cua san pham vao kho hang
     public static void addInventory(Product product, int quanlity){
         listInventory.put(product, listInventory.getOrDefault(product, 0) + quanlity);
-        // System.out.println("da them " + listInventory.values() + " san pham");
     }
     //xoa bot di so luong ton kho cua san pham vao kho hang
     public static void deleteInventory(Product product, int quanlity){
@@ -35,8 +34,6 @@ public class Inventory implements fileWork {
         for(Product product : listInventory.keySet()){
             if(product.getProductName().equals(productName)){
                 listInventory.remove(product);
-            }else {
-                System.out.println("khong tim thay san pham trong kho"); break;
             }
         }
         System.out.println("Xoa san pham thanh cong");
@@ -94,6 +91,7 @@ public class Inventory implements fileWork {
             if (product.getProductName().toLowerCase().contains(productName.toLowerCase())) {
                 System.out.println("├───────────────────────────────────────────┤");
                 product.displayInfor();
+                System.out.println("├───────────────────────────────────────────┤");
             }
         }
         
