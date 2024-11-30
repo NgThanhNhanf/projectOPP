@@ -13,13 +13,13 @@ import java.util.Scanner;
 
 public class Store {
     private static  LocalDate day;
-    private static HashMap<Orders,Integer> statistic = new HashMap<>();
+    private static HashMap<Integer,List<Order>> listOnQuarter = new HashMap<>();
     private static List<Order> listOnDay = new ArrayList<>();
     private static List<Order> listOnMonth = new ArrayList<>();
     private static List<Order> listOnYear = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
-    static DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    static DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     static SimpleDateFormat sformat = new SimpleDateFormat("MM-yyyy");
 
 
@@ -160,16 +160,45 @@ public class Store {
     }
     
 
+    // public static void statisticInQuarter() {
+    //     System.out.println("nhap quy: ");
+    //     int quarter = sc.nextInt();
+    //     boolean checkQuarter = false;
+    //     switch (quarter) {
+    //         case 1,2,3,4:
+    //             checkQuarter = true;                
+    //             break;
+    //         default:
+    //             checkQuarter = false;
+    //             break;
+    //     }
+    //     listOnQuarter.put(checkQuarter, new ArrayList<>());
+    //     for(Order order : listOnMonth) {
+    //         String date = order.getOrderDate().toString();
+    //         String[] str = date.split("-");
+    //         int monthInDate = Integer.parseInt(str[1]);
+    //         if(monthInDate == 1 || monthInDate == 2 || monthInDate == 3) {
+               
+    //         }
+    //     }
+
+    // }
+
     public static void solve() {
         boolean isStatistic = false;
         while(!isStatistic) {
-            System.out.println("Chon cach thong ke");
-            System.out.println("1.Thong ke theo ngay");
-            System.out.println("2.Thong ke theo thang");
-            System.out.println("3.thong ke theo nam");
-            System.out.println("4.thoat");
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│      Chon cach thong ke                   │");
+            System.out.println("├───────────────────────────────────────────┤");
+            System.out.println("│ 1.Thong ke theo ngay                      │");
+            System.out.println("│ 2.Thong ke theo thang                     │");
+            System.out.println("│ 3.Thong ke theo nam                       │");
+            System.out.println("│ 4.Tim kiem theo size                      │");
+            System.out.println("│ 4.Thong ke theo quy                       │");
+            System.out.println("│ 5.Thoat                                   │");
+            System.out.println("├───────────────────────────────────────────┤");
             int choice;
-            System.out.print("nhap lua chon: ");
+            System.out.print("Nhap lua chon: ");
             do {
                 try {
                     choice = sc.nextInt();
@@ -194,6 +223,8 @@ public class Store {
                     statisticInYear();
                     break;
                 case 4:
+                    // statisticInQuarter();
+                case 5:
                     System.out.println("thoat");
                     isStatistic = true;
                     break;
