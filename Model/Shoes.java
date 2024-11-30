@@ -73,13 +73,13 @@ public class Shoes extends Product {
                 sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
             }
         } while (true);
-        System.out.print("thay doi thanh cong");
+        System.out.println("thay doi thanh cong");
     }
 
     public void editColor(){
         System.out.print("new color: ");
         String newColor = sc.nextLine();
-        System.out.print("thay doi thanh cong");
+        System.out.println("thay doi thanh cong");
     }
 
     @Override

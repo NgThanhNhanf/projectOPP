@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import Order.*;
+// import Order.*;
 
 import java.util.Scanner;
 
@@ -16,7 +16,7 @@ public class Promotion {
     private List<Product> applicableProducts; // sản phẩm đc áp dụng mã giảm giá
 
     //lớp này để định dạng ngày và giờ(W3school)
-    static DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    static DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     //ofPattern: dùng để phân tách ngày và giờ và loại bỏ chữ T ở giữa 
     Scanner sc = new Scanner(System.in);
     public Promotion(){

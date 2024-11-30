@@ -6,14 +6,14 @@ import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.*;
 import java.util.ArrayList;
-import java.util.HashMap;
+// import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class Store {
     private static  LocalDate day;
-    private static HashMap<Integer,List<Order>> listOnQuarter = new HashMap<>();
+    // private static HashMap<Integer,List<Order>> listOnQuarter = new HashMap<>();
     private static List<Order> listOnDay = new ArrayList<>();
     private static List<Order> listOnMonth = new ArrayList<>();
     private static List<Order> listOnYear = new ArrayList<>();
@@ -52,7 +52,7 @@ public class Store {
             }
         }
         if(checkDay) {
-            System.out.println("Thong tin cac san pham ban dc trong ngay/thang/nam:" + dayOrder);
+            System.out.println("Thong tin cac san pham ban dc trong " + dayOrder +": ");
             for(Order it : listOnDay){
                 it.displayOrder();
                 totalInDay += it.calculateTotal();
@@ -71,22 +71,7 @@ public class Store {
         String[] str = monthOfYear.split("-");
         int month = Integer.parseInt(str[0]);
         int year = Integer.parseInt(str[1]);
-        int dayInMonth= 1;
-        switch (month) {
-            case 1, 3, 5, 7, 8, 10, 12:
-                dayInMonth= 31;
-                break;
-            case 4 , 6, 9, 11:
-                dayInMonth= 30;
-                break;
-            case 2:
-                dayInMonth= 28;
-                if((year % 4 == 0 && year % 100 != 0) || year % 400 == 0){
-                    dayInMonth= 29;
-                }
-            default:
-                break;
-        }
+        
         boolean checkMonth = false;
         for(Order order : Orders.getOrders()) {
             String time = order.getOrderDate().toString();
@@ -110,7 +95,7 @@ public class Store {
                 totalInMonth += it.calculateTotal();
             }
             listOnMonth.clear();
-            System.out.println("doanh thu trong thang " + month + " nam " + "la: " + totalInMonth + ".000 VND");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+            System.out.println("doanh thu trong thang " + month + " nam " + "la: " + totalInMonth + ".000 VND");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
         }else {
             System.out.println("khong co don hang trong thang");
             checkMonth = false;
@@ -160,31 +145,7 @@ public class Store {
     }
     
 
-    // public static void statisticInQuarter() {
-    //     System.out.println("nhap quy: ");
-    //     int quarter = sc.nextInt();
-    //     boolean checkQuarter = false;
-    //     switch (quarter) {
-    //         case 1,2,3,4:
-    //             checkQuarter = true;                
-    //             break;
-    //         default:
-    //             checkQuarter = false;
-    //             break;
-    //     }
-    //     listOnQuarter.put(checkQuarter, new ArrayList<>());
-    //     for(Order order : listOnMonth) {
-    //         String date = order.getOrderDate().toString();
-    //         String[] str = date.split("-");
-    //         int monthInDate = Integer.parseInt(str[1]);
-    //         if(monthInDate == 1 || monthInDate == 2 || monthInDate == 3) {
-               
-    //         }
-    //     }
-
-    // }
-
-    public static void solve() {
+    public static void statistic() {
         boolean isStatistic = false;
         while(!isStatistic) {
             System.out.println("┌───────────────────────────────────────────┐");
@@ -193,9 +154,7 @@ public class Store {
             System.out.println("│ 1.Thong ke theo ngay                      │");
             System.out.println("│ 2.Thong ke theo thang                     │");
             System.out.println("│ 3.Thong ke theo nam                       │");
-            System.out.println("│ 4.Tim kiem theo size                      │");
-            System.out.println("│ 4.Thong ke theo quy                       │");
-            System.out.println("│ 5.Thoat                                   │");
+            System.out.println("│ 4.Thoat                                   │");
             System.out.println("├───────────────────────────────────────────┤");
             int choice;
             System.out.print("Nhap lua chon: ");
@@ -223,8 +182,6 @@ public class Store {
                     statisticInYear();
                     break;
                 case 4:
-                    // statisticInQuarter();
-                case 5:
                     System.out.println("thoat");
                     isStatistic = true;
                     break;
