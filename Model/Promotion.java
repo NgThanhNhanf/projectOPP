@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import Order.*;
 
 import java.util.Scanner;
 
@@ -80,8 +81,8 @@ public class Promotion {
     }
 
     public void setDiscountCode(double discountCode){
-        //kiểm tra cái % giảm giá có hợp lệ trong khoảng từ 0 -> 1
         if(discountCode < 0 && discountCode > 100) this.discountCode = 0;
+        //kiểm tra cái % giảm giá có hợp lệ trong khoảng từ 0 -> 1ountCode = 0;
         else this.discountCode = discountCode;
     }
 

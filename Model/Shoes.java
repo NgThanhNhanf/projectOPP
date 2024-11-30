@@ -97,14 +97,17 @@ public class Shoes extends Product {
     public void editProduct(){
         boolean isShoes = false;
         while(!isShoes){
-            System.out.println("chon thong tin can sua");
-            System.out.println("1.Ma san pham");
-            System.out.println("2.Ten san pham");
-            System.out.println("3.Gia tien");
-            System.out.println("4.Size giay");
-            System.out.println("5.Mau giay");
-            System.out.println("6.Tat ca");
-            System.out.println("7.Thoat");
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│         Chon thong tin can sua            │");
+            System.out.println("├───────────────────────────────────────────┤");
+            System.out.println("│ 1. Ma san pham                            │");
+            System.out.println("│ 2. Ten san pham                           │");
+            System.out.println("│ 3. Gia tien                               │");
+            System.out.println("│ 4. Size giay                              │");
+            System.out.println("│ 5. Mau giay                               │");
+            System.out.println("│ 6. Tat ca                                 │");
+            System.out.println("│ 7. Thoat                                  │");
+            System.out.println("└───────────────────────────────────────────┘");
             System.out.println("nhap lua chon: ");
             int choose;
             do {
