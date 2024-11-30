@@ -135,7 +135,6 @@ public class Orders implements fileWork {
                         case 2:
                             boolean loop1;
                             do {
-                                order.displayOrder();
                                 System.out.print("Nhap ma san pham:");
                                 int trashID;
                                 do {

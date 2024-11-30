@@ -22,6 +22,7 @@ public class EmployeeUI {
             System.out.println("│3. Tim kiem                                │");
             System.out.println("│4. Thoat                                   │");
             System.out.println("└───────────────────────────────────────────┘");
+            System.out.println("Nhap lua chon:");
             int choose;
             do {
                 try {
