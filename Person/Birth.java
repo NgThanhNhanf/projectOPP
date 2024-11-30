@@ -54,7 +54,7 @@ public class Birth {
                     day = sc.nextInt();
                     break;
                 } catch (InputMismatchException e) {
-                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    System.out.print("Lua chon chi bao gom chu so. Vui long nhap lai: ");
                     sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
                 }
             } while (true);
@@ -65,7 +65,7 @@ public class Birth {
                     month = sc.nextInt();
                     break;
                 } catch (InputMismatchException e) {
-                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    System.out.print("Lua chon chi bao gom chu so. Vui long nhap lai: ");
                     sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
                 }
             } while (true);
@@ -76,7 +76,7 @@ public class Birth {
                     year = sc.nextInt();
                     break;
                 } catch (InputMismatchException e) {
-                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    System.out.print("Lua chon chi bao gom chu so. Vui long nhap lai: ");
                     sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
                 }
             } while (true);

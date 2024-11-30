@@ -21,7 +21,7 @@ public class Inventory implements fileWork {
     // them so luong ton kho cua san pham vao kho hang
     public static void addInventory(Product product, int quanlity){
         listInventory.put(product, listInventory.getOrDefault(product, 0) + quanlity);
-        System.out.println("da them " + listInventory.values() + " san pham");
+        // System.out.println("da them " + listInventory.values() + " san pham");
     }
     //xoa bot di so luong ton kho cua san pham vao kho hang
     public static void deleteInventory(Product product, int quanlity){
