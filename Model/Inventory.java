@@ -26,7 +26,7 @@ public class Inventory implements fileWork {
     public static void deleteInventory(Product product, int quanlity){
         if(quanlity > 0){
             listInventory.put(product, listInventory.getOrDefault(product, 0) + (-quanlity));
-            System.out.println("da bot di"  + listInventory.values() + "san pham");
+            // System.out.println("da bot di"  + listInventory.values() + "san pham");
         }
     }
 

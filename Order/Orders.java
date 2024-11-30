@@ -44,7 +44,7 @@ public class Orders implements fileWork {
                                 choice = scanner.nextInt();
                                 break;
                             } catch (InputMismatchException e) {
-                                System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                                System.out.print("Lua chon chi bao gom chu so. Vui long nhap lai: ");
                                 scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
                             }
                         } while (true);
@@ -73,7 +73,7 @@ public class Orders implements fileWork {
                             choice = scanner.nextInt();
                             break;
                         } catch (InputMismatchException e) {
-                            System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                            System.out.print("Lua chon chi bao gom chu so. Vui long nhap lai: ");
                             scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
                         }
                     } while (true);
@@ -90,7 +90,7 @@ public class Orders implements fileWork {
                                         productID = scanner.nextInt();
                                         break;
                                     } catch (InputMismatchException e) {
-                                        System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                                        System.out.print("Lua chon chi bao gom chu so. Vui long nhap lai: ");
                                         scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
                                     }
                                 } while (true);
@@ -102,7 +102,7 @@ public class Orders implements fileWork {
                                         quantity = scanner.nextInt();
                                         break;
                                     } catch (InputMismatchException e) {
-                                        System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                                        System.out.print("Lua chon chi bao gom chu so. Vui long nhap lai: ");
                                         scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
                                     }
                                 } while (true);
@@ -127,7 +127,7 @@ public class Orders implements fileWork {
                                     System.out.println("Khong tim thay san pham.");
                                 }
 
-                                System.out.print("Ban co muon nhap them san pham? (y/n): ");
+                                System.out.print("Ban co muon nhap them san pham? (Nhap y de tiep tuc): ");
                                 String answer = scanner.nextLine();
                                 loop = answer.equalsIgnoreCase("y");
                             } while (loop);
@@ -135,7 +135,6 @@ public class Orders implements fileWork {
                         case 2:
                             boolean loop1;
                             do {
-                                order.displayOrder();
                                 System.out.print("Nhap ma san pham:");
                                 int trashID;
                                 do {
@@ -165,7 +164,7 @@ public class Orders implements fileWork {
                                     System.out.println("Khong tim thay san pham trong don hang.");
                                 }
 
-                                System.out.print("Ban co muon xoa them san pham? (y/n): ");
+                                System.out.print("Ban co muon xoa them san pham? (Nhap y de tiep tuc): ");
                                 String answer = scanner.nextLine();
                                 loop1 = answer.equalsIgnoreCase("y");
                             } while (loop1);
@@ -219,7 +218,27 @@ public class Orders implements fileWork {
             Order order = iterator.next();
             if (order.getOrderID() == orderID) {
                 if (order.isOrderStatus()) {
-                    System.out.println("Don hang da thanh toan. Khong the xoa.");
+                        System.out.println("┌───────────────────────────────────────────┐");
+                        System.out.println("│              KHONG THE XOA !!!            │");
+                        System.out.println("│        Do don hang da duoc thanh toan     │");
+                        System.out.println("├───────────────────────────────────────────┤");
+                        System.out.println("│ 1. Quay lai                               │");
+                        System.out.println("└───────────────────────────────────────────┘");
+                        System.out.print("Vui long chon 1 de quay lai: ");
+                        while (true) {
+                            try {
+                                int tmp = scanner.nextInt();
+                                scanner.nextLine();
+                                if (tmp == 1) {
+                                    break;
+                                } else {
+                                    System.out.print("Lua chon khong hop le. Vui long nhap lai: ");
+                                }
+                            } catch (InputMismatchException e) {
+                                System.out.print("Lua chon chi bao gom chu so. Vui long nhap lai: ");
+                                scanner.nextLine(); // Clear invalid input
+                            }
+                        }
                     return;
                 } else {
                     // Trả lại sản phẩm về kho

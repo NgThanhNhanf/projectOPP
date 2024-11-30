@@ -20,8 +20,10 @@ public class OrdersUI {
         while (true) {
             System.out.print("Nhap so dien thoai: ");
             phone = scanner.nextLine();
-            if (tempCustomer.validPhone(phone)) break;
-            else System.out.println("So dien thoai khong hop le, vui long nhap lai.");
+            if (tempCustomer.validPhone(phone))
+                break;
+            else
+                System.out.println("So dien thoai khong hop le, Vui long nhap lai: ");
         }
 
         customer = Customers.findCustomer(phone);
@@ -48,7 +50,7 @@ public class OrdersUI {
                     scanner.nextLine();
                     break;
                 } catch (InputMismatchException e) {
-                    System.out.println("Ma san pham chi bao gom chu so. Vui long nhap lai.");
+                    System.out.print("Ma san pham chi bao gom chu so. Vui long nhap lai:  ");
                     scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
                 }
             }
@@ -56,8 +58,17 @@ public class OrdersUI {
 
             if (product != null) {
                 System.out.print("Nhap so luong: ");
-                int quantity = scanner.nextInt();
-                scanner.nextLine();
+                int quantity;
+                while (true) {
+                    try {
+                        quantity = scanner.nextInt();
+                        scanner.nextLine();
+                        break;
+                    } catch (InputMismatchException e) {
+                        System.out.print("So luong san pham la mot so . Vui long nhap lai:  ");
+                        scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                    }
+                }
 
                 int stock = Inventory.getListInventory().getOrDefault(product, 0);
                 if (stock >= quantity) {
@@ -70,7 +81,7 @@ public class OrdersUI {
                 System.out.println("San pham khong ton tai.");
             }
 
-            System.out.print("Ban co muon nhap them san pham? (y/n): ");
+            System.out.print("Ban co muon nhap them san pham? (Nhap y de tiep tuc): ");
             String answer = scanner.nextLine();
             tiepTuc = answer.equalsIgnoreCase("y");
         } while (tiepTuc);
@@ -92,7 +103,7 @@ public class OrdersUI {
                         choice = scanner.nextInt();
                         break;
                     } catch (InputMismatchException e) {
-                        System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                        System.out.print("Lua chon chi bao gom chu so. Vui long nhap lai: ");
                         scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
                     }
                 } while (true);
@@ -144,7 +155,7 @@ public class OrdersUI {
                     choice = scanner.nextInt();
                     break;
                 } catch (InputMismatchException e) {
-                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    System.out.print("Lua chon chi bao gom chu so. Vui long nhap lai: ");
                     scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
                 }
             } while (true);
@@ -154,7 +165,7 @@ public class OrdersUI {
                     System.out.print("Nhap so dien thoai Momo: ");
                     String momoPhone = scanner.nextLine();
                     if (momoPhone.equals(customer.getPhone())) {
-                        System.out.print("Xac nhan thanh toan qua Momo? (y/n): ");
+                        System.out.print("Xac nhan thanh toan qua Momo? (Nhap y de tiep tuc): ");
                         String confirm = scanner.nextLine();
                         if (confirm.equalsIgnoreCase("y")) {
                             validChoice = true;
@@ -166,18 +177,32 @@ public class OrdersUI {
                     break;
                 case 2:
                     double totalAmount = order.calculateTotal();
+                    System.out.println("┌───────────────────────────────────────────┐");
+                    System.out.println("│             Trang thai don hang           │");
+                    System.out.println("├───────────────────────────────────────────┤");
                     order.displayOrder();
+                    System.out.println("└───────────────────────────────────────────┘");
                     boolean paymentSuccess = false;
                     while (!paymentSuccess) {
                         System.out.print("Nhap so tien khach dua (boi so cua 1.000 VND): ");
-                        double amountGiven = scanner.nextDouble();
-                        scanner.nextLine();
+                        double amountGiven;
+                        while (true) {
+                            try {
+                                amountGiven = scanner.nextDouble();
+                                scanner.nextLine();
+                                break;
+                            } catch (InputMismatchException e) {
+                                System.out.print(
+                                        "So tien can nhap la so nguyen duong va la boi so cua 1.000 VND. \nVui long nhap lai:  ");
+                                scanner.nextLine();
+                            }
+                        }
                         if (amountGiven >= totalAmount) {
                             double change = amountGiven - totalAmount;
                             System.out.println("┌───────────────────────────────────────────┐");
-                            System.out.printf("│Tien khach dua:  %-15s%-7s VND│\n", ' ',
+                            System.out.printf("│Tien khach dua:  %23s VND│\n",
                                     displayFormat.formatPrice(amountGiven));
-                            System.out.printf("│Tien du cua khach: %-13s%s VND│\n", ' ',
+                            System.out.printf("│Tien du cua khach: %20s VND│\n",
                                     displayFormat.formatPrice(change));
                             System.out.println("├───────────────────────────────────────────┤");
                             System.out.println("│           Thanh toan thanh cong           │");
@@ -194,7 +219,7 @@ public class OrdersUI {
                                         choice2 = scanner.nextInt();
                                         break;
                                     } catch (InputMismatchException e) {
-                                        System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                                        System.out.print("Lua chon chi bao gom chu so. Vui long nhap lai: ");
                                         scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
                                     }
                                 } while (true);
@@ -212,7 +237,7 @@ public class OrdersUI {
                             validChoice = true;
                             return true;
                         } else {
-                            System.out.println("So tien khong du. Vui long nhap lai.");
+                            System.out.println("So tien khong du. Vui long nhap lai: ");
                         }
                     }
                     break;
@@ -245,7 +270,7 @@ public class OrdersUI {
                     choice = scanner.nextInt();
                     break;
                 } catch (InputMismatchException e) {
-                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    System.out.print("Lua chon chi bao gom chu so. Vui long nhap lai: ");
                     scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
                 }
             } while (true);
@@ -263,15 +288,14 @@ public class OrdersUI {
                             orderID = scanner.nextInt();
                             break;
                         } catch (InputMismatchException e) {
-                            System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                            System.out.print("Lua chon chi bao gom chu so. Vui long nhap lai: ");
                             scanner.nextLine();
                         }
                     } while (true);
-                    System.out.print("Ban co chan chan mua xoa don hang? (y/n): \n");
+                    System.out.print("Ban co chan chan mua xoa don hang? (Nhap y de tiep tuc): ");
                     scanner.nextLine();
                     String confirm = scanner.nextLine();
                     if (confirm.equalsIgnoreCase("y")) {
-                        complete = true;
                         Orders.deleteOrder(orderID);
                     }
                     break;
@@ -292,7 +316,7 @@ public class OrdersUI {
                 orderID = scanner.nextInt();
                 break;
             } catch (InputMismatchException e) {
-                System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                System.out.print("Lua chon chi bao gom chu so. Vui long nhap lai: ");
                 scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
             }
         } while (true);
@@ -318,7 +342,7 @@ public class OrdersUI {
                     choice = scanner.nextInt();
                     break;
                 } catch (InputMismatchException e) {
-                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    System.out.print("Lua chon chi bao gom chu so. Vui long nhap lai: ");
                     scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
                 }
             } while (true);
