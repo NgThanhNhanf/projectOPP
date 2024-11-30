@@ -41,12 +41,10 @@ public class MainMenu {
             System.out.println("│ 1. Don hang                               │");
             System.out.println("│ 2. Khach hang                             │");
             System.out.println("│ 3. Nhan vien                              │");
-            System.out.println("│ 4. San pham                               │");
-            System.out.println("│ 5. Kho hang                               │");
-            System.out.println("│ 6. Thong ke                               │");
-            System.out.println("│ 7. Tai khoan                              │");
-            System.out.println("│ 8. Dang xuat                              │");
-            System.out.println("│ 9. Thoat                                  │");
+            System.out.println("│ 4. Kho hang                               │");
+            System.out.println("│ 5. Thong ke                               │");
+            System.out.println("│ 6. Tai khoan                              │");
+            System.out.println("│ 7. Dang xuat                              │");
             System.out.println("└───────────────────────────────────────────┘");
             System.out.print("Nhap lua chon: ");
             int choose;
@@ -74,20 +72,56 @@ public class MainMenu {
                     ProductUI.rootMenu();
                     break;
                 case 5:
+                    Store.statistic();
                     break;
                 case 6:
-                    Store.solve();
-                    break;
-                case 7:
                     UserUI.rootMenu();
                     break;
-                case 8:
-                    break;
-                case 9:
+                case 7:
                     complete = true;
+                    System.out.println("Dang xuat thanh cong");
                     break;
                 default:
                     System.out.println("Lua chon khong hop le vui long nhap lai");
+                    break;
+            }
+        }
+    }
+
+    public static void MenuE() {
+        boolean complete = false;
+        while(!complete) {
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│                 Menu Chinh                │");
+            System.out.println("├───────────────────────────────────────────┤");
+            System.out.println("│ 1. Don hang                               │");
+            System.out.println("│ 2. Khach hang                             │");
+            System.out.println("│ 3. Dang xuat                              │");
+            System.out.println("└───────────────────────────────────────────┘");
+            System.out.print("nhap lua chon: ");
+            int choose;
+            do {
+                try {
+                    choose = sc.nextInt();
+                    break;
+                } catch(InputMismatchException e) {
+                    System.out.println("lua chon chi bao gom chu so.Vui long nhap lai");
+                    sc.nextLine();
+                }
+            }while(true);
+
+            switch (choose) {
+                case 1:
+                    OrdersUI.rootMenu();
+                    break;
+                case 2:
+                    CustomerUI.mainMenu();
+                    break;
+                case 3:
+                    complete = true;
+                    System.out.println("Dang xuat thanh cong");
+                    break;
+                default:
                     break;
             }
         }
@@ -125,6 +159,9 @@ public class MainMenu {
                         if (user.getRole().equals("M")) {
                             System.out.println("Here2");
                             MenuM();
+                        }else if(user.getRole().equals("E")){
+                            System.out.println("Here3");
+                            MenuE();
                         }
                     }
                     break;
@@ -134,6 +171,8 @@ public class MainMenu {
                     if (user != null) {
                         if (user.getRole().equals("M")) {
                             MenuM();
+                        }else if(user.getRole().equals("E")){
+                            MenuE();
                         }
                     }
                     break;

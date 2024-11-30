@@ -207,7 +207,6 @@ public class Orders implements fileWork {
     public static void addOrder(Order order) {
         if (!order.getOrderDetails().isEmpty()) {
             orders.add(order);
-            System.out.println("Don hang da duoc them vao.");
         } else {
             System.out.println("Don hang rong. Khong them don hang.");
         }

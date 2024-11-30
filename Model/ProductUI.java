@@ -3,7 +3,7 @@ package Model;
 import Search.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import Order.*;
+// import Order.*;
 
 public class ProductUI {
     static Scanner sc = new Scanner(System.in);
@@ -39,7 +39,7 @@ public class ProductUI {
                     boolean isInventory = false;
                     while(!isInventory){
                         System.out.println("├───────────────────────────────────────────┤");
-                        System.out.println("│ 1. Chon san pham                          │");
+                        System.out.println("│ 1. Xem san pham                          │");
                         System.out.println("│ 2. Sua san pham                           │");
                         System.out.println("│ 3. Xoa san pham                           │");
                         System.out.println("│ 4. Thoat                                  │");
@@ -57,11 +57,11 @@ public class ProductUI {
                         } while (true);
                         switch (choice) {
                             case 1:
+                            sc.nextLine();
                                 System.out.print("nhap ten san pham: ");
                                String name = sc.nextLine();
                                if(Inventory.findProduct(name)){
-                                    Inventory.display();
-                                    isInventory = true;
+                                    Inventory.displayProductByName(name);
                                }
                                 break;
                             case 2:
@@ -109,9 +109,8 @@ public class ProductUI {
                         System.out.println("│        Chon loai san pham can them        │");
                         System.out.println("├───────────────────────────────────────────┤");
                         System.out.println("│ 1. Clothing                               │");
-                        System.out.println("│ 2. Accessory                              │");
-                        System.out.println("│ 3. Shoes                                  │");
-                        System.out.println("│ 4. Thoat                                  │");
+                        System.out.println("│ 2. Shoes                                  │");
+                        System.out.println("│ 3. Thoat                                  │");
                         System.out.println("└───────────────────────────────────────────┘");
                         int lc;
                         Product product;
@@ -128,8 +127,6 @@ public class ProductUI {
                         if(lc == 1) {
                             product = new Clothing();
                         }else if(lc == 2){
-                            product = new Accessory();
-                        }else if(lc == 3){
                             product = new Shoes();
                         }else{
                             System.out.println("lua chon khong hop le!!!");
@@ -170,11 +167,10 @@ public class ProductUI {
                         System.out.println("├───────────────────────────────────────────┤");
                         System.out.println("│ 1.Tim kiem theo ma                        │");
                         System.out.println("│ 2.Tim kiem theo ten                       │");
-                        System.out.println("│ 3.Tim kiem theo ngay                      │");
-                        System.out.println("│ 4.Tim kiem theo size                      │");
-                        System.out.println("│ 5.Tim kiem theo vat lieu                  │");
-                        System.out.println("│ 6.Tim kiem theo gia tien                  │");
-                        System.out.println("│ 7.Thoat                                   │");
+                        System.out.println("│ 3.Tim kiem theo size                      │");
+                        System.out.println("│ 4.Tim kiem theo vat lieu                  │");
+                        System.out.println("│ 5.Tim kiem theo gia tien                  │");
+                        System.out.println("│ 6.Thoat                                   │");
                         System.out.println("├───────────────────────────────────────────┤");
 
                         System.out.print("Nhap lua chon: ");
@@ -200,21 +196,19 @@ public class ProductUI {
                                 search2.search();
                                 break;
                             case 3:
+                                SearchMethod search3 = new SearchBySize();
+                                search3.search();
                                 break;
                             case 4:
-                                SearchMethod search4 = new SearchBySize();
+                                sc.nextLine();
+                                SearchMethod search4 = new SearchByMaterial();
                                 search4.search();
                                 break;
                             case 5:
-                                sc.nextLine();
-                                SearchMethod search5 = new SearchByMaterial();
-                                search5.search();
+                               SearchMethod search5 = new SearchByPrice();
+                               search5.search();
                                 break;
                             case 6:
-                               SearchMethod search6 = new SearchByPrice();
-                               search6.search();
-                                break;
-                            case 7:
                                 System.out.println("thoat");
                                 isSearch = true;
                                 break;
