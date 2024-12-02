@@ -14,7 +14,7 @@ public abstract class Person {
         this.name = name;
         this.dob = dob;
         this.address = address;
-        this.phone = phone;;
+        this.phone = phone;
     }
     public boolean validName() {
         return name.length() > 0;

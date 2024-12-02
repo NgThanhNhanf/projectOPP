@@ -48,7 +48,7 @@ public abstract class Product {
     public abstract void inp();
     //in thong tin full cua san pham trong kho hang
     public void displayInfor(){
-        System.out.println("Ma san pham " + getProductID() + "\nTen san pham: " + getProductName() + "\nDon gia: " + getPrice());
+        System.out.printf("│#%06d - %-25s",getProductID(), getProductName());
     }
 
     public void editProductID(){

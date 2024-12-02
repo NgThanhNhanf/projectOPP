@@ -39,8 +39,11 @@ public class OrdersUI {
 
         boolean tiepTuc;
         do {
-
+            System.out.println("┌───────────────────────────────────────────┐");
+            System.out.println("│            Danh sach san pham             │");
             Inventory.display();
+            System.out.println("└───────────────────────────────────────────┘");
+
 
             System.out.print("Nhap ma san pham: ");
             int productID;
