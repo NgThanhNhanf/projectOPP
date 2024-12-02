@@ -1,10 +1,12 @@
 package Model;
 
 import java.util.InputMismatchException;
+import Order.displayFormat;
 
 public class Clothing extends Product {
     private String size;
     private String material;
+    
 
     public Clothing() {}
 
@@ -55,7 +57,9 @@ public class Clothing extends Product {
     @Override
     public void displayInfor() {
         super.displayInfor();
-        System.out.println("size: " + getSize() + "\nchat lieu: " + getMaterial());
+        System.out.printf("Size: %2s│\n│Chat lieu: %-32s│\n", getSize(), getMaterial());
+        System.out.printf("│Don gia: %-21s", displayFormat.formatPrice(super.getPrice()).concat(" VND"));
+
     }
     public void editSize(){
         System.out.print("new size: ");

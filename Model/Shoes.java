@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.InputMismatchException;
+import Order.displayFormat;
 
 public class Shoes extends Product {
     private int size;
@@ -58,7 +59,8 @@ public class Shoes extends Product {
     @Override
     public void displayInfor() {
         super.displayInfor();
-        System.out.println("size giay: " + getSize() + "\nMau giay: " + getColor());
+        System.out.printf("Size: %2s│\n│Chat lieu: %-32s│\n", getSize(), getColor());
+        System.out.printf("│Don gia: %-21s", displayFormat.formatPrice(super.getPrice()).concat(" VND"));
     }
 
     public void editSizeG(){

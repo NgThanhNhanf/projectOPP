@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class ProductUI {
     static Scanner sc = new Scanner(System.in);
+
     // TODO: làm theo menu ở dưới là được
     public static void rootMenu() {
         boolean complete = false;
@@ -34,12 +35,14 @@ public class ProductUI {
             } while (true);
             switch (choose) {
                 case 1:
-                //NOTE : cap nhap san pham trong kho hang
+                    // NOTE : cap nhap san pham trong kho hang
+                    System.out.println("┌───────────────────────────────────────────┐");
+                    System.out.println("│            Danh sach san pham             │");
                     Inventory.display();
                     boolean isInventory = false;
-                    while(!isInventory){
+                    while (!isInventory) {
                         System.out.println("├───────────────────────────────────────────┤");
-                        System.out.println("│ 1. Xem san pham                          │");
+                        System.out.println("│ 1. Xem san pham                           │");
                         System.out.println("│ 2. Sua san pham                           │");
                         System.out.println("│ 3. Xoa san pham                           │");
                         System.out.println("│ 4. Thoat                                  │");
@@ -57,16 +60,16 @@ public class ProductUI {
                         } while (true);
                         switch (choice) {
                             case 1:
-                            sc.nextLine();
+                                sc.nextLine();
                                 System.out.print("nhap ten san pham: ");
-                               String name = sc.nextLine();
-                               if(Inventory.findProduct(name)){
+                                String name = sc.nextLine();
+                                if (Inventory.findProduct(name)) {
                                     Inventory.displayProductByName(name);
-                               }
+                                }
                                 break;
                             case 2:
-                               System.out.println("nhap ma san pham can sua");
-                               int productIDEdit;
+                                System.out.println("nhap ma san pham can sua");
+                                int productIDEdit;
                                 do {
                                     try {
                                         productIDEdit = sc.nextInt();
@@ -76,26 +79,26 @@ public class ProductUI {
                                         sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
                                     }
                                 } while (true);
-            
-                               Product productEdit = Inventory.getProductByID(productIDEdit);
-                               if(productEdit != null){
-                                System.out.println("thong tin san pham hien tai");
-                                productEdit.displayInfor();
-                                productEdit.editProduct();
-                               }else {
-                                System.out.println("khong tim thay san pham co id: " + productIDEdit);
-                               }
-                               break;
+
+                                Product productEdit = Inventory.getProductByID(productIDEdit);
+                                if (productEdit != null) {
+                                    System.out.println("thong tin san pham hien tai");
+                                    productEdit.displayInfor();
+                                    productEdit.editProduct();
+                                } else {
+                                    System.out.println("khong tim thay san pham co id: " + productIDEdit);
+                                }
+                                break;
                             case 3:
-                               sc.nextLine();
-                               System.out.print("Nhap ten san pham can xoa: ");
-                               String productName = sc.nextLine();
-                               Inventory.removeInventory(productName);
-                               break;
+                                sc.nextLine();
+                                System.out.print("Nhap ten san pham can xoa: ");
+                                String productName = sc.nextLine();
+                                Inventory.removeInventory(productName);
+                                break;
                             case 4:
-                               System.out.println("thoat");
-                               isInventory = true;
-                               break;
+                                System.out.println("thoat");
+                                isInventory = true;
+                                break;
                             default:
                                 break;
                         }
@@ -103,8 +106,8 @@ public class ProductUI {
                     }
                     break;
                 case 2:
-                boolean inpProduct = false;
-                    while(true){
+                    boolean inpProduct = false;
+                    while (true) {
                         System.out.println("┌───────────────────────────────────────────┐");
                         System.out.println("│        Chon loai san pham can them        │");
                         System.out.println("├───────────────────────────────────────────┤");
@@ -124,36 +127,36 @@ public class ProductUI {
                                 sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
                             }
                         } while (true);
-                        if(lc == 1) {
+                        if (lc == 1) {
                             product = new Clothing();
-                        }else if(lc == 2){
+                        } else if (lc == 2) {
                             product = new Shoes();
-                        }else{
+                        } else {
                             System.out.println("lua chon khong hop le!!!");
                             continue;
                         }
                         inpProduct = true;
-                        if(inpProduct){
+                        if (inpProduct) {
                             product.inp();
-                        int quantily;
-                        System.out.print("nhap so luong can them: ");
-                        do {
-                            try {
-                                quantily = sc.nextInt();
-                                break;
-                            } catch (InputMismatchException e) {
-                                System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
-                                sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
-                            }
-                        } while (true);
-                        Inventory.addInventory(product,quantily);
-                        }else{
+                            int quantily;
+                            System.out.print("nhap so luong can them: ");
+                            do {
+                                try {
+                                    quantily = sc.nextInt();
+                                    break;
+                                } catch (InputMismatchException e) {
+                                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                                    sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+                                }
+                            } while (true);
+                            Inventory.addInventory(product, quantily);
+                        } else {
                             System.out.println("khong them them san pham!");
                             break;
                         }
                         System.out.print("Ban co muon them san pham vao kho hang ? (y/n)");
                         char inp = sc.next().charAt(0);
-                        if(inp == ('n') || inp == ('N')){
+                        if (inp == ('n') || inp == ('N')) {
                             System.out.println("Ket thuc them san pham");
                             break;
                         }
@@ -161,7 +164,7 @@ public class ProductUI {
                     break;
                 case 3:
                     boolean isSearch = false;
-                    while(!isSearch){
+                    while (!isSearch) {
                         System.out.println("┌───────────────────────────────────────────┐");
                         System.out.println("│       Lua chon tim kiem                   │");
                         System.out.println("├───────────────────────────────────────────┤");
@@ -184,7 +187,7 @@ public class ProductUI {
                                 sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
                             }
                         } while (true);
-                        
+
                         switch (lc) {
                             case 1:
                                 SearchMethod search1 = new SearchByID();
@@ -205,8 +208,8 @@ public class ProductUI {
                                 search4.search();
                                 break;
                             case 5:
-                               SearchMethod search5 = new SearchByPrice();
-                               search5.search();
+                                SearchMethod search5 = new SearchByPrice();
+                                search5.search();
                                 break;
                             case 6:
                                 System.out.println("thoat");
@@ -221,7 +224,7 @@ public class ProductUI {
                 case 4:
                     Promotion promotion = new Promotion();
                     boolean isPromotion = false;
-                    while(!isPromotion){
+                    while (!isPromotion) {
                         System.out.println("┌───────────────────────────────────────────┐");
                         System.out.println("│                Thong tin                  │");
                         System.out.println("├───────────────────────────────────────────┤");
@@ -230,30 +233,30 @@ public class ProductUI {
                         System.out.println("│ 3. San pham giam gia                      │");
                         System.out.println("│ 4. Thoat                                  │");
                         System.out.println("└───────────────────────────────────────────┘");
-                  
+
                         System.out.print("nhap lua chon: ");
                         int choice = sc.nextInt();
 
                         switch (choice) {
                             case 1:
-                            sc.nextLine();
-                            System.out.println("nhap them san pham can them: ");
-                            String nameProductPromotionInAdd = sc.nextLine();
-                            for(Product product : Inventory.getListInventory().keySet()){
-                                if(product.getProductName().equals(nameProductPromotionInAdd)){
-                                    promotion.inpPromocodeandDiscount();
-                                    promotion.inpDate();
-                                    promotion.applyDiscount(product);
-                                    promotion.addProductPromo(product);
+                                sc.nextLine();
+                                System.out.println("nhap them san pham can them: ");
+                                String nameProductPromotionInAdd = sc.nextLine();
+                                for (Product product : Inventory.getListInventory().keySet()) {
+                                    if (product.getProductName().equals(nameProductPromotionInAdd)) {
+                                        promotion.inpPromocodeandDiscount();
+                                        promotion.inpDate();
+                                        promotion.applyDiscount(product);
+                                        promotion.addProductPromo(product);
+                                    }
                                 }
-                            }
                                 break;
                             case 2:
-                            sc.nextLine();
+                                sc.nextLine();
                                 System.out.print("nhap ten san pham can xoa: ");
                                 String nameProductPromotion = sc.nextLine();
-                                for(Product product : promotion.getApplicableProducts()) {
-                                    if(product.getProductName().equals(nameProductPromotion)){
+                                for (Product product : promotion.getApplicableProducts()) {
+                                    if (product.getProductName().equals(nameProductPromotion)) {
                                         promotion.removeProductPromo(product);
                                     }
                                 }
