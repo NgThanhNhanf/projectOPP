@@ -54,7 +54,7 @@ public class Employees implements fileWork, SearchList{
             System.out.println("├───────────────────────────────────────────┤");
             int index = 1;
             for (Employee e : listEmployee) {
-                System.out.printf("│ STT            : %02d │\n", index++);
+                System.out.printf("│ STT            : %02d                       │\n", index++);
                 EmployeeUI.phoneInList.add(e.getPhone());
                 e.displayPerson();
             }

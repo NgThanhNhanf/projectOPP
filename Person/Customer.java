@@ -45,7 +45,7 @@ public class Customer extends Person {
                 System.out.println("│1. Xem chi tiet                            │");
                 System.out.println("│2. Quay lai                                │");
                 System.out.println("└───────────────────────────────────────────┘");
-                System.out.print("Chon 1 de quay lai: ");
+                System.out.print("Nhap lua chon: ");
                 int choice;
                 do {
                     try {
@@ -133,7 +133,7 @@ public class Customer extends Person {
                     choose = sc.nextInt();
                     break;
                 } catch (InputMismatchException e) {
-                    System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
+                    System.out.println( "Lua chon chi bao gom chu so. Vui long nhap lai.");
                     sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
                 }
             } while (true);

@@ -69,29 +69,18 @@ public class Users implements fileWork, SearchList{
     public static int findUser(String userid) {
         for (int i = 0; i < users.size(); ++i) {
             User cur = users.get(i);
-            if(cur.getUserId().equals(userid)) {
+            if (cur.getUserId().equals(userid)) { 
                 return i;
             }
         }
-        return -1;
+        return -1; 
     }
-    // Xóa User theo userId dùng boolean để check xem là có xóa được hay không
-    // nếu không tìm thấy id thì trong menu ta sẽ cho nhập lại
-    public static boolean removeUser(String userid) { 
-        int userPosition = findUser(userid);
-        if (userPosition == -1) {
-            return false;
-        } else {
-            String choose;
-            System.out.println("-Ban co chac chan muon xoa tai khoan " + userid + "?(y/n)");
-            choose = sc.next();
-            if (choose == "y") {
-                users.remove(userPosition);
-                System.out.println("-Xoa tai khoan thanh cong!");
-            }
-            return true;
-        }
+    
+    public static void removeUser(String userid) {
+        int userPosition = findUser(userid); 
+        users.remove(userPosition);
     }
+    
     //Kiểm tra xem user có tồn tại hay chưa (dùng để đăng nhập)
     public static User checkUser(User user) {
         for (User cur : users) {

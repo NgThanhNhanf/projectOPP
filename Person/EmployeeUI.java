@@ -36,7 +36,6 @@ public class EmployeeUI {
             switch (choose) {
                 case 1:
                     System.out.println("Danh sach nhan vien");
-                    Employees.viewEmployee();
                     controlListEmployees();
                     break;
                 case 2:
@@ -177,7 +176,7 @@ public class EmployeeUI {
     }
     public static void searchEmployee() {
         sc.nextLine();
-        System.out.print("Tim kiem nhan vien: ");
+        System.out.print("Tim kiem nhan vien(SDT hoac ten): ");
         String search = sc.nextLine();
         Employees searcher = new Employees();
         List<String> arrID = searcher.searching(search);
