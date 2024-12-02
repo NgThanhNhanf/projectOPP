@@ -183,7 +183,7 @@ public class CustomerUI {
     }
 
     public static void searchCustomer() {
-        System.err.print("Tim kiem khach hang: ");
+        System.err.print("Tim kiem khach hang (SDT hoac Ten): ");
         String search = sc.nextLine();
         Customers searcher = new Customers();
         List<String> arrID = searcher.searching(search);

@@ -15,9 +15,9 @@ public class Users implements fileWork, SearchList{
     @Override
     public void readFile() throws FileNotFoundException {
         // File myFile = new File("D:\\Study\\OOP\\projectOPP\\Accounts\\accountsData.txt");
-        File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Accounts\\accountsData.txt");
+        // File myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Accounts\\accountsData.txt");
         // File myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Accounts\\accountsData.txt");
-        // File myFile = new File("C:\\OOP\\projectOPP\\Accounts\\accountsData.txt");
+        File myFile = new File("C:\\OOP\\projectOPP\\Accounts\\accountsData.txt");
         Scanner scf = new Scanner(myFile);
         while (scf.hasNextLine()) {
             String line = scf.nextLine();
@@ -30,9 +30,9 @@ public class Users implements fileWork, SearchList{
     @Override
     public void writeFile() throws IOException {
         // FileWriter myFile = new FileWriter("D:\\Study\\OOP\\projectOPP\\Accounts\\accountsData.txt");
-        FileWriter myFile = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Accounts\\accountsData.txt");
+        // FileWriter myFile = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Accounts\\accountsData.txt");
         // FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Accounts\\accountsData.txt");
-        // FileWriter myFile = new FileWriter("C:\\OOP\\projectOPP\\Accounts\\accountsData.txt");
+        FileWriter myFile = new FileWriter("C:\\OOP\\projectOPP\\Accounts\\accountsData.txt");
         for (User cur : users) {
             myFile.write(cur.getUserName() + '|' + cur.getPassword() + '|' + cur.getUserId() + '|' + cur.getRole() + '\n');
         }
@@ -69,29 +69,18 @@ public class Users implements fileWork, SearchList{
     public static int findUser(String userid) {
         for (int i = 0; i < users.size(); ++i) {
             User cur = users.get(i);
-            if(cur.getUserId().equals(userid)) {
+            if (cur.getUserId().equals(userid)) { 
                 return i;
             }
         }
-        return -1;
+        return -1; 
     }
-    // Xóa User theo userId dùng boolean để check xem là có xóa được hay không
-    // nếu không tìm thấy id thì trong menu ta sẽ cho nhập lại
-    public static boolean removeUser(String userid) { 
-        int userPosition = findUser(userid);
-        if (userPosition == -1) {
-            return false;
-        } else {
-            String choose;
-            System.out.println("-Ban co chac chan muon xoa tai khoan " + userid + "?(y/n)");
-            choose = sc.next();
-            if (choose == "y") {
-                users.remove(userPosition);
-                System.out.println("-Xoa tai khoan thanh cong!");
-            }
-            return true;
-        }
+    
+    public static void removeUser(String userid) {
+        int userPosition = findUser(userid); 
+        users.remove(userPosition);
     }
+    
     //Kiểm tra xem user có tồn tại hay chưa (dùng để đăng nhập)
     public static User checkUser(User user) {
         for (User cur : users) {
