@@ -34,8 +34,6 @@ public class SearchByMaterial implements SearchMethod {
                 break;
             }
         } while (true);
-    
-        System.out.println("Tim kiem ket thuc.");
     }
     
 }

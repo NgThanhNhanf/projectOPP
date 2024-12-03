@@ -45,9 +45,9 @@ public class Inventory implements fileWork {
 
     public static void display() {
         for (Product product : listInventory.keySet()) {
-            System.out.println("├───────────────────────────────────────────┤");
             product.displayInfor();
-            System.out.printf("SL. ton: %04d│\n", listInventory.get(product));
+            System.out.printf("│SL. ton: %04d %-29s│\n", listInventory.get(product), ' ');
+            System.out.println("├───────────────────────────────────────────┤");
         }
     }
 
@@ -94,9 +94,11 @@ public class Inventory implements fileWork {
     public static void displayProductByName(String productName) {
         for (Product product : listInventory.keySet()) {
             if (product.getProductName().toLowerCase().contains(productName.toLowerCase())) {
+                System.out.println("┌───────────────────────────────────────────┐");
+                System.out.println("│        Danh sach san pham theo ten        │");
                 System.out.println("├───────────────────────────────────────────┤");
                 product.displayInfor();
-                System.out.println("├───────────────────────────────────────────┤");
+                System.out.println("└───────────────────────────────────────────┘");
             }
         }
 
@@ -119,6 +121,7 @@ public class Inventory implements fileWork {
         }
         scf.close();
         // myFile = new File("D:\\Study\\OOP\\projectOPP\\Model\\shoesData.txt");
+
          myFile = new File("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Model\\shoesData.txt");
         // myFile = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Model\\shoesData.txt");
         // myFile = new File("C:\\OOP\\projectOPP\\Model\\shoesData.txt");

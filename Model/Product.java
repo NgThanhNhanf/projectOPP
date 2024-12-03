@@ -47,7 +47,7 @@ public abstract class Product {
                 this.price = price;
                 break;
             }else {
-                System.out.println("gia tien phai > 0");
+              System.err.println("Gia tien phai lon hon 0");
             }
         }
     }
