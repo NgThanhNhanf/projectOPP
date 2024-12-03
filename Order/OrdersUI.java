@@ -333,7 +333,7 @@ public class OrdersUI {
                             scanner.nextLine();
                         }
                     } while (true);
-                    System.out.print("Ban co chan chan mua xoa don hang? (Nhap y de tiep tuc): ");
+                    System.out.print("Ban co chan chan mua xoa don hang? (Nhap y de xac nhan): ");
                     scanner.nextLine();
                     String confirm = scanner.nextLine();
                     if (confirm.equalsIgnoreCase("y")) {
