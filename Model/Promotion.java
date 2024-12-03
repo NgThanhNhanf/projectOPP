@@ -1,150 +1,113 @@
 package Model;
 
-import java.util.ArrayList;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
-// import Order.*;
-
 import java.util.Scanner;
 
 public class Promotion {
-    private static final String promoCode = "CoLoanOOP"; // mã giảm giá
-    private static int discountCode; // % giảm 
-    private static final LocalDate startDate = LocalDate.of(2024,01,01);
-    private static final LocalDate endDate = LocalDate.of(2025,01,01);
-    private static List<Product> applicableProducts = new ArrayList<>(); // sản phẩm đc áp dụng mã giảm giá
+    private static final String promoCode = "COLOANOOP"; // mã giảm giá duy nhất
+    private static int discountCode = 0; // % giảm giá
+    private static final LocalDate startDate = LocalDate.of(2024, 1, 1); // ngày bắt đầu mặc định
+    private static final LocalDate endDate = LocalDate.of(2025, 1, 1);   // ngày kết thúc mặc định
+    private static final List<Product> applicableProducts = new ArrayList<>(); // sản phẩm áp dụng mã giảm giá
+    private static final Scanner sc = new Scanner(System.in);
 
-    //lớp này để định dạng ngày và giờ(W3school)
-    static DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    //ofPattern: dùng để phân tách ngày và giờ và loại bỏ chữ T ở giữa 
-    static  Scanner sc = new Scanner(System.in);
-
-    public static boolean isValidformat(String str){
-        try {
-            LocalDate.parse(str, format);
-            return true;
-        }
-        catch(Exception e){
-            return false;
-        }
-    }
-    public void inpPromocodeandDiscount(){
-        System.out.println("nhap ma giam gia: ");
-        setPromoCode(sc.nextLine());
-        System.out.println("nhap phan tram giam gia: ");
-        setDiscountCode(sc.nextDouble());
-        sc.nextLine();
-    }
-    public void inpDate(){
-        String beginDate;
-        do {
-            System.out.println("han bat dau: ");
-            beginDate = sc.nextLine();
-            if(!isValidformat(beginDate)){
-                System.out.println("dinh dang ngay khong hop le!Vui long nhap lai: ");
-            }
-        } while (!isValidformat(beginDate));
-        this.startDate = LocalDateTime.parse(beginDate, format);
-
-        String lastDate;
-        do {
-            System.out.println("han ket thuc: ");
-            lastDate = sc.nextLine();
-            if(!isValidformat(lastDate)){
-                System.out.println("dinh dang ngay khong hop le!Vui long nhap lai: ");
-            }
-        } while (!isValidformat(lastDate));
-        this.endDate = LocalDateTime.parse(lastDate, format);
+    // Lấy mã giảm giá
+    public static String getPromoCode() {
+        return promoCode;
     }
 
-    public LocalDateTime getStartDate(){
-        return startDate;
-    }
-
-    public LocalDate getEndDate(){
-        return endDate;
-    }
-    
-    //lấy ra phần % giảm giá(thêm vào đây nếu lúc nào cần thôi)
-    public double getDiscountCode(){
+    // Lấy % giảm giá
+    public static int getDiscountCode() {
         return discountCode;
     }
 
-    public String getPromoCode(){
-        return promoCode;
-    }
-    //thêm vào nếu lúc nào cần truy xuất đến cái list
-    public static List<Product> getApplicableProducts(){
-        return applicableProducts;
+    // Đặt % giảm giá với kiểm tra hợp lệ
+    public static void setDiscountCode(int newDiscountCode) {
+        if (newDiscountCode >= 1 && newDiscountCode <= 100) {
+            discountCode = newDiscountCode;
+        } else {
+            throw new IllegalArgumentException("Mã giảm giá phải từ 1 đến 100.");
+        }
     }
 
-    public static void nhapDiscountCode() {
-        System.out.print("nhap ma giam gia: ");
-     do {
-        try {
-            discountCode = sc.nextInt();
-            if(discountCode >= 1 && discountCode <= 100) {
+    // Hỗ trợ nhập mã giảm giá từ bàn phím
+    public static void inputDiscountCode() {
+        System.out.print("Nhập mã giảm giá: ");
+        while (true) {
+            try {
+                int inputCode = sc.nextInt();
+                setDiscountCode(inputCode); // Gọi setter để kiểm tra
                 break;
-            }else {
-                System.out.println("ma giam gia phai tu 0-> 100!");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " Vui lòng nhập lại.");
+            } catch (Exception e) {
+                System.out.println("Giá trị không hợp lệ. Vui lòng nhập số nguyên.");
+                sc.nextLine(); // Xóa bộ đệm
             }
-        } catch(Exception e) {
-            System.out.println("lua chon chi bao gom so nguyen!Vui long nhap lai");
         }
-     } while(true);
     }
 
-   public static  boolean isvalidDay(){
-    //hàm now() để lấy ra cái ngày giờ hiện tại 
-    LocalDate day = LocalDate.now();
-    if(startDate == null || endDate == null || (startDate == null && endDate == null)){
-        System.out.println("ngay bat dau va ket thuc chua duoc khoi tao"); return false;
+    // Lấy ngày bắt đầu
+    public static LocalDate getStartDate() {
+        return startDate;
     }
-    //day là cái ngày hiện tại thì kiểm tra nó có nằm trong khoảng ngày khuyến mãi hay không 
-    return !day.isBefore(startDate) && !day.isAfter(endDate); 
+
+    // Lấy ngày kết thúc
+    public static LocalDate getEndDate() {
+        return endDate;
     }
-    //thêm sản phẩm vào danh mục khuyến mãi 
-    public static void addProductPromo(Product product){
-        //contains: kiểm tra xem trong cái list sản phẩm khuyến mãi đã có hay chưa 
-        if(!applicableProducts.contains(product)){
+
+    // Kiểm tra ngày hiện tại có hợp lệ trong thời gian khuyến mãi không
+    public static boolean isValidDay() {
+        LocalDate today = LocalDate.now();
+        return !today.isBefore(startDate) && !today.isAfter(endDate);
+    }
+
+    // Thêm sản phẩm vào danh mục khuyến mãi
+    public static void addProductPromo(Product product) {
+        if (!applicableProducts.contains(product)) {
             applicableProducts.add(product);
-            System.out.println("san pham " + product.getProductName() + " duoc them vao danh muc giam gia");
-        }else{
-            System.out.println("san pham da co trong danh muc giam gia");
+            System.out.println("Sản phẩm " + product.getProductName() + " đã được thêm vào danh mục khuyến mãi.");
+        } else {
+            System.out.println("Sản phẩm đã tồn tại trong danh mục khuyến mãi.");
         }
-    }
-    //xóa sản phẩm ra khỏi danh mục khuyến mãi 
-    public static  void removeProductPromo(Product product){
-        if(applicableProducts.remove(product)){
-            System.out.println("san pham " + product.getProductName() + " da duoc xoa khoi danh muc khuyen mai");
-        }else{
-            System.out.println("san pham khong co trong danh muc khuyen mai");
-        }
-    }
-    //áp dụng % khuyến mãi vào sản phẩm
-    public static  double applyDiscount(Product product){
-        //kiểm tra ngày hợp lệ và sp có trong list
-        if(isvalidDay() && applicableProducts.contains(product) && (discountCode >= 1 && discountCode <= 100)){
-            //sp khuyến mãi = giá sp gốc * (1- %khuyến mãi)
-            return product.getPrice() * (1 - discountCode/100.0);
-        }
-        //trả về giá sản phẩm sau khi khuyến mãi 
-        return product.getPrice();
     }
 
+    // Xóa sản phẩm khỏi danh mục khuyến mãi
+    public static void removeProductPromo(Product product) {
+        if (applicableProducts.remove(product)) {
+            System.out.println("Sản phẩm " + product.getProductName() + " đã được xóa khỏi danh mục khuyến mãi.");
+        } else {
+            System.out.println("Sản phẩm không tồn tại trong danh mục khuyến mãi.");
+        }
+    }
+
+    // Lấy danh sách sản phẩm áp dụng khuyến mãi
+    public static List<Product> getApplicableProducts() {
+        return new ArrayList<>(applicableProducts);
+    }
+
+    // Áp dụng % giảm giá cho sản phẩm
+    public static double applyDiscount(Product product) {
+        if (isValidDay() && applicableProducts.contains(product)) {
+            return product.getPrice() * (1 - discountCode / 100.0);
+        }
+        return product.getPrice(); // Trả về giá cũ nếu không hợp lệ
+    }
+
+    // Hiển thị các sản phẩm trong danh mục khuyến mãi
     public static void displayApplicableProducts() {
         System.out.println("╔════════════════════════════════════════════╗");
-        System.out.printf("║ Ma giam gia: %-24s      ║\n", promoCode);  
+        System.out.printf("║ Mã giảm giá: %-24s      ║\n", promoCode);
         System.out.println("╠════════════════════════════════════════════╣");
-        System.out.println("║ Cac San pham khuyen mai:                   ║");
-        
+        System.out.println("║ Các sản phẩm khuyến mãi:                   ║");
+
         for (Product product : applicableProducts) {
             System.out.println("╠────────────────────────────────────────────╣");
-            System.out.printf("║ %-35s %d ║\n",product.getProductName(), discountCode);
+            System.out.printf("║ %-35s %d %% ║\n", product.getProductName(), discountCode);
         }
         System.out.println("╚════════════════════════════════════════════╝");
     }
-
-    
 }
