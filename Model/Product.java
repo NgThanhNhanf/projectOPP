@@ -52,7 +52,7 @@ public abstract class Product {
     }
 
     public void editProductID(){
-        System.out.print("new id: ");
+        System.out.print("Id: ");
         int newID;
         do {
             try {
@@ -69,13 +69,13 @@ public abstract class Product {
     }
 
     public void editProductName(){
-        System.out.print("new name: ");
+        System.out.print("Ten: ");
         String newName = sc.nextLine();
         setProductName(newName);
         System.out.print("thay doi thanh cong");
     }
     public void editProductPrice() {
-        System.out.print("new price: ");
+        System.out.print("Gia: ");
 
         int newPrice;
         do {
@@ -89,7 +89,7 @@ public abstract class Product {
         } while (true);
 
         setPrice(newPrice);
-        System.out.print("thay doi thanh cong");
+        System.out.print("Thay doi thanh cong");
 
     }
     public abstract void editALLAttributeProduct();

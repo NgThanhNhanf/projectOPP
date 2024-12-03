@@ -2,6 +2,7 @@ package Order;
 
 import Model.Inventory;
 import Model.Product;
+import Model.Promotion;
 import Person.Customer;
 import Person.Customers;
 import java.util.InputMismatchException;
@@ -43,7 +44,6 @@ public class OrdersUI {
             System.out.println("│            Danh sach san pham             │");
             Inventory.display();
             System.out.println("└───────────────────────────────────────────┘");
-
 
             System.out.print("Nhap ma san pham: ");
             int productID;
@@ -149,7 +149,8 @@ public class OrdersUI {
             System.out.println("├───────────────────────────────────────────┤");
             System.out.println("│1. Momo                                    │");
             System.out.println("│2. Tien mat                                │");
-            System.out.println("│3. Quay lai                                │");
+            System.out.println("│3. Ap dung ma giam                         │");
+            System.out.println("│4. Quay lai                                │");
             System.out.println("└───────────────────────────────────────────┘");
             System.out.print("Nhap lua chon: ");
             int choice;
@@ -245,6 +246,9 @@ public class OrdersUI {
                     }
                     break;
                 case 3:
+                    applyPromotionToOrder(order);
+                    break;
+                case 4:
                     System.out.println("Quay lai.");
                     validChoice = true;
                     return false;
@@ -254,6 +258,40 @@ public class OrdersUI {
             }
         }
         return false;
+    }
+
+    private static void applyPromotionToOrder(Order order) {
+        System.out.println("┌───────────────────────────────────────────┐");
+        System.out.println("│            Ma giam gia hien co            │");
+        System.out.println("├───────────────────────────────────────────┤");
+        Promotion.displayApplicableProducts();
+        System.out.println("│1. Ap dung ma giam gia                     │");
+        System.out.println("│2. Quay lai                                │");
+        System.out.println("└───────────────────────────────────────────┘");
+        System.out.print("Nhap lua chon: ");
+        int choice;
+        do {
+            try {
+                choice = scanner.nextInt();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.print("Lua chon chi bao gom chu so. Vui long nhap lai: ");
+                scanner.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
+            }
+        } while (true);
+        scanner.nextLine();
+        switch (choice) {
+            case 1:
+                for (OrderDetail detail : order.getOrderDetails()) {
+                    if (Promotion.getApplicableProducts().containsKey(detail.getProduct().getProductID())) {
+                        detail.applyPromotion();
+                    }
+                }
+                System.out.println("Da ap dung ma giam gia thanh cong!");
+                break;
+            default:
+                System.out.println("Lua chon khong hop le. Vui long chon lai.");
+        }
     }
 
     // Xem danh sách đơn hàng
