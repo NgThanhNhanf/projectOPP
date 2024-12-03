@@ -222,7 +222,6 @@ public class ProductUI {
                     }
                     break;
                 case 4:
-                    Promotion promotion = new Promotion();
                     boolean isPromotion = false;
                     while (!isPromotion) {
                         System.out.println("┌───────────────────────────────────────────┐");
@@ -239,30 +238,29 @@ public class ProductUI {
 
                         switch (choice) {
                             case 1:
-                                sc.nextLine();
-                                System.out.println("nhap them san pham can them: ");
-                                String nameProductPromotionInAdd = sc.nextLine();
-                                for (Product product : Inventory.getListInventory().keySet()) {
-                                    if (product.getProductName().equals(nameProductPromotionInAdd)) {
-                                        promotion.inpPromocodeandDiscount();
-                                        promotion.inpDate();
-                                        promotion.applyDiscount(product);
-                                        promotion.addProductPromo(product);
-                                    }
+                            sc.nextLine();
+                            System.out.println("nhap ten san pham can them: ");
+                            String nameProductPromotionInAdd = sc.nextLine();
+                            for(Product product : Inventory.getListInventory().keySet()){
+                                if(product.getProductName().equals(nameProductPromotionInAdd)){
+                                    Promotion.nhapDiscountCode();
+                                    Promotion.applyDiscount(product);
+                                    Promotion.addProductPromo(product);
                                 }
+                            }
                                 break;
                             case 2:
                                 sc.nextLine();
                                 System.out.print("nhap ten san pham can xoa: ");
                                 String nameProductPromotion = sc.nextLine();
-                                for (Product product : promotion.getApplicableProducts()) {
-                                    if (product.getProductName().equals(nameProductPromotion)) {
-                                        promotion.removeProductPromo(product);
+                                for(Product product : Promotion.getApplicableProducts()) {
+                                    if(product.getProductName().equals(nameProductPromotion)){
+                                        Promotion.removeProductPromo(product);
                                     }
                                 }
                                 break;
                             case 3:
-                                promotion.displayApplicableProducts();
+                                Promotion.displayApplicableProducts();
                                 break;
                             case 4:
                                 isPromotion = true;
