@@ -1,16 +1,17 @@
-1|Nguyen Tuan Anh|0685123657|2024-11-12|106|1|105|1|true
-2|Nguyen Thanh Hien|0866065213|2024-01-15|101|3|203|1|false
-3|Nguyen Thanh Hien|0866065213|2024-02-28|110|2|true
-4|null|null|2024-02-15|108|2|true
-5|Nguyen Thanh Hien|0866065213|2024-11-11|103|2|true
-6|Nguyen Thanh Hien|0866065213|2024-11-15|107|1|101|2|true
-7|Le Thi Nga|0856123456|2024-11-25|110|1|true
-8|Nguyen Thanh Phong|0872588123|2024-11-15|102|1|true
-9|Le Thi Luu|0877124875|2024-09-15|106|2|102|1|true
-10|Pham Thi Lan|0918254116|2024-08-15|108|2|107|2|103|1|111|2|203|1|101|2|105|1|false
-11|null|null|2024-08-15|109|2|208|3|true
-12|Phan Bao Anh|0892060789|2024-08-07|107|1|110|1|true
-13|Nguyen Thanh Hien|0866065213|2024-11-11|105|1|true
-14|Nguyen Tuan Anh|0685123657|2024-11-11|105|2|true
-15|Nguyen Van dep tra|0892456123|2024-11-30|200|1|true
-16|Nguyen Van Hieu|0912765192|2024-11-30|208|2|true
+1|Nguyen Tuan Anh|0685123657|2024-11-12|106|1|false|105|1|false|true
+2|Nguyen Thanh Hien|0866065213|2024-01-15|101|3|false|203|1|false|false
+3|Nguyen Thanh Hien|0866065213|2024-02-28|110|2|false|true
+4|null|null|2024-02-15|108|2|false|true
+5|Nguyen Thanh Hien|0866065213|2024-11-11|103|2|false|true
+6|Nguyen Thanh Hien|0866065213|2024-11-15|107|1|false|101|2|false|true
+7|Le Thi Nga|0856123456|2024-11-25|110|1|false|true
+8|Nguyen Thanh Phong|0872588123|2024-11-15|102|1|false|true
+9|Le Thi Luu|0877124875|2024-09-15|106|2|false|102|1|false|true
+10|Pham Thi Lan|0918254116|2024-08-15|108|2|false|107|2|false|103|1|false|111|2|false|203|1|false|101|2|false|105|1|false|false
+11|null|null|2024-08-15|109|2|false|208|3|false|true
+12|Phan Bao Anh|0892060789|2024-08-07|107|1|false|110|1|false|true
+13|Nguyen Thanh Hien|0866065213|2024-11-11|105|1|false|true
+14|Nguyen Tuan Anh|0685123657|2024-11-11|105|2|false|true
+15|Nguyen Van dep tra|0892456123|2024-11-30|200|1|false|true
+16|Nguyen Van Hieu|0912765192|2024-11-30|208|2|false|true
+17|Nguyen Thanh Hien|0866065213|2024-12-03|111|5|true|true

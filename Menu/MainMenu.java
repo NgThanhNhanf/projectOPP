@@ -5,6 +5,7 @@ import Accounts.UserUI;
 import Accounts.Users;
 import Model.Inventory;
 import Model.ProductUI;
+import Model.Promotion;
 import Order.Orders;
 import Order.OrdersUI;
 import Person.CustomerUI;
@@ -24,12 +25,14 @@ public class MainMenu {
         Customers.fileInit();
         Inventory.fileInit();
         Orders.fileInit();
+        Promotion.fileInit();
         loginUI();
         Users.fileClose();
         Employees.fileClose();
         Customers.fileClose();
         Inventory.fileClose();
         Orders.fileClose();
+        Promotion.fileClose();
     }
 
     public static void MenuM() {

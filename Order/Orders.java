@@ -295,9 +295,20 @@ public class Orders implements fileWork {
             newOrder.setOrderStatus(orderStatus);
             if (customer != null) customer.addOrder(newOrder);
 
-            for (int i = 4; i < arrstr.length - 1; i += 2) {
-                newOrder.addProduct(Inventory.getProductByID(Integer.parseInt(arrstr[i])),
-                        Integer.parseInt(arrstr[i + 1]));
+            for (int i = 4; i < arrstr.length - 1; i += 3) {
+                Product product = Inventory.getProductByID(Integer.parseInt(arrstr[i]));
+                int quantity = Integer.parseInt(arrstr[i + 1]);
+                boolean hasPromo = Boolean.parseBoolean(arrstr[i + 2]);
+                
+                newOrder.addProduct(product, quantity);
+                if (hasPromo) {
+                    for (OrderDetail detail : newOrder.getOrderDetails()) {
+                        if (detail.getProduct().getProductID() == product.getProductID()) {
+                            detail.setHasPromotion(true);
+                            break;
+                        }
+                    }
+                }
             }
             Orders.addOrder(newOrder);
         }
@@ -322,8 +333,8 @@ public class Orders implements fileWork {
     @Override
     public void writeFile() throws IOException {
         // FileWriter("D:\\Study\\OOP\\projectOPP\\Order\\orderData.txt");
-    //   FileWriter myFile = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
-        FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Order\\orderData.txt");
+      FileWriter myFile = new FileWriter("D:\\Java\\Nhom14\\OOP-hanh\\DoAnOOP\\Project\\Order\\orderData.txt");
+        // FileWriter myFile = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Order\\orderData.txt");
         // FileWriter myFile = new FileWriter("C:\\OOP\\projectOPP\\Order\\orderData.txt");
         for (Order cur : orders) {
             myFile.write(cur.getOrderID() + "|");
@@ -334,7 +345,7 @@ public class Orders implements fileWork {
             }
             myFile.write("|" + cur.getOrderDate());
             for (OrderDetail d : cur.getOrderDetails()) {
-                myFile.write("|" + d.getProduct().getProductID() + "|" + d.getQuantity());
+                myFile.write("|" + d.getProduct().getProductID() + "|" + d.getQuantity() + "|" + d.hasPromotion());
             }
             myFile.write("|" + cur.isOrderStatus()); // Ghi thêm trạng thái vào file
             myFile.write('\n');

@@ -1,16 +1,20 @@
 package Model;
 
+import File.fileWork;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
-public class Promotion {
+public class Promotion implements fileWork {
     private static final String promoCode = "COLOANOOP"; // mã giảm giá duy nhất
-    private static int discountCode = 0; // % giảm giá
     private static final LocalDate startDate = LocalDate.of(2024, 1, 1); // ngày bắt đầu mặc định
     private static final LocalDate endDate = LocalDate.of(2025, 1, 1);   // ngày kết thúc mặc định
-    private static final List<Product> applicableProducts = new ArrayList<>(); // sản phẩm áp dụng mã giảm giá
+    private static final HashMap<Integer, Integer> applicableProducts = new HashMap<>(); // <ProductID, DiscountValue>
     private static final Scanner sc = new Scanner(System.in);
 
     // Lấy mã giảm giá
@@ -18,32 +22,25 @@ public class Promotion {
         return promoCode;
     }
 
-    // Lấy % giảm giá
-    public static int getDiscountCode() {
-        return discountCode;
+    // Sửa phương thức getDiscountCode
+    public static int getDiscountCode(int productID) {
+        return applicableProducts.getOrDefault(productID, 0);
     }
 
-    // Đặt % giảm giá với kiểm tra hợp lệ
-    public static void setDiscountCode(int newDiscountCode) {
-        if (newDiscountCode >= 1 && newDiscountCode <= 100) {
-            discountCode = newDiscountCode;
-        } else {
-            throw new IllegalArgumentException("Mã giảm giá phải từ 1 đến 100.");
-        }
-    }
-
-    // Hỗ trợ nhập mã giảm giá từ bàn phím
-    public static void inputDiscountCode() {
-        System.out.print("Nhập mã giảm giá: ");
+    // Sửa phương thức inputDiscountCode để trả về giá trị discount
+    public static int inputDiscountCode() {
+        System.out.print("Nhap gia tri giam gia (gia tri la so phan tram): ");
         while (true) {
             try {
                 int inputCode = sc.nextInt();
-                setDiscountCode(inputCode); // Gọi setter để kiểm tra
-                break;
+                if (inputCode >= 1 && inputCode <= 100) {
+                    return inputCode;
+                }
+                throw new IllegalArgumentException("Gia tri ma giam dao dong tu (1 - 100)%.");
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage() + " Vui lòng nhập lại.");
+                System.out.println(e.getMessage() + " Vui long nhap lai.");
             } catch (Exception e) {
-                System.out.println("Giá trị không hợp lệ. Vui lòng nhập số nguyên.");
+                System.out.println("Gia tri khong hop le. Vui long nhap lai so nguyen.");
                 sc.nextLine(); // Xóa bộ đệm
             }
         }
@@ -65,49 +62,92 @@ public class Promotion {
         return !today.isBefore(startDate) && !today.isAfter(endDate);
     }
 
-    // Thêm sản phẩm vào danh mục khuyến mãi
-    public static void addProductPromo(Product product) {
-        if (!applicableProducts.contains(product)) {
-            applicableProducts.add(product);
-            System.out.println("Sản phẩm " + product.getProductName() + " đã được thêm vào danh mục khuyến mãi.");
+    // Thêm sản phẩm vào danh mục khuyến mãi với giá trị giảm giá cụ thể
+    public static void addProductPromo(Product product, int discount) {
+        int productID = product.getProductID();
+        if (!applicableProducts.containsKey(productID)) {
+            applicableProducts.put(productID, discount);
+            System.out.println("San pham " + product.getProductName() + " da duoc them vao danh muc khuyen mai.");
         } else {
-            System.out.println("Sản phẩm đã tồn tại trong danh mục khuyến mãi.");
+            System.out.println("San pham da ton tai trong danh muc khuyen mai.");
         }
     }
 
     // Xóa sản phẩm khỏi danh mục khuyến mãi
     public static void removeProductPromo(Product product) {
-        if (applicableProducts.remove(product)) {
-            System.out.println("Sản phẩm " + product.getProductName() + " đã được xóa khỏi danh mục khuyến mãi.");
+        int productID = product.getProductID();
+        if (applicableProducts.containsKey(productID)) {
+            applicableProducts.remove(productID);
+            System.out.println("San pham" + product.getProductName() + " da duoc xoa khoi danh muc khuyen mai.");
         } else {
-            System.out.println("Sản phẩm không tồn tại trong danh mục khuyến mãi.");
+            System.out.println("San pham khong ton tai trong danh muc khuyen mai.");
         }
     }
 
     // Lấy danh sách sản phẩm áp dụng khuyến mãi
-    public static List<Product> getApplicableProducts() {
-        return new ArrayList<>(applicableProducts);
+    public static HashMap<Integer, Integer> getApplicableProducts() {
+        return new HashMap<>(applicableProducts);
     }
 
-    // Áp dụng % giảm giá cho sản phẩm
+    // Sửa phương thức applyDiscount
     public static double applyDiscount(Product product) {
-        if (isValidDay() && applicableProducts.contains(product)) {
-            return product.getPrice() * (1 - discountCode / 100.0);
+        if (isValidDay() && applicableProducts.containsKey(product.getProductID())) {
+            int discount = applicableProducts.get(product.getProductID());
+            return product.getPrice() * (1 - discount / 100.0);
         }
         return product.getPrice(); // Trả về giá cũ nếu không hợp lệ
     }
 
-    // Hiển thị các sản phẩm trong danh mục khuyến mãi
+    // Hiển thị các sản phẩm trong danh mục khuyến mãi với giá trị giảm giá cụ thể
     public static void displayApplicableProducts() {
-        System.out.println("╔════════════════════════════════════════════╗");
-        System.out.printf("║ Mã giảm giá: %-24s      ║\n", promoCode);
-        System.out.println("╠════════════════════════════════════════════╣");
-        System.out.println("║ Các sản phẩm khuyến mãi:                   ║");
-
-        for (Product product : applicableProducts) {
-            System.out.println("╠────────────────────────────────────────────╣");
-            System.out.printf("║ %-35s %d %% ║\n", product.getProductName(), discountCode);
+        System.out.printf("│ Ma giam gia: %-29s│\n", promoCode);
+        System.out.println("├───────────────────────────────────────────┤");
+        System.out.println("│ Cac san pham khuyen mai:                  │");
+        if (applicableProducts.isEmpty()) {
+            System.out.println("│   Khong co san pham khuyen mai            │");
+        } else {
+            for (Map.Entry<Integer, Integer> entry : applicableProducts.entrySet()) {
+                Product product = Inventory.getProductByID(entry.getKey());
+                if (product != null) {
+                    System.out.printf("│ #%06d - %-27s %3d%%│\n", 
+                        product.getProductID(), 
+                        product.getProductName(), 
+                        entry.getValue());
+                }
+            }
         }
-        System.out.println("╚════════════════════════════════════════════╝");
+        System.out.println("├───────────────────────────────────────────┤");
+    }
+
+    @Override
+    public void readFile() throws FileNotFoundException {
+        File file = new File("D:\\Workspace\\Test\\temp\\projectOPP\\Model\\promotion.txt");
+        if (!file.exists()) return;
+        Scanner scf = new Scanner(file);
+        while (scf.hasNextLine()) {
+            String line = scf.nextLine();
+            String[] arr = line.split("\\|");
+            applicableProducts.put(Integer.parseInt(arr[0]), Integer.parseInt(arr[1]));
+        }
+        scf.close();
+    }
+
+    @Override
+    public void writeFile() throws IOException {
+        FileWriter fw = new FileWriter("D:\\Workspace\\Test\\temp\\projectOPP\\Model\\promotion.txt");
+        for (Map.Entry<Integer, Integer> entry : applicableProducts.entrySet()) {
+            fw.write(entry.getKey() + "|" + entry.getValue() + "\n");
+        }
+        fw.close();
+    }
+
+    public static void fileInit() throws FileNotFoundException {
+        Promotion promotion = new Promotion();
+        promotion.readFile();
+    }
+
+    public static void fileClose() throws IOException {
+        Promotion promotion = new Promotion();
+        promotion.writeFile();
     }
 }
