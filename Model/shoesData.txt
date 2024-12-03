@@ -1,12 +1,13 @@
-202|Adidas Ultraboost|40|40|Trang|20
-207|New Balance 574|39|39|Xam|10
-207|New Balance 574|39|39|Xam|10
-203|Puma Suede Classic|43|43|Xanh|19
-208|Asics10 Gel-Lyte III|44|44|Den|9
-201|Nike Air Max|42|42|Den|13
+
+206|Reebok Classic|40|40|Trang|14
 202|Adidas Ultraboost|40|40|Trang|20
 200|Fila Disruptor|38|38|Trang|9
-206|Reebok Classic|40|40|Trang|14
-209|Jordan 1 Mid|42|42|Xanh Den|3
-204|Converse Chuck Taylor|41|41|Do|15
 203|Puma Suede Classic|43|43|Xanh|19
+207|New Balance 574|39|39|Xam|10
+204|Converse Chuck Taylor|41|41|Do|15
+209|Jordan 1 Mid|42|42|Xanh Den|3
+202|Adidas Ultraboost|40|40|Trang|20
+208|Asics10 Gel-Lyte III|44|44|Den|9
+207|New Balance 574|39|39|Xam|10
+203|Puma Suede Classic|43|43|Xanh|19
+201|Nike Air Max|42|42|Den|13

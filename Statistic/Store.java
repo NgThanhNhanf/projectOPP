@@ -137,9 +137,9 @@ public class Store {
                 totalInYear += it.calculateTotal();
             }
             listOnYear.clear();
-            System.out.println("doanh thu trong nam " + year + " la: " + totalInYear);
+            System.out.println("doanh thu trong nam " + year + " la: " + totalInYear + ".000 VND");
         }else {
-            System.out.println("khong co don hang nao trong nam " + year + ".000 VND");
+            System.out.println("khong co don hang nao trong nam " + year);
             checkYear = false;
         }
     }

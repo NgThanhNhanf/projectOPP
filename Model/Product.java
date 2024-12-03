@@ -42,12 +42,12 @@ public abstract class Product {
     }
 
     public void setPrice(int price) {
-        while (true) {
-            if (price >= 0) {
+        while(true) {
+            if(price >= 0) {
                 this.price = price;
                 break;
-            } else {
-                System.err.println("Gia tien phai lon hon 0");
+            }else {
+              System.err.println("Gia tien phai lon hon 0");
             }
         }
     }
@@ -88,6 +88,9 @@ public abstract class Product {
         do {
             try {
                 newPrice = sc.nextInt();
+                if(newPrice >= 0) {
+                    this.price = newPrice;
+                }
                 break;
             } catch (InputMismatchException e) {
                 System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");
