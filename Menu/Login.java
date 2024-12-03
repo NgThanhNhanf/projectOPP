@@ -138,11 +138,11 @@ public class Login {
                 switch (choose1) {
                     case 1:
                         register();
-                        kt = false;
+                        
                         break;
                     case 2:
                         login();
-                        kt = false;
+                       
                         break;
                     case 3:
                         kt = false;
