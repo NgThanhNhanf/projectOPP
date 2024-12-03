@@ -171,7 +171,7 @@ public class ProductUI {
                         System.out.println("│ 1.Tim kiem theo ma                        │");
                         System.out.println("│ 2.Tim kiem theo ten                       │");
                         System.out.println("│ 3.Tim kiem theo size                      │");
-                        System.out.println("│ 4.Tim kiem theo vat lieu                  │");
+                        System.out.println("│ 4.Tim kiem theo chat lieu                 │");
                         System.out.println("│ 5.Tim kiem theo gia tien                  │");
                         System.out.println("│ 6.Thoat                                   │");
                         System.out.println("├───────────────────────────────────────────┤");
@@ -208,6 +208,7 @@ public class ProductUI {
                                 search4.search();
                                 break;
                             case 5:
+                                sc.nextLine();
                                 SearchMethod search5 = new SearchByPrice();
                                 search5.search();
                                 break;
