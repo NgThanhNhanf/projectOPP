@@ -81,6 +81,8 @@ public class Clothing extends Product {
         newClothing.inp();
         setProductID(newClothing.getProductID());
         setProductName(newClothing.getProductName());
+        editSize();
+        editMaterial();
         setPrice(newClothing.getPrice());
     }
 
