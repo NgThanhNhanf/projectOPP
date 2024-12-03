@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Promotion {
     private static final String promoCode = "CoLoanOOP"; // mã giảm giá
-    private static  int discountCode; // % giảm 
+    private static int discountCode; // % giảm 
     private static final LocalDate startDate = LocalDate.of(2024,01,01);
     private static final LocalDate endDate = LocalDate.of(2025,01,01);
     private static List<Product> applicableProducts = new ArrayList<>(); // sản phẩm đc áp dụng mã giảm giá
