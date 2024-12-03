@@ -39,29 +39,29 @@ public class Promotion {
         }
     }
     public void inpPromocodeandDiscount(){
-        System.out.println("nhap ma giam gia: ");
+        System.out.println("│ Nhap ma giam gia: ");
         setPromoCode(sc.nextLine());
-        System.out.println("nhap phan tram giam gia: ");
+        System.out.println("│ Nhap phan tram giam gia: ");
         setDiscountCode(sc.nextDouble());
         sc.nextLine();
     }
     public void inpDate(){
         String beginDate;
         do {
-            System.out.println("han bat dau: ");
+            System.out.println("│ Han bat dau: ");
             beginDate = sc.nextLine();
             if(!isValidformat(beginDate)){
-                System.out.println("dinh dang ngay khong hop le!Vui long nhap lai: ");
+                System.out.println("Dinh dang ngay khong hop le! Vui long nhap lai: ");
             }
         } while (!isValidformat(beginDate));
         this.startDate = LocalDateTime.parse(beginDate, format);
 
         String lastDate;
         do {
-            System.out.println("han ket thuc: ");
+            System.out.println("│ Han ket thuc: ");
             lastDate = sc.nextLine();
             if(!isValidformat(lastDate)){
-                System.out.println("dinh dang ngay khong hop le!Vui long nhap lai: ");
+                System.out.println("Dinh dang ngay khong hop le! Vui long nhap lai: ");
             }
         } while (!isValidformat(lastDate));
         this.endDate = LocalDateTime.parse(lastDate, format);
