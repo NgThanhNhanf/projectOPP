@@ -174,7 +174,7 @@ public class ProductUI {
                         System.out.println("│ 4.Tim kiem theo chat lieu                 │");
                         System.out.println("│ 5.Tim kiem theo gia tien                  │");
                         System.out.println("│ 6.Thoat                                   │");
-                        System.out.println("├───────────────────────────────────────────┤");
+                        System.out.println("└───────────────────────────────────────────┘");
 
                         System.out.print("Nhap lua chon: ");
                         int lc;

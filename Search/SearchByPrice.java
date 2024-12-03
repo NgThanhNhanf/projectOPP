@@ -3,14 +3,13 @@ package Search;
 import Model.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 public class SearchByPrice implements SearchMethod {
     Scanner sc = new Scanner(System.in);
     public void search() {
         boolean isSeachPrice = false;
         while(!isSeachPrice){
             System.out.println("nhap khoang gia tien: ");
-            System.out.print("Tu:  ");
+            System.out.print("Tu (boi so cua 1.000 VND):  ");
             int minPrice;
             do {
                 try {
@@ -22,7 +21,7 @@ public class SearchByPrice implements SearchMethod {
                 }
             } while (true);
             
-            System.out.print("Den: ");
+            System.out.print("Den (boi so cua 1.000 VND): ");
             int maxPrice;
             do {
                 try {
@@ -48,14 +47,14 @@ public class SearchByPrice implements SearchMethod {
                 if(product.getPrice() >= minPrice && product.getPrice() <= maxPrice){
                     product.displayInfor();
                 }
-                sc.nextLine();
-                System.out.print("ban co muon tim tiep khong ? (y/n)");
-                char x = sc.nextLine().charAt(0);
-                if(x == 'N' || x == 'n'){
-                    System.out.println("ket thuc tim kiem!");
-                    isSeachPrice = true;
-                    break;
-                }
+            }
+            sc.nextLine();
+            System.out.print("ban co muon tim tiep khong ? (y/n)");
+            char x = sc.nextLine().charAt(0);
+            if(x == 'N' || x == 'n'){
+                System.out.println("ket thuc tim kiem!");
+                isSeachPrice = true;
+                break;
             }
         }
     }

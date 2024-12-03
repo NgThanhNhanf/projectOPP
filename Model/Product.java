@@ -42,7 +42,14 @@ public abstract class Product {
     }
 
     public void setPrice(int price) {
-        this.price = price;
+        while (true) {
+            if (price >= 0) {
+                this.price = price;
+                break;
+            } else {
+                System.err.println("Gia tien phai lon hon 0");
+            }
+        }
     }
     //phương thức trừu tượng nhap thông tin sản phẩm
     public abstract void inp();

@@ -6,7 +6,7 @@ import Order.displayFormat;
 public class Clothing extends Product {
     private String size;
     private String material;
-    
+
 
     public Clothing() {}
 
@@ -58,9 +58,10 @@ public class Clothing extends Product {
     public void displayInfor() {
         super.displayInfor();
         System.out.printf("Size: %2s│\n│Chat lieu: %-32s│\n", getSize(), getMaterial());
-        System.out.printf("│Don gia: %-21s", displayFormat.formatPrice(super.getPrice()).concat(" VND"));
-
+        System.out.printf("│Don gia: %-34s│\n", displayFormat.formatPrice(super.getPrice()).concat(" VND"));
+        System.out.println("├───────────────────────────────────────────┤");
     }
+
     public void editSize(){
         System.out.print("new size: ");
         String newSize = sc.next();
