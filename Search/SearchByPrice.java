@@ -48,14 +48,14 @@ public class SearchByPrice implements SearchMethod {
                 if(product.getPrice() >= minPrice && product.getPrice() <= maxPrice){
                     product.displayInfor();
                 }
-                sc.nextLine();
-                System.out.print("ban co muon tim tiep khong ? (y/n)");
-                char x = sc.nextLine().charAt(0);
-                if(x == 'N' || x == 'n'){
-                    System.out.println("ket thuc tim kiem!");
-                    isSeachPrice = true;
-                    break;
-                }
+            }
+            sc.nextLine();
+            System.out.print("ban co muon tim tiep khong ? (y/n)");
+            char x = sc.nextLine().charAt(0);
+            if(x == 'N' || x == 'n'){
+                System.out.println("ket thuc tim kiem!");
+                isSeachPrice = true;
+                break;
             }
         }
     }

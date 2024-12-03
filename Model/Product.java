@@ -42,7 +42,14 @@ public abstract class Product {
     }
 
     public void setPrice(int price) {
-        this.price = price;
+        while(true) {
+            if(price >= 0) {
+                this.price = price;
+                break;
+            }else {
+                System.out.println("gia tien phai > 0");
+            }
+        }
     }
     //phương thức trừu tượng nhap thông tin sản phẩm
     public abstract void inp();
@@ -81,6 +88,9 @@ public abstract class Product {
         do {
             try {
                 newPrice = sc.nextInt();
+                if(newPrice >= 0) {
+                    this.price = newPrice;
+                }
                 break;
             } catch (InputMismatchException e) {
                 System.out.println("Lua chon chi bao gom chu so. Vui long nhap lai.");

@@ -208,7 +208,7 @@ public class ProductUI {
                                 search4.search();
                                 break;
                             case 5:
-                                sc.nextLine();
+                                // sc.nextLine();
                                 SearchMethod search5 = new SearchByPrice();
                                 search5.search();
                                 break;
