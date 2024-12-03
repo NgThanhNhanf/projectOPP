@@ -243,7 +243,7 @@ public class ProductUI {
                             String nameProductPromotionInAdd = sc.nextLine();
                             for(Product product : Inventory.getListInventory().keySet()){
                                 if(product.getProductName().equals(nameProductPromotionInAdd)){
-                                    Promotion.nhapDiscountCode();
+                                    Promotion.inputDiscountCode();
                                     Promotion.applyDiscount(product);
                                     Promotion.addProductPromo(product);
                                 }
