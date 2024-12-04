@@ -76,12 +76,14 @@ public class Shoes extends Product {
                 sc.nextLine(); // Xóa dữ liệu không hợp lệ trong bộ đệm
             }
         } while (true);
+        setSize(newSizeG);
         System.out.println("thay doi thanh cong");
     }
 
     public void editColor(){
         System.out.print("new color: ");
         String newColor = sc.nextLine();
+        setColor(newColor);
         System.out.println("thay doi thanh cong");
     }
 
